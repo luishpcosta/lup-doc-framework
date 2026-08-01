@@ -5,7 +5,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './index.module.css';
 
 export default function Home(): ReactNode {
-  const capaSrc = useBaseUrl('/framework-hibrido-rascunho.html');
+  const capaSrc = useBaseUrl('/framework-hibrido.html');
   return (
     <Layout
       title="Um ciclo de desenvolvimento com IA integrada"

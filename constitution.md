@@ -2,7 +2,7 @@
 
 Non-negotiable principles for this repository. Plans and code must comply; conflicts are escalated to a human, never overridden silently.
 
-This is a **Docusaurus documentation site** (`lup-doc-framework`): the home page and docs content follow the visual system defined in `framework-hibrido-rascunho.html` (registros "papel"/executivo e "blueprint"/técnico, paleta bordô/areia, tipografia Archivo/Inter/IBM Plex Mono).
+This is a **Docusaurus documentation site** (`lup-doc-framework`): the home page and docs content follow the visual system defined in `framework-hibrido.html` (registros "papel"/executivo e "blueprint"/técnico, paleta bordô/areia, tipografia Archivo/Inter/IBM Plex Mono).
 
 ## Principles
 

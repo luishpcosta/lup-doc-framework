@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Um modelo de trabalho com IA integrada — do executivo ao técnico</title>
+<title>Framework Squad Hibrida</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -203,10 +203,10 @@ p.slide-sub{
 .decision-card h4{ margin:10px 0 6px; font-size:14px; color:#fff; }
 .decision-card p{ margin:0; font-size:12px; color:var(--blue-muted); line-height:1.4; }
 
-/* ----- transição ----- */
-#s6{ align-items:center; text-align:center; }
-#s6 .transition-wrap{ max-width:640px; margin:0 auto; }
-#s6 h1{ max-width:none; }
+/* ----- slide centralizado (declarações/perguntas/transições) ----- */
+.slide-center{ align-items:center; text-align:center; }
+.slide-center .transition-wrap{ max-width:640px; margin:0 auto; }
+.slide-center h1{ max-width:none; }
 
 /* ===== chrome de navegação ===== */
 .gauge-wrap{
@@ -222,10 +222,14 @@ p.slide-sub{
 }
 .gauge-marker{
   position:absolute; top:50%; width:9px; height:9px; border-radius:50%;
-  background:var(--navy); transform:translate(-50%,-50%);
-  transition:left var(--dur) ease, background var(--dur) ease;
+  /* dourado fixo (nunca transiciona) — contrasta com o navy da capa, o
+     paper-bg claro e o blue-bg escuro ao mesmo tempo, então o marcador
+     nunca se funde com o fundo durante o fade entre registros */
+  background:var(--purple);
+  box-shadow:0 0 0 1.5px rgba(0,0,0,.35);
+  transform:translate(-50%,-50%);
+  transition:left var(--dur) ease;
 }
-body.blueprint .gauge-marker{ background:#fff; }
 .gauge-labels{ display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--paper-muted); }
 body.blueprint .gauge-labels{ color:var(--blue-muted); }
 
@@ -270,15 +274,26 @@ body.blueprint .nav-btn:focus-visible{ outline-color:#fff; }
 
   <!-- 1: CAPA -->
   <section class="slide active" id="s1" data-register="paper">
-    <p class="eyebrow">Modelo de trabalho · IA integrada</p>
+    <p class="eyebrow">Framework Squad Hibrida</p>
     <div class="title-rule"></div>
     <h1 class="slide-title">Um ciclo de desenvolvimento com IA integrada</h1>
-    <p class="slide-sub">Do brief de negócio ao código gerado por IA — um único fluxo, com rastreabilidade em cada etapa. Da visão executiva ao blueprint técnico.</p>
+    <p class="slide-sub">Do brief de negócio ao código gerado por IA — um único fluxo, com rastreabilidade em cada etapa.</p>
   </section>
 
-  <!-- 2: O PROBLEMA -->
+  <!-- 2: SITUAÇÃO -->
   <section class="slide" id="s2" data-register="paper">
-    <p class="eyebrow">O problema</p>
+    <p class="eyebrow">Situação</p>
+    <h1 class="slide-title">Hoje, cada time usa IA à sua maneira</h1>
+    <div class="row">
+      <div class="card"><div class="num">1</div><h3>IA entra em cada etapa</h3><p>Agentes já ajudam a escrever documentos, montar backlog e gerar código.</p></div>
+      <div class="card"><div class="num">2</div><h3>Cada time escolhe como usar</h3><p>Não existe um padrão comum de como a IA participa do trabalho entre as equipes.</p></div>
+      <div class="card"><div class="num">3</div><h3>O ritmo de adoção varia</h3><p>Alguns times usam IA em quase tudo; outros, só em partes pontuais do processo.</p></div>
+    </div>
+  </section>
+
+  <!-- 3: COMPLICAÇÃO -->
+  <section class="slide" id="s3" data-register="paper">
+    <p class="eyebrow">Complicação</p>
     <h1 class="slide-title">Quando não estruturamos o uso de IA, a operação perde o controle</h1>
     <div class="row">
       <div class="card"><div class="num">1</div><h3>Decisões se repetem</h3><p>O mesmo debate estratégico acontece de novo em cada time, porque ninguém sabe que já foi resolvido em outro lugar.</p></div>
@@ -287,75 +302,33 @@ body.blueprint .nav-btn:focus-visible{ outline-color:#fff; }
     </div>
   </section>
 
-  <!-- 3: IDEIA CENTRAL -->
-  <section class="slide" id="s3" data-register="paper">
-    <p class="eyebrow">A ideia central</p>
-    <h1 class="slide-title">Separar onde vive a intenção de onde vive a execução</h1>
-    <div class="split">
-      <div class="panel dark">
-        <span class="tag">A constituição</span>
-        <h3>Por que fazemos e o que precisa ser verdade</h3>
-        <ul>
-          <li>Estratégia de produto e prioridades</li>
-          <li>Como o negócio está organizado em domínios</li>
-          <li>Decisões técnicas e por que foram tomadas</li>
-          <li>Critérios que definem "pronto"</li>
-        </ul>
-      </div>
-      <div class="panel light">
-        <span class="tag">A operação</span>
-        <h3>Como cada time entrega no dia a dia</h3>
-        <ul>
-          <li>Cada equipe com seu próprio repositório</li>
-          <li>Planeja, executa e testa no seu ritmo</li>
-          <li>Usa a constituição como referência, não como camisa de força</li>
-          <li>Devolve aprendizados para atualizar a constituição</li>
-        </ul>
-      </div>
+  <!-- 4: PERGUNTA -->
+  <section class="slide slide-center" id="s4" data-register="paper">
+    <div class="transition-wrap">
+      <p class="eyebrow">Pergunta</p>
+      <h1 class="slide-title">Como estruturar negócio, técnica e execução de IA num fluxo só, sem perder rastreabilidade?</h1>
     </div>
-    <p class="loop-mark">↻ execução alimenta de volta a constituição</p>
   </section>
 
-  <!-- 4: CICLO -->
-  <section class="slide" id="s4" data-register="paper">
-    <p class="eyebrow">O ciclo, em quatro movimentos</p>
+  <!-- 5: RESPOSTA — o ciclo -->
+  <section class="slide" id="s5" data-register="paper">
+    <p class="eyebrow">Resposta</p>
     <h1 class="slide-title">De negócio a código, em um fluxo só</h1>
     <div class="cycle">
       <div class="cycle-step a"><span class="badge">humano + IA</span><h4>Análise de negócio</h4><p>Entende o problema e a prioridade — produz PB e PRD</p></div>
-      <div class="cycle-arrow loop"><span>⇄</span><small>iterativo</small></div>
+      <div class="cycle-arrow loop"><span>⇄</span></div>
       <div class="cycle-step b"><span class="badge">humano + IA</span><h4>Análise técnica</h4><p>Decide a arquitetura e o critério de aceite — produz ADR e ACs</p></div>
       <div class="cycle-arrow">→</div>
-      <div class="cycle-step a"><span class="badge">humano + IA</span><h4>Backlogs</h4><p>Consolida tudo em itens rastreáveis, prontos para o board</p></div>
+      <div class="cycle-step a"><span class="badge">humano + IA</span><h4>Backlog</h4><p>Consolida tudo em itens rastreáveis, prontos para o board</p></div>
       <div class="cycle-arrow">→</div>
       <div class="cycle-step b"><span class="badge">humano + IA</span><h4>Implementação</h4><p>Speckit SDD e o agente geram o código, com verificação automática</p></div>
     </div>
     <p class="slide-sub" style="margin-top:24px; font-style:italic;">Cada movimento devolve aprendizado para o anterior — o fluxo é circular, não uma esteira de mão única.</p>
   </section>
 
-  <!-- 5: BENEFÍCIOS -->
-  <section class="slide" id="s5" data-register="paper">
-    <p class="eyebrow">Por que isso importa</p>
-    <h1 class="slide-title">O ganho para o negócio</h1>
-    <div class="check-grid">
-      <div class="check-item"><div class="mark">✓</div><div><h4>Rastreabilidade</h4><p>Qualquer decisão pode ser ligada a uma linha de código e a um teste que a comprova.</p></div></div>
-      <div class="check-item"><div class="mark">✓</div><div><h4>Velocidade com controle</h4><p>Times e agentes de IA executam mais rápido porque não redescobrem contexto a cada tarefa.</p></div></div>
-      <div class="check-item"><div class="mark">✓</div><div><h4>Menor risco de retrabalho</h4><p>Mudança de estratégia se propaga de um lugar só, não exige caça a documentos espalhados.</p></div></div>
-      <div class="check-item"><div class="mark">✓</div><div><h4>Governança sem burocracia</h4><p>A referência central é enxuta; o detalhe operacional fica onde a execução acontece.</p></div></div>
-    </div>
-  </section>
-
-  <!-- 6: TRANSIÇÃO -->
-  <section class="slide" id="s6" data-register="paper">
-    <div class="transition-wrap">
-      <p class="eyebrow">A partir daqui</p>
-      <h1 class="slide-title">Por dentro do framework</h1>
-      <p class="slide-sub" style="margin:0 auto;">O que vem a seguir é o mesmo modelo, visto no nível em que os times de engenharia e os agentes de IA de fato operam.</p>
-    </div>
-  </section>
-
-  <!-- 7: BLUEPRINT — duas análises -->
-  <section class="slide" id="s7" data-register="blueprint">
-    <p class="eyebrow">Blueprint — 01</p>
+  <!-- 6: RESPOSTA — pilar 1 -->
+  <section class="slide" id="s6" data-register="blueprint">
+    <p class="eyebrow">Resposta — pilar 1</p>
     <h1 class="slide-title">Duas análises, quatro artefatos</h1>
     <p class="slide-sub">Negócio e técnica rodam em paralelo — as duas alimentam a mesma história.</p>
     <div class="nest-label" style="margin-top:22px; color:var(--purple)">Análise de negócio <span class="badge" style="margin-left:8px; margin-bottom:0;">agentes + skills</span></div>
@@ -373,9 +346,9 @@ body.blueprint .nav-btn:focus-visible{ outline-color:#fff; }
     <p class="rule-note">Agentes e skills conduzem a entrevista em cada análise — o time valida e decide.</p>
   </section>
 
-  <!-- 8: BLUEPRINT — histórias -->
-  <section class="slide" id="s8" data-register="blueprint">
-    <p class="eyebrow">Blueprint — 02</p>
+  <!-- 7: RESPOSTA — pilar 1 (cont.) -->
+  <section class="slide" id="s7" data-register="blueprint">
+    <p class="eyebrow">Resposta — pilar 1 (cont.)</p>
     <h1 class="slide-title">A história: onde as duas análises se encontram</h1>
     <p class="slide-sub">Uma unidade única, rastreável, registrada no board do time — é o que o harness vai executar.</p>
     <div class="mech-grid">
@@ -394,9 +367,9 @@ body.blueprint .nav-btn:focus-visible{ outline-color:#fff; }
     <p class="chain-caption">Sem essa cadeia de IDs não dá para provar cobertura nem detectar desvio.</p>
   </section>
 
-  <!-- 9: BLUEPRINT — onde o contexto aterrissa -->
-  <section class="slide" id="s9" data-register="blueprint">
-    <p class="eyebrow">Blueprint — 03</p>
+  <!-- 8: RESPOSTA — pilar 2 -->
+  <section class="slide" id="s8" data-register="blueprint">
+    <p class="eyebrow">Resposta — pilar 2</p>
     <h1 class="slide-title">Onde o contexto aterrissa no repositório</h1>
     <p class="slide-sub">Contenção, não sequência: cada nível vive dentro do anterior.</p>
     <div class="nest-outer">
@@ -426,9 +399,9 @@ body.blueprint .nav-btn:focus-visible{ outline-color:#fff; }
     <p class="rule-note">Um índice na raiz, um domínio por pasta — cada bounded context com seu próprio glossário e ADRs.</p>
   </section>
 
-  <!-- 10: BLUEPRINT — harness Speckit SDD -->
-  <section class="slide" id="s10" data-register="blueprint">
-    <p class="eyebrow">Blueprint — 04</p>
+  <!-- 9: RESPOSTA — pilar 3 -->
+  <section class="slide" id="s9" data-register="blueprint">
+    <p class="eyebrow">Resposta — pilar 3</p>
     <h1 class="slide-title">O harness Speckit SDD, dentro da aplicação</h1>
     <p class="slide-sub">Vive no repositório de serviço, não no meta-repo — evolui no ritmo do time, sem tocar na constituição.</p>
     <div class="pipeline">
@@ -442,9 +415,9 @@ body.blueprint .nav-btn:focus-visible{ outline-color:#fff; }
     </div>
   </section>
 
-  <!-- 11: DECISÕES TÉCNICAS -->
-  <section class="slide" id="s11" data-register="blueprint">
-    <p class="eyebrow">Blueprint — 05 · para colocar em produção</p>
+  <!-- 10: RESPOSTA — para produção -->
+  <section class="slide" id="s10" data-register="blueprint">
+    <p class="eyebrow">Resposta — para produção</p>
     <h1 class="slide-title">O que precisa ser decidido</h1>
     <div class="decision-grid">
       <div class="decision-card"><div class="n">01</div><h4>Harness padrão</h4><p>Qual ferramenta de Speckit SDD a organização adota primeiro</p></div>

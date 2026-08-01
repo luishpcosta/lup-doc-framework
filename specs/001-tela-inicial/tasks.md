@@ -28,10 +28,11 @@ Superseded por T-10 a T-13 abaixo. Mantidas para histórico/auditoria — não r
 
 | ID | Task | Satisfies | Status | Evidence |
 |---|---|---|---|---|
-| T-10 | Copiar `framework-hibrido-rascunho.html` para `static/` e reescrever `index.tsx`/`index.module.css` para embutir via `<iframe>` em tela cheia; deletar os componentes React da recriação anterior | AC-1 | done | `static/framework-hibrido-rascunho.html` existe; `src/pages/index.tsx` só renderiza `<iframe>`; captura `home-iframe.png` é pixel-idêntica ao arquivo original aberto direto |
+| T-10 | Copiar `framework-hibrido.html` para `static/` e reescrever `index.tsx`/`index.module.css` para embutir via `<iframe>` em tela cheia; deletar os componentes React da recriação anterior | AC-1 | done | `static/framework-hibrido.html` existe; `src/pages/index.tsx` só renderiza `<iframe>`; captura `home-iframe.png` é pixel-idêntica ao arquivo original aberto direto |
 | T-11 | Remover scaffolding padrão do Docusaurus (blog, tutorial docs, markdown-page, imagens/logo/favicon) | AC-8 | done | `find docs static/img src/pages -type f` não lista mais nenhum arquivo de demonstração do Docusaurus |
 | T-12 | Remover `footer` de `themeConfig` em `docusaurus.config.ts` | AC-9 | done | captura `docs-intro.png` não mostra nenhum rodapé abaixo do conteúdo |
 | T-13 | Confirmar que as fontes (Archivo/Inter/IBM Plex Mono) já se aplicam fora da home; rodar `npm run typecheck` + `npm run build` | AC-3 | done | captura `docs-intro.png` mostra título em Archivo e corpo em Inter em `/docs/intro`; `./init.sh` verde |
+| T-14 | Corrigir contraste do `.gauge-marker` em `static/framework-hibrido.html` (tentativa 1: anel `box-shadow` escuro+claro mantendo `background` navy/branco — rejeitada pelo usuário; tentativa 2, final: `background` fixo dourado (`var(--purple)`), sem transição de cor) | AC-10 | done | captura `gauge-gold.png` mostra o marcador como ponto dourado sólido, visível contra o fundo navy da capa; `npm run build` verde após a mudança |
 
 Status values: `todo` → `doing` → `done` → `superseded`.
 
@@ -39,5 +40,5 @@ Status values: `todo` → `doing` → `done` → `superseded`.
 
 Confirm manually before implementing:
 
-- Every AC referenced by at least one task? yes — AC-1: T-10, AC-3: T-13, AC-5: T-10 (navegação nativa do arquivo) + navbar existente, AC-8: T-11, AC-9: T-12
+- Every AC referenced by at least one task? yes — AC-1: T-10, AC-3: T-13, AC-5: T-10 (navegação nativa do arquivo) + navbar existente, AC-8: T-11, AC-9: T-12, AC-10: T-14
 - Every task linked to an AC? yes (tasks históricas T-1–T-9 marcadas `superseded` e ligadas aos ACs que tinham antes de serem retirados da spec)
