@@ -8,7 +8,7 @@ const config: Config = {
   title: 'LUP — Framework Híbrido',
   tagline:
     'Do brief de negócio ao código gerado por IA — um único fluxo, com rastreabilidade em cada etapa.',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.svg',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -43,17 +43,8 @@ const config: Config = {
         docs: {
           sidebarPath: './sidebars.ts',
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
+        // Sem blog por enquanto — reative com as opções do preset quando houver conteúdo.
+        blog: false,
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -62,8 +53,7 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    // TODO: adicionar uma imagem de social card real (og:image) quando houver uma.
     colorMode: {
       respectPrefersColorScheme: true,
     },
@@ -80,7 +70,6 @@ const config: Config = {
           position: 'left',
           label: 'Documentação',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
       ],
     },
     footer: {
@@ -92,15 +81,6 @@ const config: Config = {
             {
               label: 'Documentação',
               to: '/docs/intro',
-            },
-          ],
-        },
-        {
-          title: 'Mais',
-          items: [
-            {
-              label: 'Blog',
-              to: '/blog',
             },
           ],
         },

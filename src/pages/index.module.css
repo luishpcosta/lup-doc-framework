@@ -1,7 +1,63 @@
 /**
  * Réplica do registro visual de framework-hibrido-rascunho.html (capa,
- * problema, ideia central e ciclo) como tela inicial da documentação.
+ * problema, ideia central, ciclo e blueprint técnico) como tela inicial
+ * da documentação.
  */
+
+/* ----- indicador de registro (gauge executivo -> blueprint técnico) ----- */
+.gaugeWrap {
+  position: sticky;
+  top: var(--ifm-navbar-height, 60px);
+  z-index: 10;
+  padding: 10px clamp(20px, 6vw, 64px);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: var(--ifm-background-color);
+  border-bottom: 1px solid var(--ifm-toc-border-color);
+}
+
+.gaugeTrack {
+  position: relative;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--paper-card) 0%,
+    var(--paper-card) 50%,
+    var(--blue-bg) 50%,
+    var(--blue-bg) 100%
+  );
+}
+
+.gaugeMarker {
+  position: absolute;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--navy);
+  transform: translate(-50%, -50%);
+  transition: left 0.2s ease, background 0.2s ease;
+}
+
+.gaugeMarkerBlueprint {
+  background: var(--purple);
+}
+
+.gaugeLabels {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--paper-muted);
+}
+
+[data-theme='dark'] .gaugeLabels {
+  color: var(--blue-muted);
+}
 
 .hero {
   padding: clamp(64px, 12vw, 128px) clamp(24px, 8vw, 140px);
@@ -325,4 +381,150 @@
   border-radius: 20px;
   padding: 2px 9px;
   margin-bottom: 8px;
+}
+
+/* ----- transição (slide 6) ----- */
+.sectionCenter {
+  text-align: center;
+}
+
+.sectionTitleCenter {
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sectionSubCenter {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ----- blueprint técnico (slide 7) — registro sempre escuro,
+   independente do tema claro/escuro do site ----- */
+.blueprintSection {
+  padding: clamp(48px, 8vw, 96px) clamp(24px, 8vw, 140px);
+  background-color: var(--blue-bg);
+  background-image: linear-gradient(var(--blue-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--blue-grid) 1px, transparent 1px);
+  background-size: 36px 36px;
+  color: var(--blue-ink);
+}
+
+.blueprintEyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue-muted);
+  margin: 0 0 18px;
+}
+
+.blueprintTitle {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(22px, 3.2vw, 38px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--blue-ink);
+  margin: 0 0 8px;
+  max-width: 22ch;
+}
+
+.blueprintSub {
+  font-size: clamp(14px, 1.4vw, 17px);
+  color: var(--blue-muted);
+  max-width: 60ch;
+  line-height: 1.55;
+  margin: 8px 0 0;
+}
+
+.nestLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 22px 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nestLabelPurple {
+  color: var(--purple);
+}
+
+.nestLabelCoral {
+  color: var(--coral);
+}
+
+.pipeline {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.pipeNode {
+  background: var(--blue-card);
+  border: 0.5px solid var(--purple);
+  padding: 16px 18px;
+  flex: 1;
+  min-width: 130px;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+}
+
+.pipeNode h4 {
+  margin: 0 0 4px;
+  font-size: 15px;
+  color: #fff;
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+.pipeNode p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--blue-muted);
+  line-height: 1.4;
+}
+
+.pipeFull {
+  margin: 0 0 6px !important;
+  font-size: 10.5px !important;
+  font-style: italic;
+}
+
+.pipeArrow {
+  width: 26px;
+  text-align: center;
+  color: var(--purple);
+  font-size: 16px;
+  flex: 0 0 auto;
+}
+
+.pipeNodeCoral {
+  border-color: var(--coral);
+}
+
+.pipeArrowCoral {
+  color: var(--coral);
+}
+
+.ruleNote {
+  margin-top: 16px;
+  font-size: 12.5px;
+  color: var(--blue-muted);
+  font-style: italic;
+}
+
+.ctaButtonBlueprint {
+  border-color: var(--purple);
+  color: var(--blue-ink);
+}
+
+.ctaButtonBlueprint:hover {
+  color: var(--blue-ink);
+  opacity: 0.85;
 }

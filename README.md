@@ -1,6 +1,8 @@
-# Website
+# lup-doc-framework
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+Documentação do framework híbrido (modelo de trabalho com IA integrada, do brief de negócio ao código gerado por IA). Site construído com [Docusaurus](https://docusaurus.io/).
+
+Regras de desenvolvimento (fluxo spec-driven, gates, comandos de verificação) estão em `CLAUDE.md` e `constitution.md`.
 
 ## Installation
 

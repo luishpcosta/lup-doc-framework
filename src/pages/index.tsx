@@ -1,8 +1,56 @@
 import type {ReactNode} from 'react';
+import {useEffect, useState} from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 
 import styles from './index.module.css';
+
+const BLUEPRINT_SECTION_ID = 'blueprint-register';
+
+function RegisterGauge() {
+  const [scrollPct, setScrollPct] = useState(0);
+  const [inBlueprint, setInBlueprint] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollPct(max > 0 ? Math.min(100, (window.scrollY / max) * 100) : 0);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, {passive: true});
+
+    const target = document.getElementById(BLUEPRINT_SECTION_ID);
+    let observer: IntersectionObserver | undefined;
+    if (target) {
+      observer = new IntersectionObserver(
+        ([entry]) => setInBlueprint(entry.isIntersecting),
+        {rootMargin: '-40% 0px -40% 0px'},
+      );
+      observer.observe(target);
+    }
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      observer?.disconnect();
+    };
+  }, []);
+
+  return (
+    <div className={styles.gaugeWrap}>
+      <div className={styles.gaugeTrack}>
+        <div
+          className={`${styles.gaugeMarker} ${inBlueprint ? styles.gaugeMarkerBlueprint : ''}`}
+          style={{left: `${scrollPct}%`}}
+        />
+      </div>
+      <div className={styles.gaugeLabels}>
+        <span>Visão executiva</span>
+        <span>{inBlueprint ? 'Blueprint técnico' : 'Executivo'}</span>
+        <span>Blueprint técnico</span>
+      </div>
+    </div>
+  );
+}
 
 function Hero() {
   return (
@@ -159,16 +207,98 @@ function CycleSection() {
   );
 }
 
+function TransitionSection() {
+  return (
+    <section className={`${styles.section} ${styles.sectionCenter}`}>
+      <p className={styles.sectionEyebrow}>A partir daqui</p>
+      <h2 className={`${styles.sectionTitle} ${styles.sectionTitleCenter}`}>
+        Por dentro do framework
+      </h2>
+      <p className={`${styles.sectionSub} ${styles.sectionSubCenter}`}>
+        O que vem a seguir é o mesmo modelo, visto no nível em que os times de
+        engenharia e os agentes de IA de fato operam.
+      </p>
+    </section>
+  );
+}
+
+function BlueprintSection() {
+  return (
+    <section
+      id={BLUEPRINT_SECTION_ID}
+      className={styles.blueprintSection}>
+      <p className={styles.blueprintEyebrow}>Blueprint — 01</p>
+      <h2 className={styles.blueprintTitle}>Duas análises, quatro artefatos</h2>
+      <p className={styles.blueprintSub}>
+        Negócio e técnica rodam em paralelo — as duas alimentam a mesma
+        história.
+      </p>
+
+      <p className={`${styles.nestLabel} ${styles.nestLabelPurple}`}>
+        Análise de negócio{' '}
+        <span className={styles.badge}>agentes + skills</span>
+      </p>
+      <div className={styles.pipeline}>
+        <div className={styles.pipeNode}>
+          <h4>PB</h4>
+          <p className={styles.pipeFull}>Product Brief</p>
+          <p>Por que isso importa agora</p>
+        </div>
+        <div className={styles.pipeArrow}>→</div>
+        <div className={styles.pipeNode}>
+          <h4>PRD</h4>
+          <p className={styles.pipeFull}>Product Requirements Document</p>
+          <p>O que precisa existir</p>
+        </div>
+      </div>
+
+      <p className={`${styles.nestLabel} ${styles.nestLabelCoral}`}>
+        Análise técnica{' '}
+        <span className={styles.badge}>agentes + skills</span>
+      </p>
+      <div className={styles.pipeline}>
+        <div className={`${styles.pipeNode} ${styles.pipeNodeCoral}`}>
+          <h4>ADR</h4>
+          <p className={styles.pipeFull}>Architecture Decision Record</p>
+          <p>Como decidimos resolver, e por quê</p>
+        </div>
+        <div className={`${styles.pipeArrow} ${styles.pipeArrowCoral}`}>→</div>
+        <div className={`${styles.pipeNode} ${styles.pipeNodeCoral}`}>
+          <h4>ACs</h4>
+          <p className={styles.pipeFull}>Acceptance Criteria</p>
+          <p>O que prova que está pronto</p>
+        </div>
+      </div>
+
+      <p className={styles.ruleNote}>
+        Agentes e skills conduzem a entrevista em cada análise — o time valida
+        e decide.
+      </p>
+
+      <div className={styles.ctaRow} style={{marginTop: '28px'}}>
+        <Link
+          className={`${styles.ctaButton} ${styles.ctaButtonBlueprint}`}
+          to="/docs/intro">
+          Ver o blueprint técnico completo
+        </Link>
+      </div>
+    </section>
+  );
+}
+
 export default function Home(): ReactNode {
   return (
     <Layout
       title="Um ciclo de desenvolvimento com IA integrada"
       description="Do brief de negócio ao código gerado por IA — um único fluxo, com rastreabilidade em cada etapa.">
+      <RegisterGauge />
       <Hero />
       <main>
         <ProblemSection />
         <CentralIdeaSection />
         <CycleSection />
+        <TransitionSection />
+        <BlueprintSection />
       </main>
     </Layout>
   );
