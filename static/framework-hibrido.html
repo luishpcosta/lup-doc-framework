@@ -217,7 +217,11 @@ p.slide-sub{
 }
 .gauge-track{
   position:relative; height:3px; border-radius:2px;
-  background:linear-gradient(90deg, var(--paper-card) 0%, var(--paper-card) 45%, var(--blue-bg) 55%, var(--blue-bg) 100%);
+  /* --blue-card (não --blue-bg) no lado escuro: --blue-bg é a própria cor
+     de fundo do body nos slides do registro blueprint, então a trilha
+     "sumia" contra o próprio fundo assim que entrava nesse registro */
+  background:linear-gradient(90deg, var(--paper-card) 0%, var(--paper-card) 45%, var(--blue-card) 55%, var(--blue-card) 100%);
+  box-shadow:0 0 0 1px rgba(199,154,75,.45);
   opacity:.9;
 }
 .gauge-marker{

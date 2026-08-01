@@ -21,7 +21,8 @@
 - [x] `constitution.md` preenchida com stack real (TS/React/Docusaurus), regras de teste/build e "design system fidelity"
 - [x] Scaffolding padrão do `create-docusaurus` removido: `blog/` (posts de exemplo), `docs/tutorial-basics/`, `docs/tutorial-extras/`, `src/pages/markdown-page.mdx`, imagens `undraw_*`/`docusaurus.png`/`docusaurus-social-card.jpg`/`favicon.ico`/`logo.svg` padrão; `blog: false` em `docusaurus.config.ts`; logo/favicon mínimos próprios em `static/img/`
 - [x] Arquivo de referência consolidado numa cópia só: `framework-hibrido.html` agora vive **apenas** em `static/` (a cópia na raiz do repo foi removida) — resolve o risco de "duas cópias divergindo" registrado antes
-- [x] Corrigido o marcador do gauge (`.gauge-marker`) em `static/framework-hibrido.html`: preenchimento fixo dourado (`var(--purple)`, #C79A4B), sem mais transicionar entre `navy`/branco — a primeira tentativa (anel duplo via `box-shadow` mantendo a cor navy/branco) não resolveu na avaliação do usuário; a cor dourada fixa contrasta com a capa (navy), o registro papel (claro) e o registro blueprint (escuro) ao mesmo tempo, então nunca se funde com o fundo em nenhum ponto do fade
+- [x] Marcador do gauge (`.gauge-marker`) ajustado para dourado fixo (`var(--purple)`) — feito por diagnóstico inicial errado (achando que era o marcador que sumia); mudança mantida (não revertida), mas **não** era o bug real
+- [x] **Bug real, corrigido**: a trilha do gauge (`.gauge-track`) usava `var(--blue-bg)` na metade escura — a mesma cor exata do fundo do body nos slides de registro blueprint, então essa metade da trilha desaparecia contra o próprio fundo ("começa clara, depois fica com a cor muito próxima da do fundo", nas palavras do usuário). Corrigido trocando para `var(--blue-card)` + uma borda dourada sutil sempre visível
 
 ### What's In Progress
 
@@ -55,9 +56,12 @@ Nenhuma pendente.
 - **Consolidar `framework-hibrido.html` numa cópia só, em `static/`** (arquivo removido da raiz do repo).
   - Context: resolve o risco "duas cópias podem divergir" registrado na iteração anterior deste plano — agora `static/framework-hibrido.html` é a única fonte de verdade.
   - Constitution impact: nenhuma.
-- **Gauge-marker: cor dourada fixa (`var(--purple)`), sem transição de cor — não anel duplo.**
-  - Context: o preenchimento padrão do marcador (`var(--navy)`) é a mesma cor do fundo da capa (`#s1`), então o ponto ficava praticamente invisível/flutuando contra esse fundo, e piorava durante o fade porque marcador e fundo do body transicionavam cor ao mesmo tempo. Primeira tentativa: manter navy/branco e adicionar um anel de contraste via `box-shadow` — o usuário testou e ainda não considerou corrigido. Segunda tentativa (a que ficou): parar de transicionar a cor do marcador e fixá-la em dourado (`--purple`, #C79A4B), que tem contraste suficiente contra o navy da capa, o paper-bg claro e o blue-bg escuro simultaneamente — elimina o problema na raiz em vez de tentar mascará-lo com um contorno.
+- **Gauge-marker: cor dourada fixa (`var(--purple)`), sem transição de cor.**
+  - Context: primeira reação ao "o ponto parece flutuando" — diagnóstico que se mostrou **errado** (ver decisão seguinte). Mantida mesmo assim (usuário não pediu para reverter, e não piora nada), mas essa mudança sozinha não resolveu a reclamação original.
   - Constitution impact: nenhuma.
+- **Gauge-track: `var(--blue-card)` em vez de `var(--blue-bg)` na metade escura, + borda dourada sutil sempre visível.**
+  - Context: o usuário corrigiu meu diagnóstico — "me referia na transição do traço que começa claro depois fica com a cor muito próxima com a do fundo, a bolinha já estava certa". A trilha (não o marcador) usava `var(--blue-bg)` no lado escuro, exatamente a cor do fundo do body nos slides de registro blueprint — a trilha sumia contra o próprio fundo assim que o visitante entrava nesse registro. `--blue-card` é um tom distinto o suficiente de `--blue-bg` para nunca coincidir com o fundo da página.
+  - Constitution impact: nenhuma. FR-10/AC-10 em `spec.md` foram reescritos para descrever a trilha corretamente (estavam descrevendo o marcador, por causa do diagnóstico errado inicial).
 
 ## Evidence of Completion
 
@@ -66,6 +70,7 @@ Nenhuma pendente.
 - [x] AC-5 verified: navegação nativa do arquivo embutido (setas/dots) + navbar do site para `/docs/intro`
 - [x] AC-8 verified: `find docs static/img src/pages -type f` não lista nenhum arquivo de demonstração do Docusaurus; `curl -s http://localhost:3000/blog` cai na página "not found" client-side
 - [x] AC-9 verified: captura de tela `docs-intro.png` não mostra nenhum rodapé abaixo do conteúdo
+- [x] AC-10 verified: captura de tela de um arquivo de teste com o slide 7 (registro blueprint) forçado ativo mostra a trilha do gauge visível em toda a extensão contra o fundo `--blue-bg`
 - [x] Coverage check clean: todas as ACs atuais (`specs/001-tela-inicial/tasks.md`, tabela "Tasks (atuais)") têm ≥1 task e toda task referencia uma AC; tasks da v1/v2 marcadas `superseded`, mantidas só para histórico
 
 ## Notes for Next Session

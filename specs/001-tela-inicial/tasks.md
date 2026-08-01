@@ -32,7 +32,8 @@ Superseded por T-10 a T-13 abaixo. Mantidas para histórico/auditoria — não r
 | T-11 | Remover scaffolding padrão do Docusaurus (blog, tutorial docs, markdown-page, imagens/logo/favicon) | AC-8 | done | `find docs static/img src/pages -type f` não lista mais nenhum arquivo de demonstração do Docusaurus |
 | T-12 | Remover `footer` de `themeConfig` em `docusaurus.config.ts` | AC-9 | done | captura `docs-intro.png` não mostra nenhum rodapé abaixo do conteúdo |
 | T-13 | Confirmar que as fontes (Archivo/Inter/IBM Plex Mono) já se aplicam fora da home; rodar `npm run typecheck` + `npm run build` | AC-3 | done | captura `docs-intro.png` mostra título em Archivo e corpo em Inter em `/docs/intro`; `./init.sh` verde |
-| T-14 | Corrigir contraste do `.gauge-marker` em `static/framework-hibrido.html` (tentativa 1: anel `box-shadow` escuro+claro mantendo `background` navy/branco — rejeitada pelo usuário; tentativa 2, final: `background` fixo dourado (`var(--purple)`), sem transição de cor) | AC-10 | done | captura `gauge-gold.png` mostra o marcador como ponto dourado sólido, visível contra o fundo navy da capa; `npm run build` verde após a mudança |
+| T-14 | Ajustar `.gauge-marker` em `static/framework-hibrido.html`: tentativa 1 (anel `box-shadow` escuro+claro mantendo navy/branco) rejeitada pelo usuário; trocado para `background` fixo dourado (`var(--purple)`), sem transição de cor. **Nota:** diagnóstico incorreto — o marcador não era o problema real (ver T-15); mudança mantida (usuário não pediu reversão), mas o bug reportado só foi corrigido em T-15 | ~~AC-10~~ (retirado; ver T-15) | done | captura `gauge-gold.png` mostra o marcador como ponto dourado sólido |
+| T-15 | Corrigir `.gauge-track`: metade escura usava `var(--blue-bg)`, a mesma cor exata do fundo do body nos slides de registro blueprint — a trilha desaparecia contra o próprio fundo. Trocado para `var(--blue-card)` + borda dourada sutil (`box-shadow`) sempre visível | AC-10 | done | captura `track-fix-s7.png` (arquivo de teste com slide 7 forçado ativo) mostra a trilha visível em toda a extensão contra o fundo `--blue-bg`; `npm run build` verde |
 
 Status values: `todo` → `doing` → `done` → `superseded`.
 
@@ -40,5 +41,5 @@ Status values: `todo` → `doing` → `done` → `superseded`.
 
 Confirm manually before implementing:
 
-- Every AC referenced by at least one task? yes — AC-1: T-10, AC-3: T-13, AC-5: T-10 (navegação nativa do arquivo) + navbar existente, AC-8: T-11, AC-9: T-12, AC-10: T-14
+- Every AC referenced by at least one task? yes — AC-1: T-10, AC-3: T-13, AC-5: T-10 (navegação nativa do arquivo) + navbar existente, AC-8: T-11, AC-9: T-12, AC-10: T-15 (T-14 mantida como diagnóstico incorreto, não satisfaz AC-10)
 - Every task linked to an AC? yes (tasks históricas T-1–T-9 marcadas `superseded` e ligadas aos ACs que tinham antes de serem retirados da spec)
