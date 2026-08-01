@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Um modelo de trabalho com IA integrada — do executivo ao técnico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* registro "areia" — executivo */
+  --paper-bg:#F7F1EC;
+  --paper-ink:#241417;
+  --paper-muted:#8A7175;
+  --paper-card:#EFE4DF;
+  --navy:#6B1B2C;
+  --navy-ink:#F3E3E1;
+
+  /* registro "ficha técnica" — bordô escuro */
+  --blue-bg:#2B0A13;
+  --blue-grid:rgba(199,154,75,0.14);
+  --blue-ink:#F6ECE8;
+  --blue-muted:#B99195;
+  --blue-card:#40121B;
+  --blue-line:rgba(246,236,232,0.16);
+
+  /* acentos de categoria, herdados do diagrama técnico */
+  --purple:#C79A4B; --purple-fill:rgba(199,154,75,0.16);
+  --teal:#B15B41;   --teal-fill:rgba(177,91,65,0.18);
+  --coral:#C4536A;  --coral-fill:rgba(196,83,106,0.18);
+
+  --font-display:"Archivo", "Arial Black", sans-serif;
+  --font-body:"Inter", system-ui, sans-serif;
+  --font-mono:"IBM Plex Mono", ui-monospace, monospace;
+
+  --dur:600ms;
+}
+@media (prefers-reduced-motion: reduce){ :root{ --dur:1ms; } }
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; margin:0; }
+body{
+  font-family:var(--font-body);
+  background:var(--paper-bg);
+  color:var(--paper-ink);
+  overflow:hidden;
+  transition:background var(--dur) ease, color var(--dur) ease;
+}
+body.blueprint{ background:var(--blue-bg); color:var(--blue-ink); }
+
+.deck{ position:relative; width:100vw; height:100vh; }
+
+.slide{
+  position:absolute; inset:0;
+  display:flex; flex-direction:column; justify-content:center;
+  padding: clamp(28px,6vw,96px) clamp(24px,8vw,140px);
+  opacity:0; visibility:hidden; transform:translateY(14px);
+  transition:opacity var(--dur) ease, transform var(--dur) ease, visibility 0s var(--dur);
+  pointer-events:none;
+}
+.slide.active{
+  opacity:1; visibility:visible; transform:translateY(0);
+  transition:opacity var(--dur) ease, transform var(--dur) ease;
+  pointer-events:auto;
+}
+
+/* fundo quadriculado do registro blueprint, some no papel */
+.slide::before{
+  content:""; position:absolute; inset:0; z-index:-1;
+  background-image:
+    linear-gradient(var(--blue-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--blue-grid) 1px, transparent 1px);
+  background-size:36px 36px;
+  opacity:0; transition:opacity var(--dur) ease;
+}
+.slide[data-register="blueprint"]::before{ opacity:1; }
+
+.eyebrow{
+  font-family:var(--font-mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--paper-muted); margin:0 0 18px;
+}
+.blueprint .eyebrow{ color:var(--blue-muted); }
+
+h1.slide-title{
+  font-family:var(--font-display); font-weight:800; font-size:clamp(24px,3.8vw,48px);
+  line-height:1.05; letter-spacing:-0.01em; text-transform:uppercase; margin:0 0 14px; max-width:17ch;
+}
+p.slide-sub{
+  font-size:clamp(14px,1.4vw,19px); color:var(--paper-muted); max-width:56ch; margin:0 0 8px; line-height:1.55;
+}
+.blueprint p.slide-sub{ color:var(--blue-muted); }
+
+/* ----- capa ----- */
+#s1{ background:var(--navy); color:var(--navy-ink); }
+#s1 h1{ color:#fff; }
+#s1 .eyebrow{ color:var(--navy-ink); }
+#s1 p.slide-sub{ color:var(--navy-ink); opacity:.85; }
+.title-rule{ width:64px; height:9px; background:var(--navy-ink); margin:0 0 24px; transform:skewX(-20deg); }
+
+/* ----- grids utilitários ----- */
+.row{ display:flex; gap:clamp(14px,2vw,28px); margin-top:clamp(20px,3vw,40px); flex-wrap:wrap; }
+.card{
+  background:var(--paper-card); padding:22px 24px; flex:1; min-width:220px;
+  clip-path:polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
+  transition:background var(--dur) ease;
+}
+.blueprint .card{ background:var(--blue-card); border:0.5px solid var(--blue-line); }
+.card h3{ font-size:16px; font-weight:600; margin:0 0 8px; font-family:var(--font-body); }
+.card p{ font-size:13.5px; color:var(--paper-muted); line-height:1.5; margin:0; }
+.blueprint .card p{ color:var(--blue-muted); }
+.card .num{
+  width:34px; height:34px; border-radius:50%; background:var(--navy); color:#fff;
+  display:flex; align-items:center; justify-content:center; font-weight:600; margin-bottom:14px; font-size:14px;
+}
+
+/* ----- ideia central: duas camadas ----- */
+.split{ display:flex; gap:20px; margin-top:24px; flex-wrap:wrap; }
+.panel{ flex:1; min-width:260px; padding:28px; clip-path:polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 0 100%); }
+.panel.dark{ background:var(--navy); color:var(--navy-ink); }
+.panel.dark h3{ color:#fff; }
+.panel.light{ background:var(--paper-card); }
+.panel h3{ font-family:var(--font-display); font-size:22px; font-weight:600; margin:6px 0 14px; }
+.panel .tag{ font-family:var(--font-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; opacity:.7; }
+.panel ul{ margin:14px 0 0; padding-left:18px; font-size:13.5px; line-height:1.7; }
+.panel.light ul{ color:var(--paper-ink); }
+.loop-mark{ text-align:center; font-size:22px; color:var(--paper-muted); margin-top:28px; }
+
+/* ----- ciclo (setas) ----- */
+.cycle{ display:flex; align-items:stretch; gap:0; margin-top:28px; flex-wrap:wrap; }
+.cycle-step{ flex:1; min-width:150px; padding:18px 20px; position:relative; clip-path:polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%); }
+.cycle-step.a{ background:var(--paper-card); }
+.cycle-step.b{ background:var(--navy); color:var(--navy-ink); }
+.cycle-step.b h4{ color:#fff; }
+.cycle-step h4{ font-size:16px; margin:0 0 6px; }
+.cycle-step p{ font-size:12.5px; margin:0; color:inherit; opacity:.85; line-height:1.4; }
+.cycle-arrow{ display:flex; align-items:center; justify-content:center; width:32px; font-size:18px; color:var(--paper-muted); flex:0 0 auto; }
+.cycle-arrow.loop{ flex-direction:column; gap:2px; width:auto; padding:0 6px; }
+.cycle-arrow.loop small{ font-size:8.5px; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:.04em; color:var(--paper-muted); }
+
+/* ----- badge reutilizável ----- */
+.badge{
+  display:inline-block; font-size:10px; font-family:var(--font-mono); letter-spacing:.05em;
+  text-transform:uppercase; border:1px solid currentColor; opacity:.7; border-radius:20px;
+  padding:2px 9px; margin-bottom:8px;
+}
+
+/* ----- checklist benefícios ----- */
+.check-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:22px; }
+@media(max-width:760px){ .check-grid{ grid-template-columns:1fr; } }
+.check-item{ display:flex; gap:14px; background:var(--paper-card); padding:18px 20px; clip-path:polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%); }
+.check-item .mark{ flex:0 0 auto; width:28px; height:28px; border-radius:50%; background:var(--navy); color:#fff; display:flex; align-items:center; justify-content:center; font-size:13px; }
+.check-item h4{ margin:0 0 4px; font-size:14.5px; }
+.check-item p{ margin:0; font-size:12.5px; color:var(--paper-muted); line-height:1.45; }
+
+/* ----- pipeline técnico (setas) ----- */
+.pipeline{ display:flex; align-items:center; gap:0; margin-top:30px; flex-wrap:wrap; }
+.pipe-node{ background:var(--blue-card); border:0.5px solid var(--purple); padding:16px 18px; flex:1; min-width:130px; clip-path:polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%); }
+.pipe-node h4{ margin:0 0 4px; font-size:15px; color:#fff; font-family:var(--font-mono); letter-spacing:.02em; }
+.pipe-node p{ margin:0; font-size:12px; color:var(--blue-muted); line-height:1.4; }
+.pipe-node p.pipe-full{ margin:0 0 6px; font-size:10.5px; color:var(--blue-muted); font-style:italic; }
+.pipe-arrow{ width:26px; text-align:center; color:var(--purple); font-size:16px; flex:0 0 auto; }
+
+/* ----- containment (domínio) ----- */
+.nest-outer{ margin-top:20px; border:0.5px solid var(--teal); padding:18px 22px; background:rgba(177,91,65,0.06); clip-path:polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%); }
+.nest-label{ font-family:var(--font-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--teal); margin-bottom:10px; }
+.nest-mid{ border:0.5px solid var(--teal); padding:14px; background:rgba(177,91,65,0.1); clip-path:polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%); }
+.nest-inner{ display:flex; gap:14px; margin-top:10px; flex-wrap:wrap; }
+.nest-box{ flex:1; min-width:180px; background:var(--blue-card); border:0.5px solid var(--blue-line); padding:12px 16px; clip-path:polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%); }
+.nest-box.accent{ border-color:var(--coral); }
+.nest-box h5{ margin:0 0 6px; font-size:14px; font-family:var(--font-mono); }
+.nest-box p{ margin:0; font-size:12px; color:var(--blue-muted); line-height:1.4; }
+.rule-note{ margin-top:16px; font-size:12.5px; color:var(--blue-muted); font-style:italic; }
+.rule-note a{ color:var(--purple); font-style:normal; }
+.rule-note code{ font-family:var(--font-mono); font-style:normal; background:rgba(202,220,252,0.12); padding:1px 6px; border-radius:4px; color:var(--blue-ink); }
+
+/* ----- árvore de repositório ----- */
+.repo-tree{
+  margin-top:14px; background:var(--blue-card); border:0.5px solid var(--blue-line);
+  padding:12px 18px; font-family:var(--font-mono); font-size:11px; line-height:1.55;
+  clip-path:polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+}
+.tree-line{ color:var(--blue-ink); white-space:nowrap; }
+.tree-line.root{ color:#fff; font-weight:500; }
+.tree-tag{ color:var(--blue-muted); font-size:10.5px; margin-left:12px; }
+
+/* ----- contrato / chain ----- */
+.mech-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:26px; }
+@media(max-width:900px){ .mech-grid{ grid-template-columns:1fr 1fr; } }
+.mech-card{ background:var(--blue-card); border:0.5px solid var(--blue-line); border-radius:12px; padding:16px 18px; }
+.mech-card h4{ margin:0 0 6px; font-size:13.5px; font-family:var(--font-mono); color:#fff; }
+.mech-card p{ margin:0; font-size:11.5px; color:var(--blue-muted); line-height:1.4; }
+.chain{ margin-top:26px; display:flex; align-items:center; flex-wrap:wrap; gap:8px; font-family:var(--font-mono); font-size:12.5px; }
+.chain span.token{ background:rgba(202,220,252,0.1); border:0.5px solid var(--blue-line); border-radius:6px; padding:6px 10px; color:var(--blue-ink); }
+.chain span.arrow{ color:var(--blue-muted); }
+.chain-caption{ margin-top:14px; font-size:12.5px; color:var(--blue-muted); }
+
+/* ----- decisões finais ----- */
+.decision-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:26px; }
+@media(max-width:900px){ .decision-grid{ grid-template-columns:1fr 1fr; } }
+.decision-card{ background:var(--blue-card); border:0.5px solid var(--blue-line); padding:18px 20px; clip-path:polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%); }
+.decision-card .n{ font-family:var(--font-display); font-size:24px; color:var(--purple); font-weight:600; }
+.decision-card h4{ margin:10px 0 6px; font-size:14px; color:#fff; }
+.decision-card p{ margin:0; font-size:12px; color:var(--blue-muted); line-height:1.4; }
+
+/* ----- transição ----- */
+#s6{ align-items:center; text-align:center; }
+#s6 .transition-wrap{ max-width:640px; margin:0 auto; }
+#s6 h1{ max-width:none; }
+
+/* ===== chrome de navegação ===== */
+.gauge-wrap{
+  position:fixed; top:0; left:0; right:0; z-index:20;
+  padding:18px clamp(20px,6vw,64px) 0;
+  display:flex; flex-direction:column; gap:6px;
+  pointer-events:none;
+}
+.gauge-track{
+  position:relative; height:3px; border-radius:2px;
+  background:linear-gradient(90deg, var(--paper-card) 0%, var(--paper-card) 45%, var(--blue-bg) 55%, var(--blue-bg) 100%);
+  opacity:.9;
+}
+.gauge-marker{
+  position:absolute; top:50%; width:9px; height:9px; border-radius:50%;
+  background:var(--navy); transform:translate(-50%,-50%);
+  transition:left var(--dur) ease, background var(--dur) ease;
+}
+body.blueprint .gauge-marker{ background:#fff; }
+.gauge-labels{ display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--paper-muted); }
+body.blueprint .gauge-labels{ color:var(--blue-muted); }
+
+.nav-chrome{
+  position:fixed; bottom:0; left:0; right:0; z-index:20;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px clamp(20px,6vw,64px) 20px;
+}
+.nav-left{ display:flex; align-items:center; gap:14px; font-family:var(--font-mono); font-size:11px; color:var(--paper-muted); }
+body.blueprint .nav-left{ color:var(--blue-muted); }
+.dots{ display:flex; gap:7px; }
+.dot{ width:6px; height:6px; border-radius:50%; background:var(--paper-muted); opacity:.35; border:none; padding:0; cursor:pointer; }
+.dot.active{ opacity:1; background:var(--navy); }
+body.blueprint .dot{ background:var(--blue-muted); }
+body.blueprint .dot.active{ background:#fff; }
+
+.nav-btn{
+  width:40px; height:40px; border-radius:50%; border:1px solid currentColor; background:transparent;
+  color:inherit; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  opacity:.8; transition:opacity .15s, transform .15s;
+}
+.nav-btn:hover{ opacity:1; }
+.nav-btn:focus-visible{ outline:2px solid var(--navy); outline-offset:2px; }
+body.blueprint .nav-btn:focus-visible{ outline-color:#fff; }
+.nav-btn:disabled{ opacity:.25; cursor:default; }
+.nav-right{ display:flex; gap:10px; }
+
+@media(max-width:600px){
+  .nav-left span.hint{ display:none; }
+  .mech-grid, .decision-grid{ grid-template-columns:1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="gauge-wrap">
+  <div class="gauge-track"><div class="gauge-marker" id="gaugeMarker"></div></div>
+  <div class="gauge-labels"><span>Visão executiva</span><span id="registerLabel">Executivo</span><span>Blueprint técnico</span></div>
+</div>
+
+<div class="deck" id="deck">
+
+  <!-- 1: CAPA -->
+  <section class="slide active" id="s1" data-register="paper">
+    <p class="eyebrow">Modelo de trabalho · IA integrada</p>
+    <div class="title-rule"></div>
+    <h1 class="slide-title">Um ciclo de desenvolvimento com IA integrada</h1>
+    <p class="slide-sub">Do brief de negócio ao código gerado por IA — um único fluxo, com rastreabilidade em cada etapa. Da visão executiva ao blueprint técnico.</p>
+  </section>
+
+  <!-- 2: O PROBLEMA -->
+  <section class="slide" id="s2" data-register="paper">
+    <p class="eyebrow">O problema</p>
+    <h1 class="slide-title">Quando não estruturamos o uso de IA, a operação perde o controle</h1>
+    <div class="row">
+      <div class="card"><div class="num">1</div><h3>Decisões se repetem</h3><p>O mesmo debate estratégico acontece de novo em cada time, porque ninguém sabe que já foi resolvido em outro lugar.</p></div>
+      <div class="card"><div class="num">2</div><h3>Contexto vive na cabeça das pessoas</h3><p>Quando alguém sai do time, a razão por trás de uma escolha importante sai junto.</p></div>
+      <div class="card"><div class="num">3</div><h3>IA sem contexto erra mais</h3><p>Agentes que executam tarefas sem acesso à intenção de negócio tomam atalhos que parecem certos e não são.</p></div>
+    </div>
+  </section>
+
+  <!-- 3: IDEIA CENTRAL -->
+  <section class="slide" id="s3" data-register="paper">
+    <p class="eyebrow">A ideia central</p>
+    <h1 class="slide-title">Separar onde vive a intenção de onde vive a execução</h1>
+    <div class="split">
+      <div class="panel dark">
+        <span class="tag">A constituição</span>
+        <h3>Por que fazemos e o que precisa ser verdade</h3>
+        <ul>
+          <li>Estratégia de produto e prioridades</li>
+          <li>Como o negócio está organizado em domínios</li>
+          <li>Decisões técnicas e por que foram tomadas</li>
+          <li>Critérios que definem "pronto"</li>
+        </ul>
+      </div>
+      <div class="panel light">
+        <span class="tag">A operação</span>
+        <h3>Como cada time entrega no dia a dia</h3>
+        <ul>
+          <li>Cada equipe com seu próprio repositório</li>
+          <li>Planeja, executa e testa no seu ritmo</li>
+          <li>Usa a constituição como referência, não como camisa de força</li>
+          <li>Devolve aprendizados para atualizar a constituição</li>
+        </ul>
+      </div>
+    </div>
+    <p class="loop-mark">↻ execução alimenta de volta a constituição</p>
+  </section>
+
+  <!-- 4: CICLO -->
+  <section class="slide" id="s4" data-register="paper">
+    <p class="eyebrow">O ciclo, em quatro movimentos</p>
+    <h1 class="slide-title">De negócio a código, em um fluxo só</h1>
+    <div class="cycle">
+      <div class="cycle-step a"><span class="badge">humano + IA</span><h4>Análise de negócio</h4><p>Entende o problema e a prioridade — produz PB e PRD</p></div>
+      <div class="cycle-arrow loop"><span>⇄</span><small>iterativo</small></div>
+      <div class="cycle-step b"><span class="badge">humano + IA</span><h4>Análise técnica</h4><p>Decide a arquitetura e o critério de aceite — produz ADR e ACs</p></div>
+      <div class="cycle-arrow">→</div>
+      <div class="cycle-step a"><span class="badge">humano + IA</span><h4>Backlogs</h4><p>Consolida tudo em itens rastreáveis, prontos para o board</p></div>
+      <div class="cycle-arrow">→</div>
+      <div class="cycle-step b"><span class="badge">humano + IA</span><h4>Implementação</h4><p>Speckit SDD e o agente geram o código, com verificação automática</p></div>
+    </div>
+    <p class="slide-sub" style="margin-top:24px; font-style:italic;">Cada movimento devolve aprendizado para o anterior — o fluxo é circular, não uma esteira de mão única.</p>
+  </section>
+
+  <!-- 5: BENEFÍCIOS -->
+  <section class="slide" id="s5" data-register="paper">
+    <p class="eyebrow">Por que isso importa</p>
+    <h1 class="slide-title">O ganho para o negócio</h1>
+    <div class="check-grid">
+      <div class="check-item"><div class="mark">✓</div><div><h4>Rastreabilidade</h4><p>Qualquer decisão pode ser ligada a uma linha de código e a um teste que a comprova.</p></div></div>
+      <div class="check-item"><div class="mark">✓</div><div><h4>Velocidade com controle</h4><p>Times e agentes de IA executam mais rápido porque não redescobrem contexto a cada tarefa.</p></div></div>
+      <div class="check-item"><div class="mark">✓</div><div><h4>Menor risco de retrabalho</h4><p>Mudança de estratégia se propaga de um lugar só, não exige caça a documentos espalhados.</p></div></div>
+      <div class="check-item"><div class="mark">✓</div><div><h4>Governança sem burocracia</h4><p>A referência central é enxuta; o detalhe operacional fica onde a execução acontece.</p></div></div>
+    </div>
+  </section>
+
+  <!-- 6: TRANSIÇÃO -->
+  <section class="slide" id="s6" data-register="paper">
+    <div class="transition-wrap">
+      <p class="eyebrow">A partir daqui</p>
+      <h1 class="slide-title">Por dentro do framework</h1>
+      <p class="slide-sub" style="margin:0 auto;">O que vem a seguir é o mesmo modelo, visto no nível em que os times de engenharia e os agentes de IA de fato operam.</p>
+    </div>
+  </section>
+
+  <!-- 7: BLUEPRINT — duas análises -->
+  <section class="slide" id="s7" data-register="blueprint">
+    <p class="eyebrow">Blueprint — 01</p>
+    <h1 class="slide-title">Duas análises, quatro artefatos</h1>
+    <p class="slide-sub">Negócio e técnica rodam em paralelo — as duas alimentam a mesma história.</p>
+    <div class="nest-label" style="margin-top:22px; color:var(--purple)">Análise de negócio <span class="badge" style="margin-left:8px; margin-bottom:0;">agentes + skills</span></div>
+    <div class="pipeline" style="margin-top:10px;">
+      <div class="pipe-node"><h4>PB</h4><p class="pipe-full">Product Brief</p><p>Por que isso importa agora</p></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-node"><h4>PRD</h4><p class="pipe-full">Product Requirements Document</p><p>O que precisa existir</p></div>
+    </div>
+    <div class="nest-label" style="margin-top:22px; color:var(--coral)">Análise técnica <span class="badge" style="margin-left:8px; margin-bottom:0;">agentes + skills</span></div>
+    <div class="pipeline" style="margin-top:10px;">
+      <div class="pipe-node" style="border-color:var(--coral)"><h4>ADR</h4><p class="pipe-full">Architecture Decision Record</p><p>Como decidimos resolver, e por quê</p></div>
+      <div class="pipe-arrow" style="color:var(--coral)">→</div>
+      <div class="pipe-node" style="border-color:var(--coral)"><h4>ACs</h4><p class="pipe-full">Acceptance Criteria</p><p>O que prova que está pronto</p></div>
+    </div>
+    <p class="rule-note">Agentes e skills conduzem a entrevista em cada análise — o time valida e decide.</p>
+  </section>
+
+  <!-- 8: BLUEPRINT — histórias -->
+  <section class="slide" id="s8" data-register="blueprint">
+    <p class="eyebrow">Blueprint — 02</p>
+    <h1 class="slide-title">A história: onde as duas análises se encontram</h1>
+    <p class="slide-sub">Uma unidade única, rastreável, registrada no board do time — é o que o harness vai executar.</p>
+    <div class="mech-grid">
+      <div class="mech-card"><h4>Contexto de negócio</h4><p>Herdado do PB e do PRD</p></div>
+      <div class="mech-card"><h4>Decisão técnica</h4><p>Herdada do ADR</p></div>
+      <div class="mech-card"><h4>Critério de aceite</h4><p>Herdado dos ACs</p></div>
+      <div class="mech-card"><h4>Link de board</h4><p>Visível para o time em Jira, Linear ou equivalente</p></div>
+    </div>
+    <div class="chain">
+      <span class="token">PB-001</span><span class="arrow">→</span>
+      <span class="token">PRD-004</span><span class="arrow">→</span>
+      <span class="token">ADR-012</span><span class="arrow">→</span>
+      <span class="token">AC-017</span><span class="arrow">→</span>
+      <span class="token">HIST-231</span>
+    </div>
+    <p class="chain-caption">Sem essa cadeia de IDs não dá para provar cobertura nem detectar desvio.</p>
+  </section>
+
+  <!-- 9: BLUEPRINT — onde o contexto aterrissa -->
+  <section class="slide" id="s9" data-register="blueprint">
+    <p class="eyebrow">Blueprint — 03</p>
+    <h1 class="slide-title">Onde o contexto aterrissa no repositório</h1>
+    <p class="slide-sub">Contenção, não sequência: cada nível vive dentro do anterior.</p>
+    <div class="nest-outer">
+      <div class="nest-label">Domínio · ex. pagamentos</div>
+      <div class="nest-mid">
+        <div class="nest-label" style="color:var(--blue-muted)">Subdomínio · ex. cobrança recorrente</div>
+        <div class="nest-inner">
+          <div class="nest-box"><h5>Bounded context</h5><p>Fronteira que normalmente vira um repositório de serviço</p></div>
+          <div class="nest-box accent"><h5>Domain service</h5><p>Capacidade específica dentro do contexto</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="repo-tree">
+      <div class="tree-line root">CONTEXT-MAP.md<span class="tree-tag">índice de todos os domínios</span></div>
+      <div class="tree-line">├─ pagamentos/<span class="tree-tag">domínio</span></div>
+      <div class="tree-line">&nbsp;&nbsp;&nbsp;├─ cobranca-recorrente/<span class="tree-tag">bounded context</span></div>
+      <div class="tree-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ CONTEXT.md<span class="tree-tag">glossário do domínio</span></div>
+      <div class="tree-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ adr/ADR-012-cobranca-recorrente.md<span class="tree-tag">decisão registrada</span></div>
+      <div class="tree-line">&nbsp;&nbsp;&nbsp;└─ estorno/<span class="tree-tag">bounded context</span></div>
+      <div class="tree-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ CONTEXT.md</div>
+      <div class="tree-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ adr/ADR-018-politica-estorno.md</div>
+      <div class="tree-line">└─ identidade/<span class="tree-tag">domínio</span></div>
+      <div class="tree-line">&nbsp;&nbsp;&nbsp;└─ autenticacao/<span class="tree-tag">bounded context</span></div>
+      <div class="tree-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ CONTEXT.md</div>
+      <div class="tree-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ adr/ADR-004-login-social.md</div>
+    </div>
+    <p class="rule-note">Um índice na raiz, um domínio por pasta — cada bounded context com seu próprio glossário e ADRs.</p>
+  </section>
+
+  <!-- 10: BLUEPRINT — harness Speckit SDD -->
+  <section class="slide" id="s10" data-register="blueprint">
+    <p class="eyebrow">Blueprint — 04</p>
+    <h1 class="slide-title">O harness Speckit SDD, dentro da aplicação</h1>
+    <p class="slide-sub">Vive no repositório de serviço, não no meta-repo — evolui no ritmo do time, sem tocar na constituição.</p>
+    <div class="pipeline">
+      <div class="pipe-node" style="border-color:var(--coral)"><h4>spec</h4><p>Speckit SDD reescreve a história em termos executáveis</p></div>
+      <div class="pipe-arrow" style="color:var(--coral)">→</div>
+      <div class="pipe-node" style="border-color:var(--coral)"><h4>plan</h4><p>Quebra em passos de implementação</p></div>
+      <div class="pipe-arrow" style="color:var(--coral)">→</div>
+      <div class="pipe-node" style="border-color:var(--coral)"><h4>tasks</h4><p>Unidades que o agente de IA executa</p></div>
+      <div class="pipe-arrow" style="color:var(--coral)">→</div>
+      <div class="pipe-node" style="border-color:var(--coral)"><h4>verify</h4><p>Prova que o AC de origem foi atendido</p></div>
+    </div>
+  </section>
+
+  <!-- 11: DECISÕES TÉCNICAS -->
+  <section class="slide" id="s11" data-register="blueprint">
+    <p class="eyebrow">Blueprint — 05 · para colocar em produção</p>
+    <h1 class="slide-title">O que precisa ser decidido</h1>
+    <div class="decision-grid">
+      <div class="decision-card"><div class="n">01</div><h4>Harness padrão</h4><p>Qual ferramenta de Speckit SDD a organização adota primeiro</p></div>
+      <div class="decision-card"><div class="n">02</div><h4>Responsáveis da contextualização</h4><p>Quem aprova mudanças em PB, PRD e ADR</p></div>
+      <div class="decision-card"><div class="n">03</div><h4>Convenção de formatos</h4><p>Formato único de PB/PRD/ADR/AC/História em toda a organização</p></div>
+      <div class="decision-card"><div class="n">04</div><h4>Quem julga a entrega</h4><p>Responsáveis por decidir gates e revisão de código</p></div>
+    </div>
+  </section>
+
+</div>
+
+<div class="nav-chrome">
+  <div class="nav-left">
+    <span id="slideCount">01 / 11</span>
+    <span class="hint">·  ← → para navegar</span>
+  </div>
+  <div class="dots" id="dots"></div>
+  <div class="nav-right">
+    <button class="nav-btn" id="prevBtn" aria-label="Slide anterior">‹</button>
+    <button class="nav-btn" id="nextBtn" aria-label="Próximo slide">›</button>
+  </div>
+</div>
+
+<script>
+const slides = Array.from(document.querySelectorAll('.slide'));
+const total = slides.length;
+let idx = 0;
+
+const gaugeMarker = document.getElementById('gaugeMarker');
+const registerLabel = document.getElementById('registerLabel');
+const slideCount = document.getElementById('slideCount');
+const dotsWrap = document.getElementById('dots');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+slides.forEach((_, i) => {
+  const b = document.createElement('button');
+  b.className = 'dot';
+  b.setAttribute('aria-label', 'Ir para slide ' + (i + 1));
+  b.addEventListener('click', () => goTo(i));
+  dotsWrap.appendChild(b);
+});
+const dots = Array.from(dotsWrap.children);
+
+function goTo(i){
+  if(i < 0 || i >= total) return;
+  slides[idx].classList.remove('active');
+  idx = i;
+  slides[idx].classList.add('active');
+
+  const reg = slides[idx].dataset.register;
+  document.body.classList.toggle('blueprint', reg === 'blueprint');
+  registerLabel.textContent = reg === 'blueprint' ? 'Blueprint técnico' : 'Executivo';
+
+  const pct = total === 1 ? 0 : (idx / (total - 1)) * 100;
+  gaugeMarker.style.left = pct + '%';
+
+  slideCount.textContent = String(idx + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+
+  dots.forEach((d, di) => d.classList.toggle('active', di === idx));
+  prevBtn.disabled = idx === 0;
+  nextBtn.disabled = idx === total - 1;
+}
+
+prevBtn.addEventListener('click', () => goTo(idx - 1));
+nextBtn.addEventListener('click', () => goTo(idx + 1));
+
+window.addEventListener('keydown', (e) => {
+  if(['ArrowRight','PageDown',' '].includes(e.key)){ e.preventDefault(); goTo(idx + 1); }
+  if(['ArrowLeft','PageUp'].includes(e.key)){ e.preventDefault(); goTo(idx - 1); }
+  if(e.key === 'Home'){ goTo(0); }
+  if(e.key === 'End'){ goTo(total - 1); }
+});
+
+// swipe support (mobile)
+let touchX = null;
+document.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, {passive:true});
+document.addEventListener('touchend', (e) => {
+  if(touchX === null) return;
+  const dx = e.changedTouches[0].clientX - touchX;
+  if(Math.abs(dx) > 50){ dx < 0 ? goTo(idx + 1) : goTo(idx - 1); }
+  touchX = null;
+}, {passive:true});
+
+goTo(0);
+</script>
+</body>
+</html>
