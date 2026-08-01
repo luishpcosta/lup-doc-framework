@@ -1,0 +1,76 @@
+/**
+ * Paleta e tipografia herdadas de framework-hibrido-rascunho.html.
+ * Dois registros visuais: "papel" (executivo, claro) e "blueprint" (técnico, escuro).
+ * Docusaurus alterna entre eles através do seletor nativo [data-theme='dark'].
+ */
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  /* registro "papel" — executivo */
+  --paper-bg: #f7f1ec;
+  --paper-ink: #241417;
+  --paper-muted: #8a7175;
+  --paper-card: #efe4df;
+  --navy: #6b1b2c;
+  --navy-ink: #f3e3e1;
+
+  /* registro "blueprint" — técnico */
+  --blue-bg: #2b0a13;
+  --blue-grid: rgba(199, 154, 75, 0.14);
+  --blue-ink: #f6ece8;
+  --blue-muted: #b99195;
+  --blue-card: #40121b;
+  --blue-line: rgba(246, 236, 232, 0.16);
+
+  /* acentos de categoria */
+  --purple: #c79a4b;
+  --purple-fill: rgba(199, 154, 75, 0.16);
+  --teal: #b15b41;
+  --teal-fill: rgba(177, 91, 65, 0.18);
+  --coral: #c4536a;
+  --coral-fill: rgba(196, 83, 106, 0.18);
+
+  --font-display: 'Archivo', 'Arial Black', sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --ifm-color-primary: #6b1b2c;
+  --ifm-color-primary-dark: #601827;
+  --ifm-color-primary-darker: #5a1725;
+  --ifm-color-primary-darkest: #4a131e;
+  --ifm-color-primary-light: #761e31;
+  --ifm-color-primary-lighter: #7c1f33;
+  --ifm-color-primary-lightest: #94253d;
+
+  --ifm-font-family-base: var(--font-body);
+  --ifm-heading-font-family: var(--font-display);
+  --ifm-font-family-monospace: var(--font-mono);
+  --ifm-code-font-size: 95%;
+  --ifm-background-color: var(--paper-bg);
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #c79a4b;
+  --ifm-color-primary-dark: #bd8c37;
+  --ifm-color-primary-darker: #b28433;
+  --ifm-color-primary-darkest: #926c2a;
+  --ifm-color-primary-light: #cea85f;
+  --ifm-color-primary-lighter: #d1ae69;
+  --ifm-color-primary-lightest: #ddc188;
+
+  --ifm-background-color: var(--blue-bg);
+  --ifm-navbar-background-color: var(--blue-card);
+  --ifm-footer-background-color: var(--blue-bg);
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
