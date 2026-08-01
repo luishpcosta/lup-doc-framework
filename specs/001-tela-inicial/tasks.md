@@ -8,25 +8,36 @@
 > Small, ordered, independently verifiable tasks derived from `plan.md`.
 > **Gate:** every acceptance criterion has ≥1 task, and every task references an AC.
 
-## Tasks
+## Tasks (histórico — T-1 a T-9, recriação em React)
+
+Superseded por T-10 a T-13 abaixo. Mantidas para histórico/auditoria — não refletem o código atual.
+
+| ID | Task | Satisfies (histórico) | Status | Evidence |
+|---|---|---|---|---|
+| T-1 | Extrair tokens de cor/fonte do rascunho para `src/css/custom.css` | ~~AC-3~~, ~~AC-4~~ | superseded | tokens de cor mantidos em `custom.css`; mapeamento `[data-theme='dark']` → "blueprint" não é mais usado pela capa (agora é iframe) |
+| T-2 | Construir `Hero` (capa) em React | ~~AC-1~~ | superseded | componente deletado — capa agora é `<iframe>` |
+| T-3 | Construir `ProblemSection`/`CentralIdeaSection` em React | ~~AC-2~~ | superseded | componentes deletados — conteúdo já existe no arquivo embutido |
+| T-4 | CTAs na capa React apontando para `/docs/intro` | ~~AC-5~~ | superseded | ver T-12 (navegação agora é nativa do arquivo + navbar) |
+| T-5 | Verificar ausência de cor hardcoded na v1 | ~~AC-3~~ | superseded | não aplicável ao iframe |
+| T-6 | Construir `RegisterGauge` (scroll + `IntersectionObserver`) | ~~AC-6~~, ~~AC-7~~ | superseded | componente deletado — o arquivo embutido tem seu próprio gauge nativo |
+| T-7 | Construir `TransitionSection`/`BlueprintSection` à mão | ~~AC-7~~ | superseded | componentes deletados — conteúdo já existe no arquivo embutido |
+| T-8 | Remover scaffolding padrão do Docusaurus | AC-8 | done | ver evidência em T-11 (ainda válida) |
+| T-9 | Reverificar build/typecheck (v2) | — | superseded | ver T-13 |
+
+## Tasks (atuais — embed via iframe, footer, fontes sitewide)
 
 | ID | Task | Satisfies | Status | Evidence |
 |---|---|---|---|---|
-| T-1 | Extrair tokens de cor/fonte do rascunho para `src/css/custom.css`, com `[data-theme='dark']` mapeando para o registro "blueprint" | AC-3, AC-4 | done | `src/css/custom.css`; `grep -o "data-theme=[^]]*]" build/assets/css/*.css` confirma seletores `light`/`dark` no CSS compilado; `2b0a13` (blue-bg) presente no bundle |
-| T-2 | Construir `Hero` (capa) em `index.tsx`/`index.module.css` com eyebrow, barra, título e subtítulo do rascunho | AC-1 | done | `npm run build` sem erros; captura de tela `home-top.png` confere texto/paleta idênticos ao `#s1` do rascunho |
-| T-3 | Construir `ProblemSection` e `CentralIdeaSection` com o texto exato do rascunho | AC-2 | done | captura de tela `home-mid.png` mostra os 3 cards numerados e os 2 painéis com o texto do rascunho |
-| T-4 | Adicionar CTAs na capa apontando para `/docs/intro` | AC-5 | done | `Hero` em `index.tsx` renderiza dois `Link` para `/docs/intro`; rota existe (`docs/intro.mdx`) |
-| T-5 | Rodar verificação completa e confirmar que nenhuma cor é hardcoded fora de `custom.css` | AC-3 | done | `npm run typecheck` e `npm run build` (via `./init.sh`) passam; revisão manual de `index.module.css` confirma uso exclusivo de `var(--...)` |
-| T-6 | Construir `RegisterGauge` (marcador ligado ao scroll + `IntersectionObserver`) e inserir no topo da home | AC-6, AC-7 | done | captura de tela `home-top3.png` mostra a barra "Visão executiva / Executivo / Blueprint técnico" com marcador na posição inicial |
-| T-7 | Construir `TransitionSection` e `BlueprintSection` (registro sempre escuro, pipelines PB→PRD e ADR→ACs) e inseri-las após `CycleSection` | AC-7 | done | captura de tela `home-full.png` mostra "Por dentro do framework" e "Duas análises, quatro artefatos" renderizados com fundo `--blue-bg` e grid |
-| T-8 | Remover blog de exemplo, docs tutorial-basics/tutorial-extras, `markdown-page.mdx` e imagens/branding padrão do Docusaurus; desligar `blog: false`; trocar logo/favicon | AC-8 | done | `find docs static/img src/pages -type f` não lista mais `tutorial-*`, `markdown-page.mdx` nem `undraw_*`/`docusaurus.png`/`favicon.ico`/social-card antigos; `curl localhost:3000/blog` cai na página "not found" client-side |
-| T-9 | Reverificar build/typecheck após todas as mudanças acima | AC-1 a AC-8 | done | `npm run typecheck` e `npm run build` verdes (ver `./init.sh`) |
+| T-10 | Copiar `framework-hibrido-rascunho.html` para `static/` e reescrever `index.tsx`/`index.module.css` para embutir via `<iframe>` em tela cheia; deletar os componentes React da recriação anterior | AC-1 | done | `static/framework-hibrido-rascunho.html` existe; `src/pages/index.tsx` só renderiza `<iframe>`; captura `home-iframe.png` é pixel-idêntica ao arquivo original aberto direto |
+| T-11 | Remover scaffolding padrão do Docusaurus (blog, tutorial docs, markdown-page, imagens/logo/favicon) | AC-8 | done | `find docs static/img src/pages -type f` não lista mais nenhum arquivo de demonstração do Docusaurus |
+| T-12 | Remover `footer` de `themeConfig` em `docusaurus.config.ts` | AC-9 | done | captura `docs-intro.png` não mostra nenhum rodapé abaixo do conteúdo |
+| T-13 | Confirmar que as fontes (Archivo/Inter/IBM Plex Mono) já se aplicam fora da home; rodar `npm run typecheck` + `npm run build` | AC-3 | done | captura `docs-intro.png` mostra título em Archivo e corpo em Inter em `/docs/intro`; `./init.sh` verde |
 
-Status values: `todo` → `doing` → `done`.
+Status values: `todo` → `doing` → `done` → `superseded`.
 
 ## Coverage Check
 
 Confirm manually before implementing:
 
-- Every AC referenced by at least one task? yes — AC-1: T-2, AC-2: T-3, AC-3: T-1 + T-5, AC-4: T-1, AC-5: T-4, AC-6: T-6, AC-7: T-6 + T-7, AC-8: T-8
-- Every task linked to an AC? yes
+- Every AC referenced by at least one task? yes — AC-1: T-10, AC-3: T-13, AC-5: T-10 (navegação nativa do arquivo) + navbar existente, AC-8: T-11, AC-9: T-12
+- Every task linked to an AC? yes (tasks históricas T-1–T-9 marcadas `superseded` e ligadas aos ACs que tinham antes de serem retirados da spec)

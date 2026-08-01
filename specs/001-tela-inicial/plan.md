@@ -9,19 +9,23 @@
 
 ## Technical Approach
 
-Reaproveitar o preset `classic` do Docusaurus (React + CSS Modules) em vez de portar o HTML/CSS/JS do rascunho (slide deck com paginação) tal e qual. Os tokens de design (cores, fontes, clip-paths) do rascunho são extraídos para `src/css/custom.css` como custom properties globais; a home (`src/pages/index.tsx`) consome esses tokens via CSS Modules (`index.module.css`) para reconstruir capa, "O problema", "A ideia central", "O ciclo", a transição e a primeira seção de blueprint técnico como seções empilhadas (scroll), não como slides navegáveis — a home de um site de docs precisa ser scrollável e indexável, diferente de uma apresentação.
+**Histórico (por que este plano mudou duas vezes):**
 
-A primeira versão só reaproveitava conteúdo em registro "papel" (executivo); a capa prometia "da visão executiva ao blueprint técnico" sem a home nunca de fato chegar lá. Correção: (a) um indicador de registro fixo (`RegisterGauge`) sempre visível, cujo marcador acompanha o scroll e cujo rótulo central troca para "Blueprint técnico" via `IntersectionObserver`; (b) uma seção sempre-blueprint (`BlueprintSection`, cor `--blue-bg` fixa, independente do tema claro/escuro do site) que reproduz a transição (slide 6) e a primeira seção técnica (slide 7 — duas análises, quatro artefatos).
+1. *Primeira versão*: recriar a capa e as primeiras seções do rascunho como componentes React (`Hero`, `ProblemSection`, `CentralIdeaSection`, `CycleSection`) com CSS Modules, mapeando o dark-mode do Docusaurus para o registro "blueprint" do rascunho.
+2. *Segunda versão*: a capa recriada nunca mostrava conteúdo "blueprint técnico" de fato (só um dark-mode opcional) — a promessa da própria capa ("da visão executiva ao blueprint técnico") não se cumpria. Adicionado um `RegisterGauge` (indicador com marcador ligado ao scroll) e uma `BlueprintSection` sempre escura à mão.
+3. *Versão atual*: o usuário rejeitou o resultado de novo ("ainda não ficou bom") e pediu explicitamente para **embutir o HTML** em vez de recriá-lo. Toda a estratégia de recriação em React foi abandonada: `framework-hibrido-rascunho.html` é copiado para `static/` e a home (`src/pages/index.tsx`) apenas o embute via `<iframe>` em tela cheia (abaixo da navbar do Docusaurus). Isso garante fidelidade **por construção** — é literalmente o mesmo arquivo, com seu próprio gauge, paginação por slide e JS, em vez de uma segunda implementação que precisa ser mantida em sincronia manualmente.
 
-Scaffolding padrão do `create-docusaurus` (blog de exemplo, tutorial docs, página markdown de exemplo, branding genérico) foi removido para que o repositório não misture conteúdo de demonstração com o conteúdo real do projeto.
+Os componentes React da tentativa anterior (`Hero`, `ProblemSection`, `CentralIdeaSection`, `CycleSection`, `TransitionSection`, `BlueprintSection`, `RegisterGauge`) foram **deletados**, não desativados — manter duas implementações da mesma capa (uma React, uma HTML) seria uma fonte permanente de divergência.
+
+Separadamente, dois ajustes sitewide: (a) o footer do Docusaurus foi removido de `themeConfig` (nenhuma página do site mostra rodapé); (b) as fontes do rascunho (Archivo/Inter/IBM Plex Mono), que já estavam em `custom.css` como `--ifm-font-family-base`/`--ifm-heading-font-family`/`--ifm-font-family-monospace`, foram confirmadas como aplicadas a **todo o site** (não só à home) — essas variáveis do Infima cascateiam globalmente por padrão, então nenhuma mudança de código adicional era necessária ali, só verificação visual em `/docs/intro`.
 
 ## Architecture & Components
 
-- `src/css/custom.css` — importa as fontes (Archivo/Inter/IBM Plex Mono) e define as custom properties de cor do rascunho (`--paper-*`, `--blue-*`, `--navy`, `--purple`, `--teal`, `--coral`). Mapeia o modo escuro do Docusaurus (`[data-theme='dark']`) para o registro "blueprint" do rascunho, e o modo claro (`:root`) para o registro "papel"/capa.
-- `src/pages/index.tsx` — componente da home; `RegisterGauge` (indicador de registro, client-only via `useEffect`), `Hero` (capa), `ProblemSection`, `CentralIdeaSection`, `CycleSection`, `TransitionSection`, `BlueprintSection`, cada um lendo texto fixo (copiado do rascunho) e classes de `index.module.css`.
-- `src/pages/index.module.css` — réplica em CSS Modules dos seletores `.eyebrow`, `.title-rule`, `.card`, `.panel`, `.cycle-step`, `.gauge-*`, `.pipe-*`, `.nest-label` etc. do rascunho, adaptados para variáveis globais em vez de valores fixos. As classes `.blueprint*` usam `--blue-*` diretamente (sempre escuras), diferente de `.section`/`.card`, que só ficam escuras via `[data-theme='dark']`.
-- `docusaurus.config.ts` — título, tagline, idioma (`pt-BR`) e navbar/footer atualizados para refletir o projeto real; `blog: false`; `favicon: 'img/favicon.svg'`; `image` (social card) removido até existir um real.
-- `static/img/logo.svg`, `static/img/favicon.svg` — marca mínima ("L" sobre `--navy`) substituindo o dinossauro/logo padrão do Docusaurus.
+- `static/framework-hibrido-rascunho.html` — cópia exata do arquivo na raiz do repo (`framework-hibrido-rascunho.html`), servida como asset estático. Docusaurus copia `static/**` para `build/` sem processar.
+- `src/pages/index.tsx` — home reduzida a um único `<iframe src={useBaseUrl('/framework-hibrido-rascunho.html')} />` dentro do `Layout` padrão (mantém navbar do site; o conteúdo da capa é 100% o arquivo original).
+- `src/pages/index.module.css` — uma única classe (`.capaFrame`): `width: 100%`, `height: calc(100vh - var(--ifm-navbar-height))`, sem borda.
+- `src/css/custom.css` — inalterado nesta revisão quanto às fontes (já cobria o site inteiro); mantém os tokens de cor (`--paper-*`, `--blue-*`, `--navy`, etc.) para uso futuro em `/docs`.
+- `docusaurus.config.ts` — bloco `footer` removido de `themeConfig` (Docusaurus não renderiza `<Footer/>` quando a config está ausente).
 
 ## Data Model
 
@@ -29,39 +33,35 @@ Não aplicável — conteúdo estático, sem entidades de dados.
 
 ## Interfaces / Contracts
 
-Não aplicável — sem API. Único contrato relevante é o conjunto de custom properties CSS em `:root` / `[data-theme='dark']`, que qualquer página futura deve consumir (ver `constitution.md`, princípio 5).
+- O único "contrato" é o caminho do asset estático: `static/framework-hibrido-rascunho.html` → servido em `/framework-hibrido-rascunho.html` (via `useBaseUrl` para respeitar um eventual `baseUrl` diferente de `/`). Se o arquivo na raiz do repo for atualizado, a cópia em `static/` precisa ser atualizada junto (ver Risks).
+- Custom properties CSS em `:root` / `[data-theme='dark']` continuam sendo o contrato de design system para páginas fora da home (ver `constitution.md`, princípio 5).
 
 ## Requirement Coverage
 
 | Requirement | Addressed by |
 |---|---|
-| FR-1 / AC-1 | `Hero` em `index.tsx` + `.hero`/`.eyebrow`/`.titleRule`/`.heroTitle`/`.heroSub` em `index.module.css`, usando `--navy`/`--navy-ink` |
-| FR-2 / AC-2 | `ProblemSection` e `CentralIdeaSection` em `index.tsx`, com texto idêntico ao rascunho (`#s2`, `#s3`) |
-| FR-3 / AC-3 | Custom properties centralizadas em `src/css/custom.css`; nenhuma cor hardcoded nos módulos de página |
-| FR-4 / AC-4 | Seletor `[data-theme='dark']` em `custom.css` e em `index.module.css` (`.section`, `.card`, `.cycleStepA` etc.) sobrepõe os tokens "blueprint" |
-| FR-5 / AC-5 | Botões `Link` para `/docs/intro` em `Hero` |
-| FR-6 / AC-6, AC-7 | `RegisterGauge` em `index.tsx` (scroll listener + `IntersectionObserver` no `#blueprint-register`) + `.gaugeWrap`/`.gaugeTrack`/`.gaugeMarker`/`.gaugeLabels` em `index.module.css` |
-| FR-7 / AC-7 | `TransitionSection` + `BlueprintSection` em `index.tsx`, com `.blueprintSection`/`.pipeline`/`.pipeNode`/`.nestLabel` (sempre `--blue-*`, não depende de `[data-theme='dark']`) |
-| FR-8 / AC-8 | Remoção de `blog/`, `docs/tutorial-basics/`, `docs/tutorial-extras/`, `src/pages/markdown-page.mdx`, imagens `undraw_*`/`docusaurus.png`/`docusaurus-social-card.jpg`; `blog: false` em `docusaurus.config.ts`; `static/img/logo.svg` e `favicon.svg` substituídos |
+| FR-1 / AC-1 | `static/framework-hibrido-rascunho.html` + `<iframe>` em `index.tsx` — fidelidade garantida por ser o mesmo arquivo, não uma recriação |
+| FR-3 / AC-3 | `--ifm-font-family-base`/`--ifm-heading-font-family`/`--ifm-font-family-monospace` em `src/css/custom.css` (`:root`, sitewide); confirmado via captura de tela de `/docs/intro` |
+| FR-5 / AC-5 | Navegação nativa do arquivo embutido (setas/dots "01/11") + navbar do Docusaurus (`Documentação` → `/docs/intro`) |
+| FR-8 / AC-8 | Remoção de `blog/`, `docs/tutorial-basics/`, `docs/tutorial-extras/`, `src/pages/markdown-page.mdx`, imagens padrão; `blog: false` em `docusaurus.config.ts`; `static/img/logo.svg`/`favicon.svg` substituídos |
+| FR-9 / AC-9 | Bloco `footer` removido de `themeConfig` em `docusaurus.config.ts` |
 
 ## Constitution Compliance
 
-- Princípio 5 (fidelidade ao design system): todas as cores/fontes usadas na home vêm de `custom.css`; nenhum valor hex é redefinido em `index.module.css`.
-- Quality Bar: `npm run typecheck` e `npm run build` executados após a implementação (ver Evidence em `tasks.md`); verificação visual manual feita via captura de tela em modo claro (topo e seções) e confirmação de que as regras `[data-theme='dark']` estão presentes no CSS final compilado.
+- Princípio 5 (fidelidade ao design system): a capa não usa mais tokens CSS do projeto — ela *é* o arquivo de referência, então não há divergência possível por definição. Páginas fora da home continuam obrigadas a usar as custom properties de `custom.css`.
+- Quality Bar: `npm run typecheck` e `npm run build` executados após a implementação; verificação visual manual via captura de tela (home com `--virtual-time-budget` para aguardar hidratação client-side, já que `npm start` não faz SSR) e de `/docs/intro` para confirmar fontes e ausência de footer.
 
 ## Key Decisions
 
 | Decision | Choice | Alternatives considered | Rationale |
 |---|---|---|---|
-| Estrutura da home | Seções empilhadas (scroll) reaproveitando só capa + 3 slides de abertura | Clonar as 11 slides com paginação por JS idêntica ao rascunho | Home de site de docs precisa ser scrollável/indexável (SEO, leitores de tela); paginação por slide não é um padrão de navegação de documentação |
-| Mapeamento de tema | Claro = registro "papel", escuro = registro "blueprint" | Um único registro fixo (ignorar dark mode do Docusaurus) | Reaproveita o alternador nativo do Docusaurus e preserva a dualidade conceitual do rascunho (executivo vs. técnico) sem JS extra |
-| Fonte de verdade de cor | Custom properties em `custom.css`, herdadas 1:1 do rascunho | Reimplementar como tema JS (`themeConfig` customizado) | Custom properties é o mecanismo padrão do Infima/Docusaurus para overrides de tema; menor superfície de manutenção |
-| Registro blueprint na home | Seção sempre escura (`--blue-*` fixo), independente do `[data-theme='dark']` do site | Só depender do dark mode do usuário para "revelar" o registro blueprint | O rascunho original alterna registro por conteúdo (por slide), não por preferência do usuário; se o registro blueprint só aparecesse no dark mode, a maioria dos visitantes (tema claro) nunca veria a seção — quebra a promessa da capa |
-| Indicador de progresso | Gauge com marcador ligado ao scroll (`window.scrollY`) + `IntersectionObserver` para o rótulo central | Marcador estático / sem indicador | Sem paginação por slide, scroll é o único sinal de "onde o visitante está"; reaproveita a ideia do gauge original de forma nativa para uma página rolável |
-| Blog do scaffolding | Desligado via `blog: false` no preset | Deletar só o conteúdo de exemplo, deixando o plugin ativo e vazio | Um blog ativo sem nenhum post é uma rota morta e sinaliza scaffolding inacabado; `blog: false` é reversível (uma linha) quando houver conteúdo real |
+| Capa: recriar vs. embutir | Embutir `framework-hibrido-rascunho.html` via `<iframe>` | Continuar recriando em React (era a v1 e a v2 deste plano) | Duas rodadas de recriação manual já falharam em atingir fidelidade aceitável para o usuário; embutir o arquivo elimina a categoria inteira de bug ("a réplica não bate com o original") |
+| Isolamento do iframe | `<iframe>` (documento HTML separado, CSS/JS isolados) | `dangerouslySetInnerHTML` / injetar o HTML inline na árvore React | O arquivo original é um documento completo (`<html>`,`<head>`,`<style>`,`<script>`) com seu próprio estado de navegação (slide atual) — injetar inline colidiria com o CSS/JS do Docusaurus (mesmos seletores de classe, mesmo `window` global para o listener de teclado) |
+| Footer | Removido de `themeConfig` (nenhuma página tem footer) | Manter footer só na home, remover só ali | `themeConfig.footer` é global no Docusaurus classic theme; footer por página exigiria swizzle do componente `Footer`, complexidade não pedida |
+| Fontes fora da home | Nenhuma mudança de código — já cascateavam via `--ifm-*-font-family` em `:root` | Duplicar declarações de fonte em cada página/componente | Infima já usa essas variáveis globalmente; duplicar seria redundante e um risco de divergência futura |
 
 ## Risks
 
-- **Fontes do Google Fonts via `@import` no CSS**: adiciona uma dependência de rede em build/runtime. Mitigação: são as mesmas fontes já usadas no rascunho aprovado; se performance virar problema, trocar por self-hosting é uma mudança isolada em `custom.css`.
-- **`RegisterGauge` depende de `window`/`IntersectionObserver`**: só pode rodar client-side. Mitigação: toda a lógica está em `useEffect` (não roda durante SSR/build), então `docusaurus build` não quebra; o pior caso sem JS é o marcador parado em 0%, sem impacto no conteúdo.
-- **Conteúdo real de `/docs/intro` ainda não escrito**: a home aponta para `/docs/intro`, mas o conteúdo lá é só um placeholder — precisa virar uma feature própria (fora de escopo aqui, ver Non-Goals em `spec.md`).
+- **Duas cópias do mesmo HTML (raiz do repo + `static/`)**: se `framework-hibrido-rascunho.html` for editado só na raiz, a home fica desatualizada silenciosamente. Mitigação: documentado aqui e em `progress.md`; próxima melhoria natural seria um script/hook de build que copia automaticamente (fora de escopo desta feature).
+- **Iframe e SEO/acessibilidade**: conteúdo dentro de um iframe é mais difícil de indexar e de navegar por leitor de tela do que HTML nativo da página. Mitigação: aceito conscientemente pelo usuário ao pedir o embed; se virar problema real, a alternativa é voltar a portar o conteúdo (não o styling) para Markdown/MDX nativo do Docusaurus.
+- **Conteúdo real de `/docs/intro` ainda não escrito**: continua um placeholder; feature futura (ver Non-Goals em `spec.md`).
