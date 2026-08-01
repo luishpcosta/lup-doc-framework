@@ -259,6 +259,9 @@ body.blueprint .dot.active{ background:#fff; }
 .nav-btn:focus-visible{ outline:2px solid var(--navy); outline-offset:2px; }
 body.blueprint .nav-btn:focus-visible{ outline-color:#fff; }
 .nav-btn:disabled{ opacity:.25; cursor:default; }
+/* #s1 (a capa) tem fundo --navy fora do toggle claro/escuro normal; sem
+   isto o botão herda a cor escura do body e fica quase invisível ali */
+body.cover .nav-btn{ color:#fff; }
 .nav-right{ display:flex; gap:10px; }
 
 @media(max-width:600px){
@@ -474,6 +477,7 @@ function goTo(i){
 
   const reg = slides[idx].dataset.register;
   document.body.classList.toggle('blueprint', reg === 'blueprint');
+  document.body.classList.toggle('cover', slides[idx].id === 's1');
   registerLabel.textContent = reg === 'blueprint' ? 'Blueprint técnico' : 'Executivo';
 
   const pct = total === 1 ? 0 : (idx / (total - 1)) * 100;

@@ -23,6 +23,7 @@
 - [x] Arquivo de referência consolidado numa cópia só: `framework-hibrido.html` agora vive **apenas** em `static/` (a cópia na raiz do repo foi removida) — resolve o risco de "duas cópias divergindo" registrado antes
 - [x] Marcador do gauge (`.gauge-marker`) ajustado para dourado fixo (`var(--purple)`) — feito por diagnóstico inicial errado (achando que era o marcador que sumia); mudança mantida (não revertida), mas **não** era o bug real
 - [x] **Bug real, corrigido**: a trilha do gauge (`.gauge-track`) usava `var(--blue-bg)` na metade escura — a mesma cor exata do fundo do body nos slides de registro blueprint, então essa metade da trilha desaparecia contra o próprio fundo ("começa clara, depois fica com a cor muito próxima da do fundo", nas palavras do usuário). Corrigido trocando para `var(--blue-card)` + uma borda dourada sutil sempre visível
+- [x] Botões de navegação (`.nav-btn`, ‹ ›) na capa corrigidos: usavam `color:inherit`, herdando o `--paper-ink` escuro do body contra o fundo `--navy` de `#s1` — quase invisíveis. Adicionada classe `body.cover` (só ativa quando o slide `#s1` está ativo) forçando `color:#fff` nos botões
 
 ### What's In Progress
 
@@ -62,6 +63,9 @@ Nenhuma pendente.
 - **Gauge-track: `var(--blue-card)` em vez de `var(--blue-bg)` na metade escura, + borda dourada sutil sempre visível.**
   - Context: o usuário corrigiu meu diagnóstico — "me referia na transição do traço que começa claro depois fica com a cor muito próxima com a do fundo, a bolinha já estava certa". A trilha (não o marcador) usava `var(--blue-bg)` no lado escuro, exatamente a cor do fundo do body nos slides de registro blueprint — a trilha sumia contra o próprio fundo assim que o visitante entrava nesse registro. `--blue-card` é um tom distinto o suficiente de `--blue-bg` para nunca coincidir com o fundo da página.
   - Constitution impact: nenhuma. FR-10/AC-10 em `spec.md` foram reescritos para descrever a trilha corretamente (estavam descrevendo o marcador, por causa do diagnóstico errado inicial).
+- **`.nav-btn` na capa: classe `body.cover` (JS, ligada a `slides[idx].id === 's1'`) forçando `color:#fff`.**
+  - Context: pedido explícito do usuário ("esse botão na primeira página precisa ser claro branco"). Causa raiz: `.nav-btn` usa `color:inherit`/`border:1px solid currentColor` sem override — funciona nos outros slides (herdam `--paper-ink`/`--blue-ink` conforme o registro, ambos com contraste OK contra `--paper-bg`/`--blue-bg`), mas `#s1` tem um fundo `--navy` especial fora desse esquema claro/escuro, então o botão herdava uma cor escura contra um fundo também escuro. `nav-left`/`.dot` já tinham cor explícita (`--paper-muted`), não sofriam do mesmo bug — por isso o fix ficou restrito só ao botão, como pedido.
+  - Constitution impact: nenhuma.
 
 ## Evidence of Completion
 
@@ -71,6 +75,7 @@ Nenhuma pendente.
 - [x] AC-8 verified: `find docs static/img src/pages -type f` não lista nenhum arquivo de demonstração do Docusaurus; `curl -s http://localhost:3000/blog` cai na página "not found" client-side
 - [x] AC-9 verified: captura de tela `docs-intro.png` não mostra nenhum rodapé abaixo do conteúdo
 - [x] AC-10 verified: captura de tela de um arquivo de teste com o slide 7 (registro blueprint) forçado ativo mostra a trilha do gauge visível em toda a extensão contra o fundo `--blue-bg`
+- [x] AC-11 verified: captura de tela `nav-btn-fix.png` mostra o botão "›" em branco na capa, contraste claro contra o fundo `--navy`
 - [x] Coverage check clean: todas as ACs atuais (`specs/001-tela-inicial/tasks.md`, tabela "Tasks (atuais)") têm ≥1 task e toda task referencia uma AC; tasks da v1/v2 marcadas `superseded`, mantidas só para histórico
 
 ## Notes for Next Session

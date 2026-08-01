@@ -25,6 +25,7 @@ A documentação do framework híbrido precisa de uma porta de entrada que trans
 - FR-8: O site não deve conter o scaffolding de demonstração padrão do `create-docusaurus` (blog de exemplo, tutorial docs, página markdown de exemplo, imagens/logo/favicon genéricos do Docusaurus).
 - FR-9: O site não deve exibir um rodapé (footer) em nenhuma página.
 - FR-10: A trilha do indicador de registro (gauge-track, dentro do próprio `framework-hibrido.html`) deve permanecer visível em toda a sua extensão, em qualquer slide/registro — nenhum trecho da trilha pode ter a mesma cor do fundo da página atrás dela.
+- FR-11: Os botões de navegação (`.nav-btn`, ‹ ›) devem ter contraste suficiente contra o fundo em todo slide, incluindo a capa (`#s1`), cujo fundo `--navy` é um caso especial fora do toggle claro/escuro normal.
 
 > **Revisão 2026-08-01:** as duas primeiras iterações tentaram *recriar* a capa (React + CSS Modules) e depois *complementar* a recriação com um indicador de registro e uma seção blueprint feitos à mão. Isso nunca atingiu fidelidade total e o usuário rejeitou o resultado duas vezes ("ainda não ficou bom"). FR-1 foi reescrito: a capa agora **embute o arquivo HTML original** (`static/framework-hibrido.html`) via `<iframe>`, eliminando a divergência por definição. FR-2/FR-4/FR-6/FR-7 (recriar problema/ideia central/ciclo, mapear dark-mode para "blueprint", indicador de registro à mão, seção blueprint à mão) foram **retirados**: o próprio arquivo embutido já contém as 11 slides, seu próprio gauge e sua própria navegação — recriar qualquer parte disso em React seria trabalho duplicado e uma nova fonte de divergência visual.
 
@@ -36,6 +37,7 @@ A documentação do framework híbrido precisa de uma porta de entrada que trans
 - **AC-8** — Given o repositório após o setup inicial, when se lista `blog/`, `docs/tutorial-basics/`, `docs/tutorial-extras/`, `src/pages/markdown-page.mdx` e as imagens `undraw_*`/`docusaurus.png`/`docusaurus-social-card.jpg`/`favicon.ico`/`logo.svg` originais, then nenhum desses existe mais no repositório. _(satisfies FR-8)_
 - **AC-9** — Given qualquer página do site, when ela termina de carregar, then não há nenhum elemento `<footer>` visível (rodapé removido de `themeConfig`). _(satisfies FR-9)_
 - **AC-10** — Given a trilha do gauge na capa, when o visitante está em qualquer slide de registro blueprint (fundo `--blue-bg`), then a metade escura da trilha continua visível como uma linha distinta (com borda), nunca se "fundindo" com o fundo da página atrás dela. _(satisfies FR-10)_
+- **AC-11** — Given a capa (`#s1`, fundo `--navy`), when o visitante olha para os botões ‹ › no canto inferior direito, then eles aparecem em branco, com contraste claro contra o fundo — não na cor escura herdada do body. _(satisfies FR-11)_
 
 ~~AC-2, AC-4, AC-6, AC-7~~ (recriação manual de seções, mapeamento de dark-mode para "blueprint", gauge e seção blueprint feitos à mão) — **superseded by AC-1**: o arquivo embutido já resolve tudo isso por conter as 11 slides originais com seu próprio JS/CSS. Ver Clarifications Log.
 
