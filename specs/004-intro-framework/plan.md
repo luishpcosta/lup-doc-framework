@@ -30,7 +30,7 @@ Não aplicável — conteúdo estático.
 ## Interfaces / Contracts
 
 - Rota pública: `/docs/intro` (inalterada).
-- Fonte de verdade conceitual: `static/framework-hibrido.html` (slides 1–10, todos os `data-register`) e `as_is_metarepo_sdd_harness.svg` (estado atual/as-is) — ambos lidos diretamente, não citados como arquivo no texto publicado (o leitor do site não precisa saber que a fonte é um rascunho HTML/SVG).
+- Fonte de verdade conceitual: `static/framework-hibrido.html` (slides 1–10, todos os `data-register`) e `as_is_metarepo_sdd_harness.svg` (estado atual/as-is, arquivo removido do repositório em 2026-08-02 a pedido do usuário — ver `progress.md`) — ambos lidos diretamente, não citados como arquivo no texto publicado (o leitor do site não precisa saber que a fonte é um rascunho HTML/SVG).
 
 ## Requirement Coverage
 

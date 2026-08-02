@@ -35,7 +35,7 @@ Não aplicável — conteúdo estático.
 
 - Rota pública: `/docs/guia-repositorio-contexto`.
 - Fonte de verdade para as descrições de skill: `ai-lup-skills/skills/{blueprintfy,prd-to-adr,issue-to-adr,make-diagram,pm-create-pb,pm-create-prd,domain-reconcile}/SKILL.md` (repositório vizinho, lido diretamente — não citado nominalmente no texto publicado, conforme FR-8).
-- Conteúdo conceitual (papel do repositório de contexto, o gap de reconciliação) vem de `static/framework-hibrido.html` (slides 6–9, `data-register="blueprint"`) e de `as_is_metarepo_sdd_harness.svg` (estado atual, elo implícito e sem retorno pós-deploy).
+- Conteúdo conceitual (papel do repositório de contexto, o gap de reconciliação) vem de `static/framework-hibrido.html` (slides 6–9, `data-register="blueprint"`) e vinha de `as_is_metarepo_sdd_harness.svg` (estado atual, elo implícito e sem retorno pós-deploy) — arquivo removido do repositório a pedido do usuário (2026-08-02) depois de já incorporado à seção 4 de `docs/guia-repositorio-contexto.md`; nunca foi embutido como imagem no site, só lido como fonte.
 
 ## Requirement Coverage
 
