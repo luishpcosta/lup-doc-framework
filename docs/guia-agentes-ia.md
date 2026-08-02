@@ -82,12 +82,29 @@ seguidas implicitamente no código mas que ainda não estão documentadas
 
 No dia a dia, o pedido ao agente pode — e deve — ser em linguagem natural de alto nível. O agente é quem traduz isso para o fluxo SDD (spec → plan → tasks → implementação) ou para a skill certa.
 
-1. "Leia a ADR-125 e crie um planejamento baseado em SDD para o repositório."
-2. "`/codefy` baseado no contexto do módulo de pagamentos, planeje a alteração que permite parcelamento."
-3. "Abra a feature 004 para exportação de relatórios em PDF; siga o fluxo faseado e me avise quando a spec estiver pronta para aprovação."
-4. "Essa tarefa é pequena e o risco é baixo — pode seguir no modo rápido e já abrir o PR."
-5. "Verifique se a spec da feature 002 ainda bate com o código atual e aponte as divergências."
-6. "Revise o PR #482 focando em segurança e nos critérios de aceite da feature 005."
+```
+Leia a ADR-125 e planeje via SDD.
+```
+
+```
+/codefy planeje o parcelamento no módulo de pagamentos.
+```
+
+```
+/blueprintfy transforme este brief de negócio em blueprint técnico.
+```
+
+```
+Abra a feature 004 no modo faseado.
+```
+
+```
+Essa é pequena — modo rápido, já abra o PR.
+```
+
+```
+Revise o PR #482 com foco em segurança.
+```
 
 ## 4. Dicas para `AGENTS.md`/`CLAUDE.md`
 

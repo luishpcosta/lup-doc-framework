@@ -15,7 +15,7 @@ A página segue a ordem das 4 seções do briefing do usuário, mapeadas 1:1 par
 
 1. **Resumo executivo** (FR-1/AC-1) — o que o guia cobre + tabela/lista das 3 skills e seu papel.
 2. **Preparação do repositório** (FR-2/AC-2, FR-3/AC-3, FR-4/AC-4) — brownfield vs. greenfield via `/sdd-harness-creator` (com recomendação de modelo forte no brownfield), exemplos de invocação; em seguida o uso contínuo de `/codefy` para encadear specs e propor regras em `AGENTS.md`/`CLAUDE.md`, com seus próprios exemplos.
-3. **Uso no dia a dia** (FR-5/AC-5) — lista de 5+ exemplos em linguagem natural.
+3. **Uso no dia a dia** (FR-5/AC-5) — 5+ exemplos em linguagem natural, cada um uma frase curta em bloco de código copiável, cobrindo `/codefy` e `/blueprintfy`.
 4. **Dicas para `AGENTS.md`/`CLAUDE.md`** (FR-6/AC-6) — modos de trabalho (rápido/faseado) e review automático de PR via hook.
 
 ## Architecture & Components
@@ -42,7 +42,7 @@ Não aplicável — conteúdo estático, sem entidades de dados.
 | FR-2 / AC-2 | Subseção "Preparação do repositório" — bloco comparando brownfield vs. greenfield, recomendação de modelo forte (Opus) no brownfield |
 | FR-3 / AC-3 | 2 blocos de exemplo `/sdd-harness-creator` na mesma subseção |
 | FR-4 / AC-4 | Subseção "Encadeando specs com `/codefy`" — 2 blocos de exemplo |
-| FR-5 / AC-5 | Seção "Uso no dia a dia" — lista com 5+ itens |
+| FR-5 / AC-5 | Seção "Uso no dia a dia" — 6 blocos de código curtos, cobrindo `/codefy` e `/blueprintfy` |
 | FR-6 / AC-6 | Seção "Dicas para `AGENTS.md`/`CLAUDE.md`" — dois subtópicos (modos de trabalho, review automático de PR) |
 | FR-7 / AC-7 | Arquivo único em `docs/`, verificado por `npm run typecheck` + `npm run build` |
 | FR-8 / AC-8 | Revisão de texto antes de publicar: nenhuma URL/nome de repositório de origem das skills |
