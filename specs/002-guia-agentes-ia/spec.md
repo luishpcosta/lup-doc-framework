@@ -31,6 +31,7 @@ Times que adotam ferramentas de IA para assistência/automação de programaçã
 - FR-7: A página deve ser única (uma só página, não uma seção multi-página), em português, seguindo o estilo "how-to" e os tokens visuais já definidos no projeto (ver `constitution.md`, princípio 5).
 - FR-8: A página não deve citar nominalmente nenhum repositório externo de onde as skills `/codefy`/`/blueprintfy` vêm — elas são apresentadas como skills disponíveis ao agente, sem apontar sua origem.
 - FR-9: O nome do arquivo, o título/front matter e o texto de abertura da página devem deixar explícito que o guia é escrito com foco em **repositórios de aplicação/código** (não repositórios de conteúdo/documentação), já que os exemplos citam módulos de código, PRs e arquivos-fonte.
+- FR-10: A página deve seguir o modelo **How-To Guide (Diátaxis)** escrito com a técnica de **minimalismo instrucional (Carroll)**: uma orientação inicial curta (não uma seção de explicação separada e do mesmo peso que as tarefas), sem bloco de prosa longo desacompanhado de uma ação, e com todo exemplo/instrução copiável.
 
 ## Acceptance Criteria
 
@@ -43,6 +44,7 @@ Times que adotam ferramentas de IA para assistência/automação de programaçã
 - **AC-7** — Given o repositório após a implementação, when se roda `npm run typecheck` e `npm run build`, then ambos terminam sem erro e a nova página aparece navegável a partir da sidebar/navbar do site, em uma única rota. _(satisfies FR-7)_
 - **AC-8** — Given o conteúdo publicado, when se busca por menções a repositórios externos de skills, then nenhuma URL, nome de organização ou nome de repositório de origem das skills `/codefy`/`/blueprintfy` aparece no texto. _(satisfies FR-8)_
 - **AC-9** — Given o arquivo, o menu do site e a página, when um leitor vê o nome do arquivo (`docs/guia-agentes-ia-app.md`), o título na sidebar/navbar ou o primeiro parágrafo, then em pelo menos um desses três lugares fica explícito que o guia é voltado a repositório de aplicação/código. _(satisfies FR-9)_
+- **AC-10** — Given a página completa, when um leitor revisa cada seção, then "1. Resumo" cabe em um parágrafo curto + lista de definição (sem tabela de células longas), os títulos de seção descrevem um objetivo do leitor, e nenhuma seção tem prosa explicativa sem uma ação/exemplo associado (incluindo "Review automático de PR", que passa a ter um bloco de comando copiável como as demais seções). _(satisfies FR-10)_
 
 ## Edge Cases
 
@@ -66,3 +68,4 @@ Nenhuma pendente.
 |---|---|---|
 | 2026-08-01 | O guia deve referenciar o repositório de origem das skills `/codefy`/`/blueprintfy`? | Não — pedido explícito do usuário para não referenciar esse repositório nesta documentação (FR-8/AC-8). |
 | 2026-08-02 | O guia vale para qualquer tipo de repositório ou só para repositório de aplicação/código? | O usuário observou que os exemplos (módulos, PRs, arquivos de código) só fazem sentido para repositório de aplicação. Decisão: manter os exemplos como estão e deixar isso explícito no nome do arquivo, no título e no texto de abertura, em vez de generalizar os exemplos (FR-9/AC-9). |
+| 2026-08-02 | Qual modelo/técnica de escrita usar para reestruturar o guia? | Análise apresentou 3 opções de framework (Diátaxis How-To, Runbook, Reference) e 3 técnicas de escrita (minimalismo instrucional, pirâmide invertida, progressive disclosure). Usuário escolheu Diátaxis How-To Guide + minimalismo instrucional (Carroll) entre as opções apresentadas (FR-10/AC-10). |

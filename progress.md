@@ -41,6 +41,7 @@
 - [x] `npm run typecheck` e `npm run build` verdes
 - [x] Verificação visual em modo claro e escuro via captura de tela (Chrome headless + CDP `Emulation.setEmulatedMedia`, já que `respectPrefersColorScheme: true` não é afetado por flags de linha de comando comuns) — paleta/tipografia do design system aplicadas corretamente, sem footer, sidebar/TOC corretos em ambos os modos
 - [x] Revisão de texto: nenhuma URL/nome de repositório de origem das skills `/codefy`/`/blueprintfy` citado (pedido explícito do usuário)
+- [x] Reescrita no modelo **How-To Guide (Diátaxis) + minimalismo instrucional (Carroll)**: usuário pediu opções de técnica de escrita/método de documentação; apresentadas 3 opções de framework (Diátaxis How-To, Runbook, Reference) × 3 técnicas (minimalismo, pirâmide invertida, progressive disclosure); usuário escolheu Diátaxis How-To + minimalismo. "1. Resumo" virou parágrafo curto + lista de definição (era tabela com células longas), "2. Preparação do repositório" → "2. Como preparar o repositório", bullets de brownfield/greenfield encurtados, e "Review automático de PR" ganhou bloco de comando copiável (era só prosa) — página caiu de ~1030 para ~750 palavras. `npm run typecheck`/`build` verdes; verificado em claro e escuro
 
 ## Open Clarifications
 

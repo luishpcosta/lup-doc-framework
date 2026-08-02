@@ -9,21 +9,17 @@ Este guia mostra como preparar um repositório e como operá-lo no dia a dia usa
 
 ## 1. Resumo
 
-O fluxo tem três momentos: **preparar** o repositório para que um agente consiga entendê-lo e trabalhar nele de forma rastreável, **encadear** o conhecimento existente (documentação, decisões, código) em specs vivas, e **operar** no dia a dia pedindo trabalho em linguagem natural de alto nível. Três skills cobrem esses momentos:
+Leia na ordem: prepare o repositório (seção 2), depois use no dia a dia (seções 3–4). Duas skills sustentam isso:
 
-| Skill | Papel no fluxo |
-|---|---|
-| `/sdd-harness-creator` | Monta o harness de desenvolvimento orientado a especificação (SDD): `constitution.md`, `spec.md`/`plan.md`/`tasks.md` por feature, gates de fase e rastreabilidade de critérios de aceite. É o ponto de partida — sem harness, não há onde registrar o resto. |
-| `/codefy` | Mapeia o contexto do repositório (código + documentação já existente), encadeia esse contexto em specs e propõe regras operacionais para `AGENTS.md`/`CLAUDE.md`. É o trabalho contínuo de manter a documentação viva depois que o harness já existe. |
+- `/sdd-harness-creator` — monta o harness SDD (`constitution.md`, `spec.md`/`plan.md`/`tasks.md`, gates de fase). Ponto de partida.
+- `/codefy` — depois que o harness existe, mantém specs e `AGENTS.md`/`CLAUDE.md` atualizados conforme o repositório muda.
 
-O restante deste guia detalha como usar cada uma.
-
-## 2. Preparação do repositório
+## 2. Como preparar o repositório
 
 ### Brownfield vs. greenfield
 
-- **Repositório existente (brownfield)** — já tem código, histórico de commits e possivelmente documentação dispersa (READMEs, ADRs, tickets). Aqui, `/sdd-harness-creator` precisa primeiro **recuperar informação**: ler o código-fonte, inferir princípios implícitos, reconstruir o que já foi decidido antes de montar `constitution.md` e a primeira spec. Essa etapa de leitura/inferência é a que mais se beneficia de um modelo de raciocínio forte — recomenda-se usar um modelo como **Opus** especificamente para essa recuperação inicial e montagem do harness, já que erros de interpretação aqui se propagam para todas as specs seguintes. Depois que o harness está de pé, o trabalho rotineiro (uma feature de cada vez) pode voltar a um modelo mais rápido/econômico.
-- **Repositório novo (greenfield)** — sem código legado para reconciliar, o harness pode ser montado diretamente a partir de um brief e dos princípios já decididos na reunião de kickoff, sem a etapa de engenharia reversa.
+- **Brownfield (repositório existente)** — use um modelo de raciocínio forte (ex.: **Opus**) na primeira rodada: `/sdd-harness-creator` precisa ler o código e inferir princípios implícitos antes de montar `constitution.md` e a primeira spec, e erros aqui se propagam para o resto. Depois que o harness está de pé, volte a um modelo mais rápido para o trabalho rotineiro.
+- **Greenfield (repositório novo)** — monte o harness direto a partir do brief e dos princípios do kickoff, sem etapa de recuperação.
 
 ### Exemplos chamando `/sdd-harness-creator`
 
@@ -49,7 +45,7 @@ o harness SDD
 
 ### Encadeando specs com `/codefy` (processo contínuo, brownfield)
 
-Depois que o harness inicial existe, o trabalho de brownfield continua: nem toda decisão técnica já tomada vira spec no primeiro passo, e novas regras de código precisam ser refletidas em `AGENTS.md`/`CLAUDE.md` para que o agente as siga automaticamente depois. É esse o papel contínuo de `/codefy` — analisar a documentação e o código existentes, montar a cadeia entre eles, e propor as regras que faltam.
+Depois que o harness existe, use `/codefy` para manter specs e `AGENTS.md`/`CLAUDE.md` atualizados: ele mapeia decisões que ainda não viraram spec e regras que o código já segue mas ainda não estão documentadas.
 
 **Exemplo 1 — mapear contexto a partir de documentação dispersa:**
 
@@ -69,7 +65,7 @@ documentadas.
 
 ## 3. Uso no dia a dia
 
-No dia a dia, o pedido ao agente pode — e deve — ser em linguagem natural de alto nível. O agente é quem traduz isso para o fluxo SDD (spec → plan → tasks → implementação) ou para a skill certa.
+Peça em linguagem natural de alto nível — o agente traduz para o fluxo SDD (spec → plan → tasks → implementação) ou para a skill certa:
 
 ```
 Leia a ADR-125 e planeje a alteração.
@@ -95,7 +91,7 @@ Revise o PR #482 com foco em segurança.
 
 ### Modos de trabalho
 
-Vale declarar explicitamente, no `AGENTS.md`/`CLAUDE.md` do repositório, quais modos de operação o agente pode assumir — assim ele sabe qual comportamento adotar sem que isso precise ser reexplicado a cada pedido:
+Cole isto no `AGENTS.md`/`CLAUDE.md` do repositório para declarar os modos de operação do agente:
 
 ```markdown
 ## Modos de trabalho
@@ -119,6 +115,10 @@ contrário sem avisar antes.
 
 ### Review automático de PR
 
-Vale configurar um hook que aciona automaticamente uma skill de review de código sempre que um PR é aberto, usando um modelo específico para essa tarefa — revisão costuma se beneficiar de um modelo com orçamento de raciocínio mais alto do que o usado na implementação do dia a dia.
+Configure um hook que aciona review de código a cada PR aberto, usando um modelo com orçamento de raciocínio mais alto que o da implementação do dia a dia. Se não souber como montar o hook, peça:
 
-Se você não souber como montar esse hook, peça diretamente: *"configure um hook que acione review automático de PR, usando o modelo X para o review"*. O agente deve investigar as opções disponíveis no seu ambiente (configuração de hooks, modelo a usar, gatilho de evento) em vez de assumir uma solução pronta sem checar — assim como não deve inventar nomes de skills que não existem no seu ambiente.
+```
+Configure um hook que acione review automático de PR, usando o modelo X para o review.
+```
+
+O agente deve investigar as opções do seu ambiente (hooks, modelo, gatilho de evento) em vez de assumir uma solução pronta — e não inventar nomes de skills que não existem no seu ambiente.
