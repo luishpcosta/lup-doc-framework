@@ -3,7 +3,7 @@
 ## Current State
 
 **Last Updated:** 2026-08-02
-**Active Feature:** 005-guia-skills — Skills do framework (página de overview técnico)
+**Active Feature:** 006-roadmap-instalacao — Roadmap para squads com sistemas distribuídos
 **Active SDD Phase:** Verify (complete)
 **Pending Gate:** none — feature closed
 
@@ -109,6 +109,17 @@
 - [x] **Reversão pontual de uma decisão anterior**: `002-guia-agentes-ia` e `003-guia-repositorio-contexto` registraram, a pedido do usuário à época, que os guias não deveriam citar nominalmente o repositório de origem das skills. Nesta feature o usuário pediu o oposto — link explícito do GitHub (`https://github.com/luishpcosta/ai-lup-skills`, confirmado via `git remote -v`) e o comando `lup-skills add <nome>` (confirmado no `README.md` do repositório de skills). Tratada como exceção pontual desta página nova — os dois guias existentes **não** foram alterados retroativamente; registrado em `specs/005-guia-skills/spec.md` (Clarifications Log)
 - [x] Links cruzados adicionados: `docs/intro.mdx` ("Para onde ir a seguir"), `docs/guia-agentes-ia-app.md` e `docs/guia-repositorio-contexto.md` (parágrafo de abertura) — todos apontam para `./skills.md`
 - [x] `npm run typecheck`/`build` verdes; verificação visual em claro e escuro (`skills-light-top.png`/`skills-dark-top.png`) — elementos `<details>` (nunca usados antes neste site) renderizam com estilo nativo do tema (caixa colorida, ícone de expansão), sem quebra de paleta/tipografia; conteúdo dentro dos blocos (tabelas, listas numeradas) confirmado renderizando corretamente via HTML estático com os blocos forçados abertos
+
+### 006-roadmap-instalacao — Roadmap para squads com sistemas distribuídos (2026-08-02)
+
+- [x] **Usuário pediu um novo documento "abaixo da introdução no menu": roadmap de instalação do framework para squads com sistemas distribuídos**, com um brief inicial de 4 passos (domínio/aplicações → repositório de documentação com scaffold to-be/as-is → povoar via `/domain-reconcile` → manter atualizado), pedindo explicitamente para ser questionado sobre formato/técnica de escrita antes de implementar.
+- [x] **4 perguntas feitas via `AskUserQuestion` antes de implementar**: (1) formato/gênero — 3 opções com preview (Tutorial narrativo, Runbook/checklist, How-To no modelo dos guias existentes) → usuário escolheu **Runbook/checklist operacional**; (2) escopo do scaffold de pastas — só a página nova, ou também atualizar o guia de contexto → **só a página nova**; (3) o passo 4 do brief terminava cortado ("...pode usar mesma skill /domain-reconcile para co") → usuário confirmou **uso recorrente pós-deploy**; (4) tratamento da camada as-is → usuário confirmou **claramente opcional** (o próprio brief já dizia "incremento desejável")
+- [x] Nova feature `006-roadmap-instalacao` (specs completas: spec→plan→tasks), `docs/roadmap-instalacao.md` criado: 4 fases em formato runbook (`- [ ]` task list nativa do Docusaurus), scaffold de pastas reformatado em árvore ASCII limpa (o original do usuário tinha indentação irregular), exemplo de `/blueprintfy` referenciando o scaffold, exemplo **faseado** de `/domain-reconcile` (mapear/plano → aprovação → escrita) consistente com o comportamento real da skill já documentado em `docs/skills.md` (edição só com autorização explícita, passagem por passagem — não inventei um "modo faseado" novo da skill)
+- [x] `sidebar_position` da nova página = 2 (logo após "Introdução", pedido explícito do usuário) — as 3 páginas existentes (`guia-agentes-ia-app.md`, `guia-repositorio-contexto.md`, `skills.md`) incrementadas em 1 (2→3, 3→4, 4→5)
+- [x] Fase 4 do roadmap linka para a seção "Manter o repositório saudável" já existente no guia de contexto, em vez de duplicá-la — `npm run build` confirmou que o anchor resolve (constitution exige `onBrokenLinks: throw`)
+- [x] `docs/guia-repositorio-contexto.md` **não foi alterado** para incorporar o scaffold — decisão explícita do usuário, guia continua agnóstico de estrutura de pastas
+- [x] Link cruzado adicionado em `docs/intro.mdx` ("Para onde ir a seguir")
+- [x] `npm run typecheck`/`build` verdes; verificação visual em claro e escuro (`roadmap-light.png`/`roadmap-dark.png`) — checkboxes nativas, scaffold ASCII legível, sidebar na ordem nova, TOC com as 4 fases
 
 ## Open Clarifications
 
