@@ -83,3 +83,48 @@ Hoje o elo entre este repositório e os repositórios de aplicação é implíci
 /domain-reconcile confere se o commit mais recente do repositório de
 pagamentos ainda bate com a ADR-012 de cobrança recorrente.
 ```
+
+## 5. Dicas para `AGENTS.md`/`CLAUDE.md`
+
+### Mapear as skills para o agente
+
+Cole isto no `AGENTS.md`/`CLAUDE.md` do repositório de contexto para reforçar qual skill usar em cada situação, sem depender do usuário lembrar o nome certo:
+
+```markdown
+## Skills deste repositório de contexto
+
+- `/blueprintfy` — pergunta de domínio, glossário, ADR, ou bootstrap do
+  CONTEXT-MAP.md ("isso é uma Order ou uma Invoice?", "vamos estressar
+  essa decisão", "começar a modelagem de domínio").
+- `/prd-to-adr` — já existe um PRD e falta a arquitetura/ADR/critérios
+  de aceite.
+- `/issue-to-adr` — mesmo resultado do /prd-to-adr, mas a partir de uma
+  demanda informal, sem PRD escrito.
+- `/make-diagram` — pedido de diagrama de arquitetura.
+- `/pm-create-pb` / `/pm-create-prd` — ideia crua de negócio, ainda sem
+  Product Brief/PRD.
+- `/domain-reconcile` — checar se um repositório de aplicação ainda
+  bate com o que está documentado aqui.
+
+Regra prática: se o pedido não citar a skill pelo nome, mas encaixar
+numa das linhas acima, use a skill mesmo assim — não peça para o
+usuário nomear a skill certa.
+```
+
+### Manter o repositório saudável
+
+Cole isto para declarar a rotina mínima que evita que o repositório documente um estado que já mudou:
+
+```markdown
+## Rotina de saúde do repositório de contexto
+
+- Depois de qualquer deploy relevante num repositório de aplicação
+  documentado aqui, rode /domain-reconcile contra o commit/branch que
+  foi para produção.
+- Antes de abrir um novo PRD/ADR, confirme que o CONTEXT-MAP.md
+  reflete a última decisão registrada no domínio afetado — não
+  presuma que está atualizado.
+- Se /domain-reconcile encontrar divergência, registre a decisão
+  (atualizar o doc ou aceitar o desvio) antes de seguir para o próximo
+  pedido — nunca deixe uma divergência encontrada sem resposta.
+```

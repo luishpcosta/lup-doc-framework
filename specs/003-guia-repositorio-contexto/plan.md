@@ -17,6 +17,7 @@ Estrutura (mapeada 1:1 às FRs):
 2. **Como preparar o repositório de contexto** (FR-2/AC-2) — bootstrap via `/blueprintfy`, dois cenários (sem doc nenhum vs. docs dispersos sem mapa), 2+ exemplos.
 3. **Como manter o repositório de contexto atualizado** (FR-3/AC-3) — `/blueprintfy` (manutenção), `/prd-to-adr`, `/issue-to-adr`, `/make-diagram`, 1+ exemplo cada; subseção opcional (FR-4/AC-4) com `/pm-create-pb`+`/pm-create-prd`.
 4. **Como reconciliar com os repositórios de aplicação** (FR-5/AC-5) — explica o gap (elo implícito, sem retorno pós-deploy) e `/domain-reconcile`.
+5. **Dicas para `AGENTS.md`/`CLAUDE.md`** (FR-9/AC-9) — mapeamento de skills (reforço de trigger para o agente) e rotina mínima de saúde do repositório, mesmo padrão do guia irmão (`002-guia-agentes-ia`, seção 4).
 
 ## Architecture & Components
 
@@ -48,6 +49,7 @@ Não aplicável — conteúdo estático.
 | FR-6 / AC-6 | Estrutura espelha `docs/guia-agentes-ia-app.md`: resumo curto, títulos orientados a objetivo, blocos copiáveis |
 | FR-7 / AC-7 | `npm run typecheck`/`build`; links cruzados entre as duas páginas e a partir de `docs/intro.mdx` |
 | FR-8 / AC-8 | Revisão de texto: nenhuma URL/nome de repositório de origem das skills |
+| FR-9 / AC-9 | Nova seção "5. Dicas para AGENTS.md/CLAUDE.md" — bloco de mapeamento de skills + bloco de rotina de saúde do repositório, mesmo padrão copiável do guia irmão |
 
 ## Constitution Compliance
 

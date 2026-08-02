@@ -3,7 +3,7 @@
 ## Current State
 
 **Last Updated:** 2026-08-02
-**Active Feature:** 001-tela-inicial (amendment) — revisão de tom em `framework-hibrido.html`
+**Active Feature:** 003-guia-repositorio-contexto — Guia — preparar e usar um repositório de contexto (seção 5 adicionada)
 **Active SDD Phase:** Verify (complete)
 **Pending Gate:** none — feature closed
 
@@ -52,6 +52,7 @@
 - [x] `/codefy` deliberadamente **não** incluída nesta feature (usuário não a listou), embora na prática prepare o terreno para o bootstrap do `/blueprintfy` — ver nota em "What's Next" sobre a descrição desatualizada de `/codefy` no guia de aplicação
 - [x] Links cruzados: `docs/guia-agentes-ia-app.md` ↔ `docs/guia-repositorio-contexto.md`, e `docs/intro.mdx` linkando para as duas
 - [x] `npm run typecheck` e `npm run build` verdes; verificação visual em claro e escuro (capturas `contexto-light.png`/`contexto-dark.png`)
+- [x] **Seção 5 adicionada** ("Dicas para AGENTS.md/CLAUDE.md", FR-9/AC-9): "Mapear as skills para o agente" (bloco copiável associando cada uma das 7 skills à situação/frase-gatilho que deve acioná-la) e "Manter o repositório saudável" (bloco copiável: rodar `/domain-reconcile` depois de deploy relevante num repo de aplicação, confirmar `CONTEXT-MAP.md` atualizado antes de novo PRD/ADR, nunca deixar divergência encontrada sem resposta) — mesmo padrão do guia irmão. `npm run typecheck`/`build` verdes; verificado em claro e escuro (`contexto2-light.png`/`contexto2-dark.png`)
 
 ### 004-intro-framework — concluída
 

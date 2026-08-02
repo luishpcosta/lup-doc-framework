@@ -28,6 +28,9 @@ A feature `002-guia-agentes-ia` cobriu como preparar e usar um **repositório de
 - FR-6: A página deve seguir o mesmo modelo de escrita do guia irmão (`002-guia-agentes-ia`): How-To Guide (Diátaxis) + minimalismo instrucional (Carroll) — orientação inicial curta, títulos de seção orientados a objetivo, todo exemplo em bloco de comando copiável, sem prosa longa desacompanhada de uma ação.
 - FR-7: A página deve ser única (uma só página), em português, visualmente consistente com o design system do projeto (`constitution.md`, princípio 5), e deve linkar bidirecionalmente com o guia irmão (`docs/guia-agentes-ia-app.md`) e ser referenciada a partir de `docs/intro.mdx`.
 - FR-8: A página não deve citar nominalmente nenhum repositório externo de onde as skills vêm — mesma regra do guia irmão (FR-8 de `002-guia-agentes-ia`).
+- FR-9: A página deve conter uma seção de dicas de adições ao `AGENTS.md`/`CLAUDE.md` do repositório de contexto, cobrindo, no mínimo:
+  - a) **Mapeamento de skills** — um bloco copiável que reforça para o agente qual skill usar em qual situação (sem depender do usuário citar o nome certo).
+  - b) **Rotina de saúde do repositório** — um bloco copiável com os gatilhos mínimos para manter o repositório atualizado (quando rodar `/domain-reconcile`, o que checar antes de abrir um novo PRD/ADR).
 
 ## Acceptance Criteria
 
@@ -39,6 +42,7 @@ A feature `002-guia-agentes-ia` cobriu como preparar e usar um **repositório de
 - **AC-6** — Given a página completa, when comparada ao guia irmão, then segue o mesmo padrão: resumo curto + lista de definição (não tabela longa), títulos de seção orientados a objetivo, e nenhuma seção com prosa explicativa sem ação/exemplo associado. _(satisfies FR-6)_
 - **AC-7** — Given o repositório após a implementação, when se roda `npm run typecheck` e `npm run build`, then ambos terminam sem erro; a página é navegável a partir da sidebar numa única rota; `docs/guia-agentes-ia-app.md` e `docs/guia-repositorio-contexto.md` linkam um para o outro; `docs/intro.mdx` referencia a nova página. _(satisfies FR-7)_
 - **AC-8** — Given o conteúdo publicado, when se busca por menções a repositórios externos de skills, then nenhuma URL/nome de organização/repositório de origem aparece no texto. _(satisfies FR-8)_
+- **AC-9** — Given a seção de dicas para `AGENTS.md`/`CLAUDE.md`, when o leitor busca os dois subtópicos, then encontra (a) um bloco copiável mapeando cada skill à situação em que deve ser usada e (b) um bloco copiável com a rotina mínima de saúde do repositório (gatilho de `/domain-reconcile`, checagem antes de novo PRD/ADR). _(satisfies FR-9)_
 
 ## Edge Cases
 

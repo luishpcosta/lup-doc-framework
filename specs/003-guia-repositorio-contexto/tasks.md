@@ -21,6 +21,8 @@
 | T-7 | Adicionar link cruzado em `docs/guia-agentes-ia-app.md` → nova página; adicionar link em `docs/intro.mdx`; rodar `npm run typecheck` + `npm run build` | AC-7 | done | `docs/guia-agentes-ia-app.md` linka para `./guia-repositorio-contexto.md` e vice-versa; `docs/intro.mdx` linka para as duas; `npm run typecheck`/`build` verdes |
 | T-8 | Revisar o texto final procurando por qualquer nome/URL de repositório de origem das skills | AC-8 | done | revisão manual: nenhuma URL/nome de repositório de origem presente (fonte `ai-lup-skills` usada só para leitura, não citada no texto) |
 | T-9 | Build + serve; captura de tela em modo claro e escuro para verificação visual manual | AC-7 | done | `npm run build` + `npm run serve --port 3005`; capturas via CDP `contexto-light.png`/`contexto-dark.png` — paleta/tipografia corretas, sidebar mostra as duas páginas irmãs |
+| T-10 | Escrever seção "5. Dicas para AGENTS.md/CLAUDE.md": bloco de mapeamento de skills + bloco de rotina de saúde do repositório | AC-9 | done | seção "5. Dicas para AGENTS.md/CLAUDE.md" com subtópicos "Mapear as skills para o agente" e "Manter o repositório saudável", ambos em bloco markdown copiável |
+| T-11 | Build + serve; nova captura de tela em claro e escuro confirmando a seção 5 | AC-9 | done | `npm run build` + `npm run serve --port 3006`; capturas `contexto2-light.png`/`contexto2-dark.png` — seção 5 renderiza corretamente em ambos os modos |
 
 Status values: `todo` → `doing` → `done` → `superseded`.
 
@@ -28,5 +30,5 @@ Status values: `todo` → `doing` → `done` → `superseded`.
 
 Confirm manually before implementing:
 
-- Every AC referenced by at least one task? yes — AC-1: T-1, AC-2: T-2, AC-3: T-3, AC-4: T-4, AC-5: T-5, AC-6: T-6, AC-7: T-7/T-9, AC-8: T-8
+- Every AC referenced by at least one task? yes — AC-1: T-1, AC-2: T-2, AC-3: T-3, AC-4: T-4, AC-5: T-5, AC-6: T-6, AC-7: T-7/T-9, AC-8: T-8, AC-9: T-10/T-11
 - Every task linked to an AC? yes
