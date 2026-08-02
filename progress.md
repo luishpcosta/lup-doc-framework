@@ -3,7 +3,7 @@
 ## Current State
 
 **Last Updated:** 2026-08-02
-**Active Feature:** 004-intro-framework — Introdução — o que é o framework híbrido
+**Active Feature:** 001-tela-inicial (amendment) — revisão de tom em `framework-hibrido.html`
 **Active SDD Phase:** Verify (complete)
 **Pending Gate:** none — feature closed
 
@@ -61,6 +61,15 @@
 - [x] **Revalidação de tom (2026-08-02): usuário pediu para garantir que nada na página "desabonasse" o projeto**, esclarecendo que a intenção é uma visão de produto/pitch de solução personalizada por squad, não um documento interno de problemas/governança. Duas seções reescritas: "Por que o framework existe" (situação/complicação com linguagem de crítica implícita — "cada time usa IA à sua maneira", "IA sem contexto erra mais" — virou proposta de valor com 3 benefícios, sem citar disfunção); "O que falta decidir" (soava como o framework estar incompleto) virou "Como cada squad personaliza o framework" (mesmas 4 dimensões, reenquadradas como customização, não lacuna). Frase "Sem essa cadeia não dá para provar..." trocada por afirmação positiva. `spec.md`/`plan.md`/`tasks.md` atualizados (FR-2/FR-6 reescritos, AC-2/AC-6 reescritos, T-2/T-7 marcadas `superseded`, T-11/T-12 novas)
 - [x] `npm run typecheck` e `npm run build` verdes (rodado 3x: implementação inicial, remoção da seção as-is, revalidação de tom); `grep` confirma que o texto de placeholder original não existe mais
 - [x] Verificação visual em modo claro e escuro, 3 rodadas: sem `chrome-remote-interface`/CDP disponível desta vez, alternativa via flag `--blink-settings=preferredColorScheme=0|1` do Chrome headless (0=dark, 1=light — testado e confirmado via `matchMedia` antes de usar) + `--user-data-dir` isolado por captura (evita tema salvo de uma run vazar para a próxima); capturas finais `intro-tone-light.png`/`intro-tone-dark.png` — paleta/tipografia corretas, sem footer, TOC/sidebar corretos (seção renomeada aparece corretamente na TOC), pagination "Próxima" funcionando
+
+### 001-tela-inicial — revisão de tom em `framework-hibrido.html` (amendment, 2026-08-02)
+
+- [x] **Depois de validar o tom de `docs/intro.mdx`, usuário pediu para avaliar se a landing page (mesmo arquivo, embutido via iframe na home) também tinha tom que pudesse "prejudicar a imagem do framework".** `FR-12`/`AC-12` adicionados a `specs/001-tela-inicial/spec.md` (feature que é dona de `static/framework-hibrido.html`); `T-17`/`T-18` adicionadas a `tasks.md`
+- [x] 4 pontos corrigidos em `static/framework-hibrido.html`: slide 3 título ("Quando não estruturamos o uso de IA, a operação perde o controle" → "Sem uma estrutura comum, o potencial da IA fica limitado") e card 3 ("IA sem contexto erra mais... tomam atalhos que parecem certos e não são" → "IA sem contexto perde precisão... precisam de mais retrabalho" — a frase original solapava a confiança na própria IA, tecnologia central do pitch); slide 7 legenda da cadeia de IDs (frase negativa condicional → afirmação positiva, mesmo padrão de `004`); slide 10 título ("O que precisa ser decidido" → "Como cada squad personaliza o framework") e os 4 cards reenquadrados como customização por squad em vez de pendência de gestão
+- [x] Slides 2, 5, 6, 8, 9 avaliados e mantidos sem alteração — tom já neutro/factual ou positivo, sem risco identificado
+- [x] `npm run typecheck`/`build` verdes; verificação visual dos 3 slides alterados via cópias temporárias com `goTo(N)` forçado (arquivo é standalone, sem parâmetro de URL para escolher slide) + Chrome headless — layout intacto, cards não estouram com o texto novo, capturas `fh-s3.png`/`fh-s7.png`/`fh-s10.png` descartadas após conferência (não fazem parte do repositório)
+- [x] **Durante a sessão, `as_is_metarepo_sdd_harness.svg` foi encontrado deletado do disco sem nenhum comando de exclusão identificável nas próprias ações.** Investigado (não achada causa nas ações realizadas) e restaurado via `git restore` antes de prosseguir — vale o usuário conferir a integridade do arquivo na cópia local
+- [x] Commit deste amendment inclui, inevitavelmente, uma mudança pré-existente e não relacionada no mesmo arquivo (linha "Link de board": "Jira, Linear ou equivalente" → "board de gestão ágil", já modificada antes desta sessão começar) — não é possível separar por linha dentro do mesmo `git add`; mudança é de baixo risco (mesma categoria: generalização de nomenclatura)
 
 ## Open Clarifications
 

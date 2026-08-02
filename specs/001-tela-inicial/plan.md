@@ -45,6 +45,7 @@ Não aplicável — conteúdo estático, sem entidades de dados.
 | FR-5 / AC-5 | Navegação nativa do arquivo embutido (setas/dots "01/11") + navbar do Docusaurus (`Documentação` → `/docs/intro`) |
 | FR-8 / AC-8 | Remoção de `blog/`, `docs/tutorial-basics/`, `docs/tutorial-extras/`, `src/pages/markdown-page.mdx`, imagens padrão; `blog: false` em `docusaurus.config.ts`; `static/img/logo.svg`/`favicon.svg` substituídos |
 | FR-9 / AC-9 | Bloco `footer` removido de `themeConfig` em `docusaurus.config.ts` |
+| FR-12 / AC-12 | Texto de 4 elementos em `static/framework-hibrido.html` (título+card do slide 3, legenda do slide 7, título+cards do slide 10) reescrito em tom de proposta de valor/customização — mesmo tratamento aplicado em `004-intro-framework` |
 
 ## Constitution Compliance
 
