@@ -3,7 +3,7 @@
 **Feature ID:** 001-tela-inicial
 **Phase:** done
 **Plan:** ./plan.md
-**Last updated:** 2026-08-01
+**Last updated:** 2026-08-02
 
 > Small, ordered, independently verifiable tasks derived from `plan.md`.
 > **Gate:** every acceptance criterion has ≥1 task, and every task references an AC.
@@ -38,6 +38,7 @@ Superseded por T-10 a T-13 abaixo. Mantidas para histórico/auditoria — não r
 | T-17 | Revisar o texto dos 10 slides de `framework-hibrido.html` procurando tom que pudesse prejudicar a imagem do framework; reescrever slide 3 (título + card 3), legenda da cadeia de IDs no slide 7, e título/cards do slide 10 | AC-12 | done | diff de `static/framework-hibrido.html` mostra só as 4 mudanças textuais identificadas (slides 3, 7, 10); slides 2/5/6/8/9 avaliados e mantidos |
 | T-18 | Rodar `npm run typecheck` + `npm run build`; verificação visual dos slides 3, 7 e 10 forçando cada um ativo (`goTo(N)`) via Chrome headless | AC-12 | done | `npm run typecheck`/`build` verdes; capturas `fh-s3.png`/`fh-s7.png`/`fh-s10.png` — layout intacto (cards não estouram), texto novo renderizado corretamente em ambos os registros (papel/blueprint) |
 | T-19 | Reescrever card 1 do slide 2 ("IA entra em cada etapa" → "IA usada para performance pessoal"), a pedido explícito do usuário, para remeter ao uso individual/não estruturado de IA hoje; rodar `npm run typecheck` + `npm run build`; verificação visual do slide 2 forçando `goTo(1)` | AC-12 | done | `npm run typecheck`/`build` verdes; captura `fh-s2.png` — layout do card intacto, texto novo renderizado corretamente |
+| T-20 | Corrigir `.dot.active` na capa: usava `background:var(--navy)`, a mesma cor do fundo de `#s1` — o dot do slide ativo desaparecia contra o próprio fundo. Adicionada regra `body.cover .dot.active{ background:#fff; }`, mesma técnica já usada pelo `.nav-btn` (T-16) | AC-13 | done | captura `home-dot-fix.png` mostra o primeiro dot em branco, com contraste claro contra o fundo navy da capa; `npm run typecheck`/`build` verdes |
 
 Status values: `todo` → `doing` → `done` → `superseded`.
 
@@ -45,5 +46,5 @@ Status values: `todo` → `doing` → `done` → `superseded`.
 
 Confirm manually before implementing:
 
-- Every AC referenced by at least one task? yes — AC-1: T-10, AC-3: T-13, AC-5: T-10 (navegação nativa do arquivo) + navbar existente, AC-8: T-11, AC-9: T-12, AC-10: T-15 (T-14 mantida como diagnóstico incorreto, não satisfaz AC-10), AC-11: T-16, AC-12: T-17/T-18/T-19
+- Every AC referenced by at least one task? yes — AC-1: T-10, AC-3: T-13, AC-5: T-10 (navegação nativa do arquivo) + navbar existente, AC-8: T-11, AC-9: T-12, AC-10: T-15 (T-14 mantida como diagnóstico incorreto, não satisfaz AC-10), AC-11: T-16, AC-12: T-17/T-18/T-19, AC-13: T-20
 - Every task linked to an AC? yes (tasks históricas T-1–T-9 marcadas `superseded` e ligadas aos ACs que tinham antes de serem retirados da spec)

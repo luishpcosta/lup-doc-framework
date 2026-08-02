@@ -262,6 +262,9 @@ body.blueprint .nav-btn:focus-visible{ outline-color:#fff; }
 /* #s1 (a capa) tem fundo --navy fora do toggle claro/escuro normal; sem
    isto o botão herda a cor escura do body e fica quase invisível ali */
 body.cover .nav-btn{ color:#fff; }
+/* mesmo problema do .nav-btn acima: .dot.active usa --navy de fundo, que
+   é exatamente a cor do fundo de #s1 — o dot ativo some na capa */
+body.cover .dot.active{ background:#fff; }
 .nav-right{ display:flex; gap:10px; }
 
 @media(max-width:600px){
