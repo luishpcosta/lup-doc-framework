@@ -44,7 +44,7 @@ Não aplicável — conteúdo estático.
 | FR-1 / AC-1 | Seção "1. Resumo" — lista de definição das 7 skills |
 | FR-2 / AC-2 | Seção "2. Como preparar o repositório de contexto" — 2 cenários + 2 exemplos de `/blueprintfy` |
 | FR-3 / AC-3 | Seção "3. Como manter o repositório de contexto atualizado" — 1 exemplo cada de `/blueprintfy`, `/prd-to-adr`, `/issue-to-adr`, `/make-diagram` |
-| FR-4 / AC-4 | Subseção "Análise de negócio com o time de produto (opcional)" — 1 exemplo de `/pm-create-pb` + 1 de `/pm-create-prd` |
+| FR-4 / AC-4 | Subseção "Análise de negócio com o time de produto (opcional)" — 1 exemplo de `/pm-create-pb` + 1 de `/pm-create-prd`, + nota sobre demandas puramente técnicas pulando a etapa |
 | FR-5 / AC-5 | Seção "4. Como reconciliar com os repositórios de aplicação" — explicação do gap + exemplo de `/domain-reconcile` |
 | FR-6 / AC-6 | Estrutura espelha `docs/guia-agentes-ia-app.md`: resumo curto, títulos orientados a objetivo, blocos copiáveis |
 | FR-7 / AC-7 | `npm run typecheck`/`build`; links cruzados entre as duas páginas e a partir de `docs/intro.mdx` |

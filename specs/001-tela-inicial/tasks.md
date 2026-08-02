@@ -39,6 +39,8 @@ Superseded por T-10 a T-13 abaixo. Mantidas para histórico/auditoria — não r
 | T-18 | Rodar `npm run typecheck` + `npm run build`; verificação visual dos slides 3, 7 e 10 forçando cada um ativo (`goTo(N)`) via Chrome headless | AC-12 | done | `npm run typecheck`/`build` verdes; capturas `fh-s3.png`/`fh-s7.png`/`fh-s10.png` — layout intacto (cards não estouram), texto novo renderizado corretamente em ambos os registros (papel/blueprint) |
 | T-19 | Reescrever card 1 do slide 2 ("IA entra em cada etapa" → "IA usada para performance pessoal"), a pedido explícito do usuário, para remeter ao uso individual/não estruturado de IA hoje; rodar `npm run typecheck` + `npm run build`; verificação visual do slide 2 forçando `goTo(1)` | AC-12 | done | `npm run typecheck`/`build` verdes; captura `fh-s2.png` — layout do card intacto, texto novo renderizado corretamente |
 | T-20 | Corrigir `.dot.active` na capa: usava `background:var(--navy)`, a mesma cor do fundo de `#s1` — o dot do slide ativo desaparecia contra o próprio fundo. Adicionada regra `body.cover .dot.active{ background:#fff; }`, mesma técnica já usada pelo `.nav-btn` (T-16) | AC-13 | done | captura `home-dot-fix.png` mostra o primeiro dot em branco, com contraste claro contra o fundo navy da capa; `npm run typecheck`/`build` verdes |
+| T-21 | Reescrever slide 6 (subtítulo + `rule-note`) para citar os 3 modos de execução das duas análises (paralelo/sequencial/técnico-first), a pedido do usuário — Opção A (só texto, sem novo elemento visual, slide 5/diagrama `⇄` não alterado) | AC-14 | done | `static/framework-hibrido.html` slide 6: `p.slide-sub` e `p.rule-note` reescritos |
+| T-22 | Rodar `npm run typecheck` + `npm run build` após T-21 | AC-14 | done | `npm run typecheck`/`build` verdes |
 
 Status values: `todo` → `doing` → `done` → `superseded`.
 
@@ -46,5 +48,5 @@ Status values: `todo` → `doing` → `done` → `superseded`.
 
 Confirm manually before implementing:
 
-- Every AC referenced by at least one task? yes — AC-1: T-10, AC-3: T-13, AC-5: T-10 (navegação nativa do arquivo) + navbar existente, AC-8: T-11, AC-9: T-12, AC-10: T-15 (T-14 mantida como diagnóstico incorreto, não satisfaz AC-10), AC-11: T-16, AC-12: T-17/T-18/T-19, AC-13: T-20
+- Every AC referenced by at least one task? yes — AC-1: T-10, AC-3: T-13, AC-5: T-10 (navegação nativa do arquivo) + navbar existente, AC-8: T-11, AC-9: T-12, AC-10: T-15 (T-14 mantida como diagnóstico incorreto, não satisfaz AC-10), AC-11: T-16, AC-12: T-17/T-18/T-19, AC-13: T-20, AC-14: T-21/T-22
 - Every task linked to an AC? yes (tasks históricas T-1–T-9 marcadas `superseded` e ligadas aos ACs que tinham antes de serem retirados da spec)

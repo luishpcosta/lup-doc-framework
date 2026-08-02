@@ -24,6 +24,8 @@
 | T-10 | Build + serve; captura de tela em modo claro e escuro para verificação visual manual (repetida após a remoção de T-6) | AC-1..AC-8 | done | 1ª rodada: `intro-light.png`/`intro-dark.png`/`intro-light-bottom.png` (com a seção ainda presente); 2ª rodada pós-remoção: `intro-final-light.png`/`intro-final-dark.png` — paleta/tipografia corretas em ambos os modos, sem footer, TOC e sidebar corretos, pagination "Próxima" funcionando |
 | T-11 | Revalidar o tom da página como pitch de produto por squad: reescrever "Por que o framework existe" (situação/complicação → proposta de valor, 3 benefícios) e renomear "O que falta decidir" → "Como cada squad personaliza o framework" (pendência → customização); trocar frase negativa da cadeia de IDs por afirmação positiva | AC-2, AC-6 | done | `docs/intro.mdx`: seção "Por que o framework existe" reescrita com 3 bullets de benefício, sem menção a "cada time à sua maneira"/"erra mais"; seção renomeada "Como cada squad personaliza o framework" com as mesmas 4 dimensões, enquadradas como definição do squad; frase da cadeia de IDs trocada para "Essa cadeia garante cobertura auditável e detecção de desvio em qualquer etapa" |
 | T-12 | Rodar `npm run typecheck` + `npm run build`; nova captura de tela em claro e escuro pós-revalidação de tom | AC-1..AC-8 | done | `npm run typecheck`/`build` verdes; capturas `intro-tone-light.png`/`intro-tone-dark.png` |
+| T-13 | Corrigir a seção "Duas análises, uma história": usuário apontou que "rodam em paralelo" descrevia só um dos modos possíveis — reescrita para cobrir paralelo, sequencial, e início direto pela técnica (demandas puramente técnicas, com ou sem impacto em funcionalidade de produto) | AC-3 | done | `docs/intro.mdx`: frase de abertura da seção reescrita + novo parágrafo listando os 3 modos, antes do parágrafo sobre a "história" |
+| T-14 | Rodar `npm run typecheck` + `npm run build` após T-13 | AC-3 | done | `npm run typecheck`/`build` verdes |
 
 Status values: `todo` → `doing` → `done` → `superseded`.
 
@@ -31,5 +33,5 @@ Status values: `todo` → `doing` → `done` → `superseded`.
 
 Confirm manually before implementing:
 
-- Every AC referenced by at least one task? yes — AC-1: T-1, AC-2: T-11, AC-3: T-3, AC-4: T-4, AC-5: T-5, AC-6: T-11, AC-7: T-8, AC-8: T-9
+- Every AC referenced by at least one task? yes — AC-1: T-1, AC-2: T-11, AC-3: T-3/T-13, AC-4: T-4, AC-5: T-5, AC-6: T-11, AC-7: T-8, AC-8: T-9
 - Every task linked to an AC? yes (T-2, T-6, T-7 are `superseded`, kept for history — their original content was rewritten/removed by later tasks)

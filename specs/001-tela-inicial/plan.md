@@ -46,6 +46,7 @@ Não aplicável — conteúdo estático, sem entidades de dados.
 | FR-8 / AC-8 | Remoção de `blog/`, `docs/tutorial-basics/`, `docs/tutorial-extras/`, `src/pages/markdown-page.mdx`, imagens padrão; `blog: false` em `docusaurus.config.ts`; `static/img/logo.svg`/`favicon.svg` substituídos |
 | FR-9 / AC-9 | Bloco `footer` removido de `themeConfig` em `docusaurus.config.ts` |
 | FR-12 / AC-12 | Texto de 4 elementos em `static/framework-hibrido.html` (título+card do slide 3, legenda do slide 7, título+cards do slide 10) reescrito em tom de proposta de valor/customização — mesmo tratamento aplicado em `004-intro-framework` |
+| FR-14 / AC-14 | Subtítulo e `rule-note` do slide 6 em `static/framework-hibrido.html` reescritos para citar os 3 modos de execução (paralelo/sequencial/técnico-first) — Opção A (só texto), mesmo tratamento aplicado em `docs/intro.mdx` (`004-intro-framework`) e `docs/guia-repositorio-contexto.md` (`003`) |
 
 ## Constitution Compliance
 

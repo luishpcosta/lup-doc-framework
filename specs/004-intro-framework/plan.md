@@ -15,6 +15,8 @@ Nota pós-implementação (1): a seção "O problema que ainda não resolvemos" 
 
 Nota pós-implementação (2): usuário pediu validação de tom — a página deve ler como pitch de produto/solução personalizada por squad, não como documento interno de problemas/governança. Duas seções reescritas: "Por que o framework existe" (situação/complicação → proposta de valor) e "O que falta decidir" → renomeada "Como cada squad personaliza o framework" (pendência de gestão → dimensão de customização). Ver Clarifications Log em `spec.md`.
 
+Nota pós-implementação (3): usuário apontou que a seção "Duas análises, uma história" descrevia "paralelo" como único modo de execução do Pilar 1. Reescrita para cobrir os 3 modos (paralelo, sequencial, início direto pela técnica em demandas puramente técnicas) — mudança de escopo "só texto" (Opção A, entre 3 opções apresentadas), replicada também em `framework-hibrido.html` (slides 5/6) e `docs/guia-repositorio-contexto.md`, fora do escopo desta feature mas parte do mesmo pedido. Ver Clarifications Log em `spec.md`.
+
 Título do H1 mantido como "Introdução" (não muda a rota `/docs/intro`, nem o nome do link no navbar/sidebar).
 
 ## Architecture & Components
@@ -38,7 +40,7 @@ Não aplicável — conteúdo estático.
 |---|---|
 | FR-1 / AC-1 | Parágrafo de abertura (substitui o parágrafo placeholder atual) |
 | FR-2 / AC-2 | Seção "Por que o framework existe" — proposta de valor (3 benefícios) |
-| FR-3 / AC-3 | Seção "Duas análises, uma história" — PB→PRD, ADR→ACs, cadeia de IDs |
+| FR-3 / AC-3 | Seção "Duas análises, uma história" — PB→PRD, ADR→ACs, os 3 modos de execução (paralelo/sequencial/técnico-first), cadeia de IDs |
 | FR-4 / AC-4 | Seção "Onde o contexto vive" — contenção de domínio, `CONTEXT-MAP.md` |
 | FR-5 / AC-5 | Seção "Como o código é gerado" — harness Speckit SDD no repo de serviço |
 | FR-6 / AC-6 | Seção "Como cada squad personaliza o framework" — 4 dimensões de customização |

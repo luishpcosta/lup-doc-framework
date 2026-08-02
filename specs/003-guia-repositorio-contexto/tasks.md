@@ -23,6 +23,8 @@
 | T-9 | Build + serve; captura de tela em modo claro e escuro para verificação visual manual | AC-7 | done | `npm run build` + `npm run serve --port 3005`; capturas via CDP `contexto-light.png`/`contexto-dark.png` — paleta/tipografia corretas, sidebar mostra as duas páginas irmãs |
 | T-10 | Escrever seção "5. Dicas para AGENTS.md/CLAUDE.md": bloco de mapeamento de skills + bloco de rotina de saúde do repositório | AC-9 | done | seção "5. Dicas para AGENTS.md/CLAUDE.md" com subtópicos "Mapear as skills para o agente" e "Manter o repositório saudável", ambos em bloco markdown copiável |
 | T-11 | Build + serve; nova captura de tela em claro e escuro confirmando a seção 5 | AC-9 | done | `npm run build` + `npm run serve --port 3006`; capturas `contexto2-light.png`/`contexto2-dark.png` — seção 5 renderiza corretamente em ambos os modos |
+| T-12 | Ampliar a subseção "Análise de negócio com o time de produto (opcional)": explicitar que demandas puramente técnicas pulam a etapa e começam direto em `/prd-to-adr`/`/issue-to-adr` (parte do mesmo pedido do usuário em `004-intro-framework`, Opção A — só texto) | AC-4 | done | `docs/guia-repositorio-contexto.md`: frase de abertura da subseção reescrita |
+| T-13 | Rodar `npm run typecheck` + `npm run build` após T-12 | AC-4 | done | `npm run typecheck`/`build` verdes |
 
 Status values: `todo` → `doing` → `done` → `superseded`.
 
@@ -30,5 +32,5 @@ Status values: `todo` → `doing` → `done` → `superseded`.
 
 Confirm manually before implementing:
 
-- Every AC referenced by at least one task? yes — AC-1: T-1, AC-2: T-2, AC-3: T-3, AC-4: T-4, AC-5: T-5, AC-6: T-6, AC-7: T-7/T-9, AC-8: T-8, AC-9: T-10/T-11
+- Every AC referenced by at least one task? yes — AC-1: T-1, AC-2: T-2, AC-3: T-3, AC-4: T-4/T-12, AC-5: T-5, AC-6: T-6, AC-7: T-7/T-9, AC-8: T-8, AC-9: T-10/T-11
 - Every task linked to an AC? yes

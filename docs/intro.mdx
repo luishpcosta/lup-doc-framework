@@ -18,10 +18,12 @@ O framework estrutura negócio, técnica e execução de IA num fluxo só, com r
 
 ## Duas análises, uma história
 
-Negócio e técnica rodam em paralelo, e as duas alimentam a mesma unidade de trabalho:
+Negócio e técnica alimentam a mesma unidade de trabalho, mas a ordem entre elas varia com a demanda:
 
 - **Análise de negócio** produz o **PB** (Product Brief — por que isso importa agora) e o **PRD** (Product Requirements Document — o que precisa existir).
 - **Análise técnica** produz o **ADR** (Architecture Decision Record — como decidimos resolver, e por quê) e os **ACs** (Acceptance Criteria — o que prova que está pronto).
+
+As duas podem rodar em paralelo, em sequência (uma reforçando uma decisão já tomada na outra), ou — em demandas puramente técnicas, como refatoração ou infraestrutura — a análise técnica pode iniciar o fluxo sozinha, impactando ou não uma funcionalidade de produto.
 
 Agentes e skills conduzem a entrevista em cada análise; o time valida e decide. As duas análises se encontram numa **história** única, rastreável e registrada no board do time — o que o harness de implementação vai executar. Ela herda o contexto de negócio (PB/PRD), a decisão técnica (ADR) e o critério de aceite (ACs), e carrega um link de volta para o board.
 

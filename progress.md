@@ -3,7 +3,7 @@
 ## Current State
 
 **Last Updated:** 2026-08-02
-**Active Feature:** 003-guia-repositorio-contexto — Guia — preparar e usar um repositório de contexto (seção 5 adicionada)
+**Active Feature:** multi-feature amendment — modos de execução do Pilar 1 (001, 003, 004)
 **Active SDD Phase:** Verify (complete)
 **Pending Gate:** none — feature closed
 
@@ -74,6 +74,16 @@
 - [x] Commit deste amendment inclui, inevitavelmente, uma mudança pré-existente e não relacionada no mesmo arquivo (linha "Link de board": "Jira, Linear ou equivalente" → "board de gestão ágil", já modificada antes desta sessão começar) — não é possível separar por linha dentro do mesmo `git add`; mudança é de baixo risco (mesma categoria: generalização de nomenclatura)
 - [x] **Pedido de acompanhamento: usuário reportou que o dot ativo (`<button class="dot active" aria-label="Ir para slide 1">`) deveria ser branco no primeiro slide.** Mesma classe de bug já corrigida em `.nav-btn` (ver acima): `.dot.active` usa `background:var(--navy)`, e `#s1` também tem `background:var(--navy)` — o dot ativo desaparecia contra o próprio fundo na capa. Corrigido com `body.cover .dot.active{ background:#fff; }`, reaproveitando a classe `body.cover` já existente. FR-13/AC-13/T-20 adicionados a `specs/001-tela-inicial`. `npm run typecheck`/`build` verdes; captura `home-dot-fix.png` confirma o dot em branco contra o fundo navy
 - [x] **`as_is_metarepo_sdd_harness.svg` removido do repositório (2026-08-02), a pedido explícito do usuário.** O arquivo já tinha sido encontrado deletado sem explicação uma vez nesta sessão (nota acima) e restaurado por precaução; desta vez a remoção foi um pedido direto, então foi feita via `git rm` (não `rm` solto) para ficar rastreável no histórico. Seguro remover: o conteúdo que ele informou já está incorporado em prosa em `docs/guia-repositorio-contexto.md` (seção 4) e `docs/intro.mdx`; o SVG em si nunca foi embutido como imagem em nenhuma página do site — era só fonte de leitura, não um asset publicado. Referências residuais em `specs/003-guia-repositorio-contexto/plan.md` e `specs/004-intro-framework/plan.md` anotadas indicando a remoção, não apagadas (mantêm o histórico de por que o conteúdo daquelas seções existe).
+
+### Amendment cruzado — modos de execução do Pilar 1 (001, 003, 004) — 2026-08-02
+
+- [x] **Usuário apontou que o Pilar 1 ("Duas análises, uma história"/"Duas análises, quatro artefatos") descrevia "rodam em paralelo" como único modo de execução**, quando na prática pode ser paralelo, sequencial, ou — em demandas puramente técnicas — a análise técnica pode iniciar o fluxo sozinha, impactando ou não uma funcionalidade de produto. Pediu opções e um mapa de onde alterar na documentação como um todo.
+- [x] Apresentado mapa com todos os 5 locais que faziam essa afirmação (`framework-hibrido.html` slides 5/6, `docs/intro.mdx`, `docs/guia-repositorio-contexto.md`, `specs/004-intro-framework/{spec,tasks}.md`) e 3 opções de escopo (A: só texto; B: texto + ajuste visual no slide 5; C: novo slide/seção dedicada). **Usuário escolheu Opção A.**
+- [x] `static/framework-hibrido.html` slide 6: `p.slide-sub` reescrito para citar os 3 modos; `p.rule-note` ganhou uma segunda frase sobre demandas puramente técnicas. Slide 5 (diagrama `⇄`) **não alterado** — Opção A não inclui mudança de diagrama
+- [x] `docs/intro.mdx` seção "Duas análises, uma história": frase de abertura reescrita + novo parágrafo explicando os 3 modos, antes do parágrafo sobre a "história"
+- [x] `docs/guia-repositorio-contexto.md` subseção "Análise de negócio com o time de produto (opcional)": frase de abertura reescrita para explicitar que demandas puramente técnicas pulam essa etapa e começam direto em `/prd-to-adr`/`/issue-to-adr`
+- [x] Specs sincronizadas nas 3 features donas dos arquivos tocados: `specs/001-tela-inicial` (FR-14/AC-14/T-21/T-22), `specs/003-guia-repositorio-contexto` (FR-4/AC-4 ampliados, T-12/T-13), `specs/004-intro-framework` (FR-3/AC-3 reescritos, T-13/T-14) — Clarifications Log de cada uma documenta o pedido e a Opção A escolhida
+- [x] `npm run typecheck`/`build` verdes; verificação visual: `docs/intro.mdx` em claro e escuro (`intro-parallel-light.png`/`intro-parallel-dark.png`), `docs/guia-repositorio-contexto.md` em claro (`guia-parallel-light.png`), e slide 6 de `framework-hibrido.html` forçado ativo via `goTo(5)` (`fh-s6-final.png`) — todas as 3 superfícies renderizam o texto novo sem quebrar layout
 
 ## Open Clarifications
 

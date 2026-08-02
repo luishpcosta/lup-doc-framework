@@ -65,7 +65,7 @@ não tem PRD, só esse ticket.
 
 ### Análise de negócio com o time de produto (opcional)
 
-Quando o time técnico precisa conduzir a análise de negócio junto com um PM ou área correlata, antes mesmo de chegar a um ADR:
+Quando a demanda exige análise de negócio, o time técnico pode conduzi-la junto com um PM ou área correlata antes de chegar a um ADR. Para demandas puramente técnicas (refatoração, infraestrutura, dívida técnica), essa etapa não é necessária — o fluxo começa direto em `/prd-to-adr` ou `/issue-to-adr`, impactando ou não uma funcionalidade de produto:
 
 ```
 /pm-create-pb chegou essa demanda do cliente — formaliza um Product Brief.
