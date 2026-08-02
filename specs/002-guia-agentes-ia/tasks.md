@@ -12,7 +12,7 @@
 
 | ID | Task | Satisfies | Status | Evidence |
 |---|---|---|---|---|
-| T-1 | Criar `docs/guia-agentes-ia.md` com front matter (`sidebar_position: 2`, `title`) e a seção "Resumo executivo" (o que o guia cobre + tabela com as 3 skills e seu papel) | AC-1 | done | `docs/guia-agentes-ia.md` seção "1. Resumo executivo" com tabela `/sdd-harness-creator` / `/codefy` / `/blueprintfy`; confirmado em `guia-full-light.png`/`guia-full-dark.png` |
+| T-1 | Criar `docs/guia-agentes-ia.md` com front matter (`sidebar_position: 2`, `title`) e a seção "Resumo executivo" (o que o guia cobre + tabela com as skills de preparação e seu papel) | AC-1 | done | `docs/guia-agentes-ia.md` seção "1. Resumo executivo" com tabela `/sdd-harness-creator` / `/codefy`; confirmado em `guia-full-light.png`/`guia-full-dark.png` |
 | T-2 | Escrever subseção "Preparação do repositório": brownfield vs. greenfield via `/sdd-harness-creator`, com a recomendação de modelo forte (Opus) associada ao caminho brownfield | AC-2 | done | subseção "Brownfield vs. greenfield" — recomendação de Opus explícita no parágrafo brownfield |
 | T-3 | Adicionar 2 blocos de exemplo de invocação de `/sdd-harness-creator` para setup de projeto (brownfield) | AC-3 | done | 3 blocos de exemplo ("Exemplo 1"–"Exemplo 3", 2 brownfield + 1 greenfield) |
 | T-4 | Escrever subseção "Encadeando specs com `/codefy`" (uso contínuo em brownfield: cadeia entre documentos de spec + regras em `AGENTS.md`/`CLAUDE.md`) com 2 blocos de exemplo de invocação | AC-4 | done | subseção com 2 blocos de exemplo ("Exemplo 1"/"Exemplo 2") |

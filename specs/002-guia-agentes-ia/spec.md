@@ -20,7 +20,7 @@ Times que adotam ferramentas de IA para assistência/automação de programaçã
 
 ## Functional Requirements
 
-- FR-1: A página deve conter um resumo executivo que explique o propósito do guia e liste as skills de IA envolvidas (`/codefy`, `/blueprintfy`, `/sdd-harness-creator`), cada uma com uma descrição de uma linha do seu papel no fluxo.
+- FR-1: A página deve conter um resumo executivo que explique o propósito do guia e liste, em tabela, as skills de preparação/manutenção do repositório (`/sdd-harness-creator`, `/codefy`), cada uma com uma descrição de uma linha do seu papel no fluxo. `/blueprintfy` é apresentada separadamente, no seu próprio exemplo de uso (ver FR-5).
 - FR-2: A página deve documentar o processo de preparação do repositório via `/sdd-harness-creator`, distinguindo o caminho **brownfield** (repositório já existente, com código/histórico) do caminho **greenfield** (repositório novo), e recomendando o uso de um modelo de IA de raciocínio forte (ex.: Opus) no caminho brownfield para a etapa de recuperação de informação e montagem inicial do harness.
 - FR-3: A página deve incluir pelo menos 2 exemplos de invocação de `/sdd-harness-creator` para setup de projeto (cobrindo o cenário brownfield).
 - FR-4: A página deve documentar o uso contínuo de `/codefy`, ainda em contexto brownfield, para criar uma cadeia de rastreabilidade entre os documentos de especificação existentes e para propor/adicionar regras em `AGENTS.md`/`CLAUDE.md`, com pelo menos 2 exemplos de invocação.
@@ -33,7 +33,7 @@ Times que adotam ferramentas de IA para assistência/automação de programaçã
 
 ## Acceptance Criteria
 
-- **AC-1** — Given a página publicada, when um leitor lê a primeira seção, then encontra um resumo executivo e uma lista das três skills (`/codefy`, `/blueprintfy`, `/sdd-harness-creator`) cada uma com seu papel descrito em uma linha. _(satisfies FR-1)_
+- **AC-1** — Given a página publicada, when um leitor lê a primeira seção, then encontra um resumo executivo e uma tabela com `/sdd-harness-creator` e `/codefy`, cada uma com seu papel descrito em uma linha. _(satisfies FR-1)_
 - **AC-2** — Given a seção de preparação do repositório, when o leitor busca orientação sobre repositório existente vs. novo, then encontra os dois caminhos (brownfield/greenfield) claramente diferenciados, com a recomendação de modelo forte (ex. Opus) associada explicitamente ao caminho brownfield. _(satisfies FR-2)_
 - **AC-3** — Given a seção de preparação, when o leitor procura por exemplos de comando, then encontra ao menos 2 blocos de exemplo chamando `/sdd-harness-creator` para setup de projeto. _(satisfies FR-3)_
 - **AC-4** — Given a seção de preparação, when o leitor chega à parte sobre encadear specs e atualizar `AGENTS.md`/`CLAUDE.md`, then encontra a explicação do processo com `/codefy` e ao menos 2 exemplos de invocação. _(satisfies FR-4)_

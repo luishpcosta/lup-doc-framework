@@ -15,7 +15,6 @@ O fluxo tem três momentos: **preparar** o repositório para que um agente consi
 |---|---|
 | `/sdd-harness-creator` | Monta o harness de desenvolvimento orientado a especificação (SDD): `constitution.md`, `spec.md`/`plan.md`/`tasks.md` por feature, gates de fase e rastreabilidade de critérios de aceite. É o ponto de partida — sem harness, não há onde registrar o resto. |
 | `/codefy` | Mapeia o contexto do repositório (código + documentação já existente), encadeia esse contexto em specs e propõe regras operacionais para `AGENTS.md`/`CLAUDE.md`. É o trabalho contínuo de manter a documentação viva depois que o harness já existe. |
-| `/blueprintfy` | Traduz um brief de negócio/visão executiva num blueprint técnico — a ponte entre "o que o negócio quer" e "como isso vira uma spec implementável". Útil antes de abrir uma feature nova quando o ponto de partida é uma decisão de negócio, não um pedido técnico. |
 
 O restante deste guia detalha como usar cada uma.
 
@@ -31,21 +30,16 @@ O restante deste guia detalha como usar cada uma.
 **Exemplo 1 — brownfield, engenharia reversa completa:**
 
 ```
-/sdd-harness-creator faça a engenharia reversa deste repositório: leia o
-código-fonte, os READMEs e os tickets/ADRs disponíveis, monte a
-constitution.md com os princípios que já estão implícitos no código, e
-abra a primeira feature em specs/001-*/spec.md descrevendo o estado atual
-como baseline.
+/sdd-harness-creator faça a engenharia reversa deste repositório e monte
+o harness SDD, com a primeira feature descrevendo o estado atual como
+baseline.
 ```
 
 **Exemplo 2 — brownfield, escopo restrito a um módulo:**
 
 ```
-/sdd-harness-creator este repositório já existe mas nunca teve harness SDD.
-Comece só pelo módulo de pagamentos (src/payments/): reconstrua os
-requisitos que o código atual já satisfaz, monte a constitution.md com as
-convenções técnicas que encontrar, e deixe o restante do repositório fora
-do escopo por enquanto.
+/sdd-harness-creator monte o harness SDD só para o módulo de pagamentos
+(src/payments/), a partir do que o código atual já satisfaz.
 ```
 
 **Exemplo 3 — greenfield:**
@@ -72,10 +66,9 @@ nenhuma spec e liste-as como specs pendentes.
 **Exemplo 2 — extrair regras implícitas do código para o AGENTS.md/CLAUDE.md:**
 
 ```
-/codefy compare specs/003-checkout/spec.md com o código atual em
-src/checkout/ e adicione ao CLAUDE.md as regras que encontrar sendo
-seguidas implicitamente no código mas que ainda não estão documentadas
-(ex.: convenções de nomeação, camadas que não podem se importar entre si).
+/codefy compare specs/003-checkout/spec.md com src/checkout/ e adicione
+ao CLAUDE.md as regras implícitas no código que ainda não estão
+documentadas.
 ```
 
 ## 3. Uso no dia a dia
@@ -136,4 +129,4 @@ contrário sem avisar antes.
 
 Vale configurar um hook que aciona automaticamente uma skill de review de código sempre que um PR é aberto, usando um modelo específico para essa tarefa — revisão costuma se beneficiar de um modelo com orçamento de raciocínio mais alto do que o usado na implementação do dia a dia.
 
-Se você (ou o próprio agente) não souber como montar esse hook, peça diretamente: *"configure um hook que acione review automático de PR, usando o modelo X para o review"*. O agente deve investigar as opções disponíveis no seu ambiente (configuração de hooks, modelo a usar, gatilho de evento) em vez de assumir uma solução pronta sem checar — assim como não deve inventar nomes de skills que não existem no seu ambiente.
+Se você não souber como montar esse hook, peça diretamente: *"configure um hook que acione review automático de PR, usando o modelo X para o review"*. O agente deve investigar as opções disponíveis no seu ambiente (configuração de hooks, modelo a usar, gatilho de evento) em vez de assumir uma solução pronta sem checar — assim como não deve inventar nomes de skills que não existem no seu ambiente.
