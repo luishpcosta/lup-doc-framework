@@ -5,7 +5,7 @@ title: Guia — preparar e usar um repositório de contexto
 
 # Guia — preparar e usar um repositório de contexto
 
-Este guia mostra como preparar e manter um repositório de contexto — o metarepo documental que guarda product backlog, PRDs, ADRs, critérios de aceite e o mapa de domínio (`CONTEXT-MAP.md`) usados por um ou mais repositórios de aplicação. É escrito com foco em **repositório de contexto/documentação de domínio** — para um repositório de aplicação/código, veja o [guia irmão](./guia-agentes-ia-app.md).
+Este guia mostra como preparar e manter um repositório de contexto — o metarepo documental que guarda product backlog, PRDs, ADRs, critérios de aceite e o mapa de domínio (`CONTEXT-MAP.md`) usados por um ou mais repositórios de aplicação. É escrito com foco em **repositório de contexto/documentação de domínio** — para um repositório de aplicação/código, veja o [guia irmão](./guia-agentes-ia-app.md). Para uma referência técnica de cada skill citada aqui, veja [skills do framework](./skills.md).
 
 ## 1. Resumo
 

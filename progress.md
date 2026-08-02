@@ -3,7 +3,7 @@
 ## Current State
 
 **Last Updated:** 2026-08-02
-**Active Feature:** 004-intro-framework — reformulação completa como visão de produto (skill `pm-create-pb`)
+**Active Feature:** 005-guia-skills — Skills do framework (página de overview técnico)
 **Active SDD Phase:** Verify (complete)
 **Pending Gate:** none — feature closed
 
@@ -97,6 +97,18 @@
 - [x] `grep` confirma ausência de termos técnicos (PB/PRD/ADR/AC/CONTEXT-MAP/spec-plan-tasks-verify/nomes de skill) fora da seção final de links
 - [x] `npm run typecheck`/`build` verdes; verificação visual em claro e escuro (`intro-pb-light.png`/`intro-pb-dark.png`) — 8 seções + navegação final aparecem corretamente na TOC, paleta/tipografia corretas em ambos os modos, sem quebra de layout
 - [x] **Pedido de acompanhamento: usuário esclareceu que o mecanismo não é chamar agentes manualmente — é um agente orquestrador com as habilidades certas para cada papel, entregando output padronizado, pavimentando caminho para automações futuras.** "Resumo executivo", "A Solução", "O que torna isto diferente", "Quem isto serve" (2 primeiros bullets) e "Visão" ajustados em `docs/intro.mdx` para tornar isso explícito. FR-3/FR-4/FR-8 (e ACs correspondentes) reescritos em `spec.md`; T-27/T-28 adicionadas a `tasks.md` (T-17/T-18/T-22 marcadas `superseded`). `npm run typecheck`/`build` verdes; `grep` confirma ausência de termos técnicos fora da seção de links; verificação visual em claro e escuro (`intro-orch-light.png`/`intro-orch-dark.png`)
+
+### 005-guia-skills — Skills do framework (2026-08-02)
+
+- [x] **Usuário pediu uma página dedicada de overview técnico das "skills enablers" do framework**, com um exemplo de formato por skill (nome, "Uso básico", blocos recolhíveis de formato de saída/como funciona por dentro/erros comuns), pedindo para revisitar os guias existentes e acessar o repositório de skills para montar a lista.
+- [x] **Nova feature `005-guia-skills` criada** (specs completas: spec→plan→tasks) — a 10ª skill do catálogo (`skill-creator`) foi conscientemente excluída por ser meta-tooling, não uma skill do framework em si.
+- [x] Detalhe técnico das 10 skills (formato de saída, funcionamento interno, erros comuns) extraído via fork/subagente lendo `ai-lup-skills/skills/<nome>/SKILL.md` diretamente — mantém o contexto principal livre do conteúdo bruto de 10 arquivos
+- [x] `docs/skills.md` criado: nota de instalação (link do GitHub + `lup-skills add`), duas seções de agrupamento ("Skills do repositório de aplicação"/"Skills do repositório de contexto", espelhando os 2 guias existentes), 10 entradas de skill no formato `<details>`/`<summary>` (nativamente estilizado pelo Docusaurus, sem CSS customizado)
+- [x] **Exemplos de "Uso básico" reaproveitados dos exemplos já publicados e revisados nos dois guias** (não inventados) — garante consistência entre a nova página e o conteúdo existente
+- [x] **`/review-pr` não tem bloco "Erros comuns"** — o `SKILL.md` não documenta armadilhas em formato sintoma/causa/solução, só guardrails ("o que não revisar manualmente"), incorporados como bullet em "Como funciona por dentro" em vez de uma tabela inventada — respeita a regra de não inventar conteúdo não documentado
+- [x] **Reversão pontual de uma decisão anterior**: `002-guia-agentes-ia` e `003-guia-repositorio-contexto` registraram, a pedido do usuário à época, que os guias não deveriam citar nominalmente o repositório de origem das skills. Nesta feature o usuário pediu o oposto — link explícito do GitHub (`https://github.com/luishpcosta/ai-lup-skills`, confirmado via `git remote -v`) e o comando `lup-skills add <nome>` (confirmado no `README.md` do repositório de skills). Tratada como exceção pontual desta página nova — os dois guias existentes **não** foram alterados retroativamente; registrado em `specs/005-guia-skills/spec.md` (Clarifications Log)
+- [x] Links cruzados adicionados: `docs/intro.mdx` ("Para onde ir a seguir"), `docs/guia-agentes-ia-app.md` e `docs/guia-repositorio-contexto.md` (parágrafo de abertura) — todos apontam para `./skills.md`
+- [x] `npm run typecheck`/`build` verdes; verificação visual em claro e escuro (`skills-light-top.png`/`skills-dark-top.png`) — elementos `<details>` (nunca usados antes neste site) renderizam com estilo nativo do tema (caixa colorida, ícone de expansão), sem quebra de paleta/tipografia; conteúdo dentro dos blocos (tabelas, listas numeradas) confirmado renderizando corretamente via HTML estático com os blocos forçados abertos
 
 ## Open Clarifications
 
