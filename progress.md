@@ -3,7 +3,7 @@
 ## Current State
 
 **Last Updated:** 2026-08-02
-**Active Feature:** 002-guia-agentes-ia — Guia — preparar e usar um repositório de aplicação
+**Active Feature:** 003-guia-repositorio-contexto — Guia — preparar e usar um repositório de contexto
 **Active SDD Phase:** Verify (complete)
 **Pending Gate:** none — feature closed
 
@@ -33,6 +33,7 @@
 
 1. Escrever o conteúdo técnico completo do blueprint (contenção de domínio, harness Speckit SDD, decisões finais — slides 8 a 11 do rascunho) em `/docs/intro`, como Markdown/MDX nativo do Docusaurus (não como mais um HTML embutido). `/docs/intro` continua um placeholder.
 2. Se o projeto voltar a precisar de blog no futuro, reativar via `blog: {...}` no preset (hoje `blog: false`) com conteúdo real, não os posts de exemplo.
+3. **Revisar a descrição de `/codefy` em `docs/guia-agentes-ia-app.md`.** Ao ler `ai-lup-skills/skills/codefy/SKILL.md` para a feature `003-guia-repositorio-contexto`, ficou claro que o papel real de `/codefy` é "preparar o terreno antes do bootstrap (Modo 1) do `/blueprintfy`" (lê convenções de specs/PRDs/ADRs já usadas no repo para o `CONTEXT-MAP.md` nascer alinhado) — não "manter `AGENTS.md`/`CLAUDE.md` atualizado com regras implícitas do código", como está descrito hoje no guia de aplicação. Essa descrição foi escrita antes de eu ter acesso ao repositório de skills vizinho; não foi corrigida ainda porque não foi pedido nesta sessão — só sinalizada aqui.
 
 ### 002-guia-agentes-ia — concluída
 
@@ -42,6 +43,16 @@
 - [x] Verificação visual em modo claro e escuro via captura de tela (Chrome headless + CDP `Emulation.setEmulatedMedia`, já que `respectPrefersColorScheme: true` não é afetado por flags de linha de comando comuns) — paleta/tipografia do design system aplicadas corretamente, sem footer, sidebar/TOC corretos em ambos os modos
 - [x] Revisão de texto: nenhuma URL/nome de repositório de origem das skills `/codefy`/`/blueprintfy` citado (pedido explícito do usuário)
 - [x] Reescrita no modelo **How-To Guide (Diátaxis) + minimalismo instrucional (Carroll)**: usuário pediu opções de técnica de escrita/método de documentação; apresentadas 3 opções de framework (Diátaxis How-To, Runbook, Reference) × 3 técnicas (minimalismo, pirâmide invertida, progressive disclosure); usuário escolheu Diátaxis How-To + minimalismo. "1. Resumo" virou parágrafo curto + lista de definição (era tabela com células longas), "2. Preparação do repositório" → "2. Como preparar o repositório", bullets de brownfield/greenfield encurtados, e "Review automático de PR" ganhou bloco de comando copiável (era só prosa) — página caiu de ~1030 para ~750 palavras. `npm run typecheck`/`build` verdes; verificado em claro e escuro
+- [x] "Review automático de PR" passou a nomear explicitamente a skill `/review-pr` (antes só descrevia "uma skill de review" sem nome) — descrição conferida contra `ai-lup-skills/skills/review-pr/SKILL.md`
+
+### 003-guia-repositorio-contexto — concluída
+
+- [x] Nova página irmã `docs/guia-repositorio-contexto.md` ("Guia — preparar e usar um repositório de contexto"), mesmo modelo How-To/minimalista do guia de aplicação: resumo com 7 skills (`/blueprintfy`, `/prd-to-adr`, `/issue-to-adr`, `/make-diagram`, `/pm-create-pb`, `/pm-create-prd`, `/domain-reconcile`), preparação (bootstrap do `CONTEXT-MAP.md` via `/blueprintfy`, com/sem docs prévios), manutenção contínua (um exemplo por skill de documentação + subseção opcional de análise de negócio com PM), e reconciliação com repositórios de aplicação via `/domain-reconcile`
+- [x] Conteúdo conceitual baseado em `static/framework-hibrido.html` (slides 6–9, pilares "duas análises quatro artefatos" e "contenção de domínio") e em `as_is_metarepo_sdd_harness.svg` (estado atual: metarepo informa serviços de forma implícita, sem retorno pós-deploy — é o problema que `/domain-reconcile` resolve)
+- [x] Nome da skill de reconciliação: usuário pediu por "repo-reconcile", mas a skill real no `ai-lup-skills` se chama `domain-reconcile` — usado o nome real (mesma regra do guia irmão: não inventar/usar nome de skill que não existe no ambiente)
+- [x] `/codefy` deliberadamente **não** incluída nesta feature (usuário não a listou), embora na prática prepare o terreno para o bootstrap do `/blueprintfy` — ver nota em "What's Next" sobre a descrição desatualizada de `/codefy` no guia de aplicação
+- [x] Links cruzados: `docs/guia-agentes-ia-app.md` ↔ `docs/guia-repositorio-contexto.md`, e `docs/intro.mdx` linkando para as duas
+- [x] `npm run typecheck` e `npm run build` verdes; verificação visual em claro e escuro (capturas `contexto-light.png`/`contexto-dark.png`)
 
 ## Open Clarifications
 
