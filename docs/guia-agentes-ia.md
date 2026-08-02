@@ -45,10 +45,9 @@ baseline.
 **Exemplo 3 — greenfield:**
 
 ```
-/sdd-harness-creator este repositório é novo, ainda sem código. Monte o
-harness SDD do zero: constitution.md com os princípios definidos no
-kickoff (stack, padrões de teste, arquitetura-alvo) e a primeira spec em
-specs/001-mvp/spec.md a partir deste brief: [colar brief de negócio].
+/sdd-harness-creator este repositório é novo. Monte o harness SDD do
+zero: constitution.md com os princípios do kickoff e a primeira spec
+como MVP.
 ```
 
 ### Encadeando specs com `/codefy` (processo contínuo, brownfield)
@@ -76,7 +75,7 @@ documentadas.
 No dia a dia, o pedido ao agente pode — e deve — ser em linguagem natural de alto nível. O agente é quem traduz isso para o fluxo SDD (spec → plan → tasks → implementação) ou para a skill certa.
 
 ```
-Leia a ADR-125 e planeje via SDD.
+Leia a ADR-125 e planeje a alteração.
 ```
 
 ```
@@ -84,15 +83,11 @@ Leia a ADR-125 e planeje via SDD.
 ```
 
 ```
-/blueprintfy transforme este brief de negócio em blueprint técnico.
+Comece a ADR-004 no modo faseado.
 ```
 
 ```
-Abra a feature 004 no modo faseado.
-```
-
-```
-Essa é pequena — modo rápido, já abra o PR.
+Ajuste o adapter contratos para usar a rota x modo rápido, já abra o PR.
 ```
 
 ```
