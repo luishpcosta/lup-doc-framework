@@ -8,15 +8,13 @@ O **framework híbrido** é um modelo de trabalho com IA integrada que leva um p
 
 ## Por que o framework existe
 
-Hoje, cada time usa IA à sua maneira: agentes já ajudam a escrever documentos, montar backlog e gerar código, mas não existe um padrão comum de como a IA participa do trabalho entre as equipes, e o ritmo de adoção varia — alguns times usam IA em quase tudo, outros só em partes pontuais.
+O uso de IA em times de produto e engenharia cresce rápido — agentes já ajudam a escrever documentos, montar backlog e gerar código. O framework híbrido dá a esse crescimento uma estrutura comum, entregando a cada squad:
 
-Sem estrutura, isso tem um custo real:
+- **Decisões que não se perdem** — o histórico de por que cada escolha foi feita fica registrado e acessível, então uma decisão já tomada não precisa ser debatida de novo do zero.
+- **Contexto que sobrevive à equipe** — a razão por trás de uma escolha importante continua documentada mesmo quando alguém muda de time.
+- **IA com intenção de negócio** — agentes que herdam o contexto certo entregam resultados mais alinhados ao que o negócio realmente precisa.
 
-- **Decisões se repetem** — o mesmo debate estratégico acontece de novo em cada time, porque ninguém sabe que já foi resolvido em outro lugar.
-- **Contexto vive na cabeça das pessoas** — quando alguém sai do time, a razão por trás de uma escolha importante sai junto.
-- **IA sem contexto erra mais** — agentes que executam tarefas sem acesso à intenção de negócio tomam atalhos que parecem certos e não são.
-
-O framework existe para estruturar negócio, técnica e execução de IA num fluxo só, sem perder rastreabilidade.
+O framework estrutura negócio, técnica e execução de IA num fluxo só, com rastreabilidade ponta a ponta.
 
 ## Duas análises, uma história
 
@@ -27,7 +25,7 @@ Negócio e técnica rodam em paralelo, e as duas alimentam a mesma unidade de tr
 
 Agentes e skills conduzem a entrevista em cada análise; o time valida e decide. As duas análises se encontram numa **história** única, rastreável e registrada no board do time — o que o harness de implementação vai executar. Ela herda o contexto de negócio (PB/PRD), a decisão técnica (ADR) e o critério de aceite (ACs), e carrega um link de volta para o board.
 
-O que mantém tudo isso auditável é uma cadeia de IDs: `PB-001 → PRD-004 → ADR-012 → AC-017 → HIST-231`. Sem essa cadeia não dá para provar cobertura nem detectar desvio.
+O que mantém tudo isso auditável é uma cadeia de IDs: `PB-001 → PRD-004 → ADR-012 → AC-017 → HIST-231`. Essa cadeia garante cobertura auditável e detecção de desvio em qualquer etapa.
 
 ## Onde o contexto vive
 
@@ -44,14 +42,14 @@ O harness de SDD (specify → plan → tasks → verify) vive **dentro de cada r
 3. **tasks** — unidades que o agente de IA executa.
 4. **verify** — prova que o AC de origem foi atendido.
 
-## O que falta decidir
+## Como cada squad personaliza o framework
 
-Colocar o framework em produção numa organização exige decisões de gestão, não só técnicas:
+O framework híbrido se adapta ao contexto de cada squad, em vez de impor um único jeito de trabalhar. Cada squad define:
 
-- **Harness padrão** — qual ferramenta de SDD a organização adota primeiro.
-- **Responsáveis pela contextualização** — quem aprova mudanças em PB, PRD e ADR.
-- **Convenção de formatos** — um formato único de PB/PRD/ADR/AC/História em toda a organização.
-- **Quem julga a entrega** — responsáveis por decidir gates e revisão de código.
+- **Harness de SDD** — qual ferramenta de especificação/implementação usar no dia a dia.
+- **Responsáveis pela contextualização** — quem aprova mudanças em PB, PRD e ADR dentro do squad.
+- **Convenção de formatos** — como PB/PRD/ADR/AC/História são escritos e nomeados.
+- **Critério de entrega** — quem decide os gates e revisa o código antes de ir para produção.
 
 ## Para onde ir a seguir
 

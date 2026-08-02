@@ -11,7 +11,9 @@
 
 Reescrever `docs/intro.mdx` (arquivo já existente, front matter `sidebar_position: 1` mantido) substituindo o placeholder por conteúdo real em Markdown/MDX nativo do Docusaurus — sem componentes React novos, sem CSS hardcoded (constitution, princípio 5). Estrutura em seções curtas, cada uma mapeada 1:1 a uma FR, misturando visão de framework (arquitetura/artefatos/harness) e visão de gestão (motivação/decisões) na ordem em que um leitor sem contexto prévio consegue acompanhar: o que é → por que existe → como funciona (3 pilares) → o que falta decidir → para onde ir a seguir.
 
-Nota pós-implementação: a seção "O problema que ainda não resolvemos" (estado atual/as-is, `as_is_metarepo_sdd_harness.svg`) foi escrita, verificada e depois removida a pedido explícito do usuário — ver Clarifications Log em `spec.md`.
+Nota pós-implementação (1): a seção "O problema que ainda não resolvemos" (estado atual/as-is, `as_is_metarepo_sdd_harness.svg`) foi escrita, verificada e depois removida a pedido explícito do usuário — ver Clarifications Log em `spec.md`.
+
+Nota pós-implementação (2): usuário pediu validação de tom — a página deve ler como pitch de produto/solução personalizada por squad, não como documento interno de problemas/governança. Duas seções reescritas: "Por que o framework existe" (situação/complicação → proposta de valor) e "O que falta decidir" → renomeada "Como cada squad personaliza o framework" (pendência de gestão → dimensão de customização). Ver Clarifications Log em `spec.md`.
 
 Título do H1 mantido como "Introdução" (não muda a rota `/docs/intro`, nem o nome do link no navbar/sidebar).
 
@@ -35,11 +37,11 @@ Não aplicável — conteúdo estático.
 | Requirement | Addressed by |
 |---|---|
 | FR-1 / AC-1 | Parágrafo de abertura (substitui o parágrafo placeholder atual) |
-| FR-2 / AC-2 | Seção "Por que o framework existe" — situação + complicação |
+| FR-2 / AC-2 | Seção "Por que o framework existe" — proposta de valor (3 benefícios) |
 | FR-3 / AC-3 | Seção "Duas análises, uma história" — PB→PRD, ADR→ACs, cadeia de IDs |
 | FR-4 / AC-4 | Seção "Onde o contexto vive" — contenção de domínio, `CONTEXT-MAP.md` |
 | FR-5 / AC-5 | Seção "Como o código é gerado" — harness Speckit SDD no repo de serviço |
-| FR-6 / AC-6 | Seção "O que falta decidir" — 4 decisões de gestão |
+| FR-6 / AC-6 | Seção "Como cada squad personaliza o framework" — 4 dimensões de customização |
 | FR-7 / AC-7 | Seção final "Para onde ir a seguir" — links para os dois guias + home |
 | FR-8 / AC-8 | Reescrita completa do arquivo remove o placeholder por construção; verificado por `grep` + build |
 
