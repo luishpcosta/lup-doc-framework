@@ -96,6 +96,7 @@
 - [x] `specs/004-intro-framework/{spec,plan,tasks}.md` reescritas: FR/AC antigos (1-8, versão técnica) substituídos por um novo conjunto (1-11, visão de produto); tasks antigas (T-1 a T-14) marcadas `superseded` em bloco "histórico", novas tasks (T-15 a T-26) na seção "atuais"; Clarifications Log preserva todo o histórico anterior, com nova entrada documentando a entrevista completa
 - [x] `grep` confirma ausência de termos técnicos (PB/PRD/ADR/AC/CONTEXT-MAP/spec-plan-tasks-verify/nomes de skill) fora da seção final de links
 - [x] `npm run typecheck`/`build` verdes; verificação visual em claro e escuro (`intro-pb-light.png`/`intro-pb-dark.png`) — 8 seções + navegação final aparecem corretamente na TOC, paleta/tipografia corretas em ambos os modos, sem quebra de layout
+- [x] **Pedido de acompanhamento: usuário esclareceu que o mecanismo não é chamar agentes manualmente — é um agente orquestrador com as habilidades certas para cada papel, entregando output padronizado, pavimentando caminho para automações futuras.** "Resumo executivo", "A Solução", "O que torna isto diferente", "Quem isto serve" (2 primeiros bullets) e "Visão" ajustados em `docs/intro.mdx` para tornar isso explícito. FR-3/FR-4/FR-8 (e ACs correspondentes) reescritos em `spec.md`; T-27/T-28 adicionadas a `tasks.md` (T-17/T-18/T-22 marcadas `superseded`). `npm run typecheck`/`build` verdes; `grep` confirma ausência de termos técnicos fora da seção de links; verificação visual em claro e escuro (`intro-orch-light.png`/`intro-orch-dark.png`)
 
 ## Open Clarifications
 

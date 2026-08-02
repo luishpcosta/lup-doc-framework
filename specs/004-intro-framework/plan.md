@@ -13,6 +13,8 @@ Reescrever `docs/intro.mdx` por completo (front matter `sidebar_position: 1` e H
 
 Markdown/MDX puro, sem componentes React novos, sem CSS hardcoded (constitution, princípio 5).
 
+Nota pós-implementação: usuário esclareceu que o mecanismo não é chamada manual de agentes — é um agente orquestrador, equipado com habilidades por papel, entregando output padronizado. "A Solução", "O que torna isto diferente" e "Visão" ajustadas para tornar isso explícito (agente orquestrador, resultado padronizado, caminho para automações futuras); "Resumo executivo" e "Quem isto serve" ajustadas por consistência. Ver Clarifications Log em `spec.md`.
+
 ## Architecture & Components
 
 - `docs/intro.mdx` — reescrito por completo; único artefato de conteúdo desta feature.
@@ -35,8 +37,8 @@ Não aplicável — conteúdo estático.
 |---|---|
 | FR-1 / AC-1 | Seção "Resumo executivo" |
 | FR-2 / AC-2 | Seção "O Problema" |
-| FR-3 / AC-3 | Seção "A Solução" |
-| FR-4 / AC-4 | Seção "O que torna isto diferente" |
+| FR-3 / AC-3 | Seção "A Solução" — agente orquestrador + resultado padronizado |
+| FR-4 / AC-4 | Seção "O que torna isto diferente" — contraste com chamada manual sem orquestração |
 | FR-5 / AC-5 | Seção "Quem isto serve" |
 | FR-6 / AC-6 | Seção "Critérios de sucesso" |
 | FR-7 / AC-7 | Seção "Escopo" |
