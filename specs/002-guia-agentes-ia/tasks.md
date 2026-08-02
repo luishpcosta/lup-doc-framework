@@ -1,4 +1,4 @@
-# Tasks: Guia — preparar e usar um repositório de aplicação com agentes de IA de desenvolvimento
+# Tasks: Guia — preparar e usar um repositório de aplicação
 
 **Feature ID:** 002-guia-agentes-ia
 **Phase:** done
@@ -21,7 +21,7 @@
 | T-7 | Rodar `npm run typecheck` e `npm run build`; confirmar que a página é alcançável pela sidebar/navbar numa única rota | AC-7 | done | `npm run typecheck` e `npm run build` verdes (sem erro, `onBrokenLinks: throw` não disparou); página listada na sidebar em `/docs/guia-agentes-ia-app`, linkada a partir de `docs/intro.mdx` |
 | T-8 | Revisar o texto final procurando por qualquer nome/URL de repositório de origem das skills `/codefy`/`/blueprintfy` e remover se encontrado | AC-8 | done | revisão manual do texto de `docs/guia-agentes-ia-app.md`: nenhuma URL/nome de repositório de origem das skills presente |
 | T-9 | Build + serve; captura de tela da página em modo claro e escuro para verificação visual manual (regra do `CLAUDE.md`: "UI changes need eyes on them") | AC-7 | done | `npm run build` + `npm run serve --port 3001`; capturas via CDP (`Emulation.setEmulatedMedia`) `guia-full-light.png` e `guia-full-dark.png` — paleta/tipografia do design system aplicadas, sem footer, sidebar/TOC corretos em ambos os modos |
-| T-10 | Renomear `docs/guia-agentes-ia.md` → `docs/guia-agentes-ia-app.md` (via `git mv`); ajustar `title`/H1 e acrescentar frase de escopo no primeiro parágrafo deixando explícito que o guia é para repositório de aplicação/código; atualizar link em `docs/intro.mdx` | AC-9 | done | `git mv` preservando histórico; `title`/H1 = "Guia — preparar e usar um repositório de aplicação com agentes de IA de desenvolvimento"; frase de escopo no parágrafo de abertura; `docs/intro.mdx` linka para `./guia-agentes-ia-app.md`; `npm run build` verde |
+| T-10 | Renomear `docs/guia-agentes-ia.md` → `docs/guia-agentes-ia-app.md` (via `git mv`); ajustar `title`/H1 e acrescentar frase de escopo no primeiro parágrafo deixando explícito que o guia é para repositório de aplicação/código; atualizar link em `docs/intro.mdx` | AC-9 | done | `git mv` preservando histórico; `title`/H1 final = "Guia — preparar e usar um repositório de aplicação"; frase de escopo no parágrafo de abertura; `docs/intro.mdx` linka para `./guia-agentes-ia-app.md`; `npm run build` verde |
 
 Status values: `todo` → `doing` → `done` → `superseded`.
 

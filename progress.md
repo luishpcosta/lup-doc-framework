@@ -2,8 +2,8 @@
 
 ## Current State
 
-**Last Updated:** 2026-08-01
-**Active Feature:** 002-guia-agentes-ia — Guia: preparar e usar um repositório de aplicação com agentes de IA de desenvolvimento
+**Last Updated:** 2026-08-02
+**Active Feature:** 002-guia-agentes-ia — Guia — preparar e usar um repositório de aplicação
 **Active SDD Phase:** Verify (complete)
 **Pending Gate:** none — feature closed
 
@@ -36,7 +36,7 @@
 
 ### 002-guia-agentes-ia — concluída
 
-- [x] Nova página única `docs/guia-agentes-ia-app.md` ("Guia — preparar e usar um repositório de aplicação com agentes de IA de desenvolvimento", renomeada a partir de `guia-agentes-ia.md` para deixar o escopo explícito): resumo executivo + tabela de skills (`/sdd-harness-creator`, `/codefy`), preparação do repositório (brownfield/greenfield, recomendação de modelo forte no brownfield, exemplos de invocação), encadeamento de specs com `/codefy`, exemplos de uso do dia a dia, e dicas para `AGENTS.md`/`CLAUDE.md` (modos de trabalho rápido/faseado, review automático de PR via hook)
+- [x] Nova página única `docs/guia-agentes-ia-app.md` ("Guia — preparar e usar um repositório de aplicação", renomeada a partir de `guia-agentes-ia.md` para deixar o escopo explícito): resumo executivo + tabela de skills (`/sdd-harness-creator`, `/codefy`), preparação do repositório (brownfield/greenfield, recomendação de modelo forte no brownfield, exemplos de invocação), encadeamento de specs com `/codefy`, exemplos de uso do dia a dia, e dicas para `AGENTS.md`/`CLAUDE.md` (modos de trabalho rápido/faseado, review automático de PR via hook)
 - [x] `docs/intro.mdx` linkado para a nova página
 - [x] `npm run typecheck` e `npm run build` verdes
 - [x] Verificação visual em modo claro e escuro via captura de tela (Chrome headless + CDP `Emulation.setEmulatedMedia`, já que `respectPrefersColorScheme: true` não é afetado por flags de linha de comando comuns) — paleta/tipografia do design system aplicadas corretamente, sem footer, sidebar/TOC corretos em ambos os modos

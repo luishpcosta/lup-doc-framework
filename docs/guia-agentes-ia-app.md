@@ -1,9 +1,9 @@
 ---
 sidebar_position: 2
-title: Guia — preparar e usar um repositório de aplicação com agentes de IA de desenvolvimento
+title: Guia — preparar e usar um repositório de aplicação
 ---
 
-# Preparar e usar um repositório de aplicação com agentes de IA de desenvolvimento
+# Guia — preparar e usar um repositório de aplicação
 
 Este guia mostra como preparar um repositório e como operá-lo no dia a dia usando ferramentas de Inteligência Artificial voltadas para assistência e automação de programação — agentes que operam como engenheiros de software, lendo o código, produzindo especificações, implementando e abrindo PRs. É escrito com foco em **repositórios de aplicação/código** (os exemplos citam módulos, PRs e arquivos de código) — para um repositório de conteúdo/documentação, adapte os exemplos ao seu tipo de artefato.
 

@@ -1,4 +1,4 @@
-# Spec: Guia — preparar e usar um repositório de aplicação com agentes de IA de desenvolvimento
+# Spec: Guia — preparar e usar um repositório de aplicação
 
 **Feature ID:** 002-guia-agentes-ia
 **Phase:** done
