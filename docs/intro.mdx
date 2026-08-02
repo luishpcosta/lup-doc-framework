@@ -4,15 +4,58 @@ sidebar_position: 1
 
 # Introdução
 
-Esta é a documentação do **framework híbrido**: um modelo de trabalho com IA integrada que vai do brief de negócio ao código gerado por IA em um único fluxo, com rastreabilidade em cada etapa.
+O **framework híbrido** é um modelo de trabalho com IA integrada que leva um problema de negócio até código gerado por agente, em um único fluxo — negócio → técnica → backlog → implementação — com rastreabilidade em cada etapa. Cada movimento devolve aprendizado para o anterior: é um ciclo, não uma esteira de mão única.
 
-> Esta página é um placeholder. O conteúdo técnico completo (duas análises, história, contenção de domínio no repositório e o harness Speckit SDD) ainda precisa ser escrito — ver `specs/` no repositório para o estado atual.
+## Por que o framework existe
 
-## O que você vai encontrar aqui
+Hoje, cada time usa IA à sua maneira: agentes já ajudam a escrever documentos, montar backlog e gerar código, mas não existe um padrão comum de como a IA participa do trabalho entre as equipes, e o ritmo de adoção varia — alguns times usam IA em quase tudo, outros só em partes pontuais.
 
-- **Visão executiva** — por que o modelo existe e qual problema resolve.
-- **Blueprint técnico** — como as análises de negócio e técnica viram histórias rastreáveis, e como o harness Speckit SDD executa a implementação.
+Sem estrutura, isso tem um custo real:
 
-Veja também os guias de preparação: [repositório de aplicação](./guia-agentes-ia-app.md) e [repositório de contexto](./guia-repositorio-contexto.md).
+- **Decisões se repetem** — o mesmo debate estratégico acontece de novo em cada time, porque ninguém sabe que já foi resolvido em outro lugar.
+- **Contexto vive na cabeça das pessoas** — quando alguém sai do time, a razão por trás de uma escolha importante sai junto.
+- **IA sem contexto erra mais** — agentes que executam tarefas sem acesso à intenção de negócio tomam atalhos que parecem certos e não são.
+
+O framework existe para estruturar negócio, técnica e execução de IA num fluxo só, sem perder rastreabilidade.
+
+## Duas análises, uma história
+
+Negócio e técnica rodam em paralelo, e as duas alimentam a mesma unidade de trabalho:
+
+- **Análise de negócio** produz o **PB** (Product Brief — por que isso importa agora) e o **PRD** (Product Requirements Document — o que precisa existir).
+- **Análise técnica** produz o **ADR** (Architecture Decision Record — como decidimos resolver, e por quê) e os **ACs** (Acceptance Criteria — o que prova que está pronto).
+
+Agentes e skills conduzem a entrevista em cada análise; o time valida e decide. As duas análises se encontram numa **história** única, rastreável e registrada no board do time — o que o harness de implementação vai executar. Ela herda o contexto de negócio (PB/PRD), a decisão técnica (ADR) e o critério de aceite (ACs), e carrega um link de volta para o board.
+
+O que mantém tudo isso auditável é uma cadeia de IDs: `PB-001 → PRD-004 → ADR-012 → AC-017 → HIST-231`. Sem essa cadeia não dá para provar cobertura nem detectar desvio.
+
+## Onde o contexto vive
+
+O contexto de negócio e técnico mora num **repositório de contexto** — um metarepo documental, mantido por agentes e skills — organizado por **contenção**, não por sequência: cada nível vive dentro do anterior.
+
+Um `CONTEXT-MAP.md` na raiz indexa todos os domínios (ex. pagamentos). Dentro de cada domínio, um subdomínio (ex. cobrança recorrente) contém um ou mais **bounded contexts** — a fronteira que normalmente vira um repositório de serviço — e cada bounded context tem seu próprio glossário (`CONTEXT.md`) e seus próprios ADRs.
+
+## Como o código é gerado
+
+O harness de SDD (specify → plan → tasks → verify) vive **dentro de cada repositório de serviço**, não no metarepo de contexto — evolui no ritmo de cada time, sem tocar na governança central:
+
+1. **spec** — reescreve a história em termos executáveis.
+2. **plan** — quebra em passos de implementação.
+3. **tasks** — unidades que o agente de IA executa.
+4. **verify** — prova que o AC de origem foi atendido.
+
+## O que falta decidir
+
+Colocar o framework em produção numa organização exige decisões de gestão, não só técnicas:
+
+- **Harness padrão** — qual ferramenta de SDD a organização adota primeiro.
+- **Responsáveis pela contextualização** — quem aprova mudanças em PB, PRD e ADR.
+- **Convenção de formatos** — um formato único de PB/PRD/ADR/AC/História em toda a organização.
+- **Quem julga a entrega** — responsáveis por decidir gates e revisão de código.
+
+## Para onde ir a seguir
+
+- Para preparar e operar um **repositório de serviço/código** com agentes de IA no dia a dia, veja o [guia de repositório de aplicação](./guia-agentes-ia-app.md).
+- Para preparar e manter o **repositório de contexto** (PB, PRD, ADR, critérios de aceite e o mapa de domínio), e reconciliá-lo com o que os serviços realmente fazem, veja o [guia de repositório de contexto](./guia-repositorio-contexto.md).
 
 Volte para a [página inicial](/) para o resumo visual do modelo.

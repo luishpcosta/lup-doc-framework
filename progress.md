@@ -3,7 +3,7 @@
 ## Current State
 
 **Last Updated:** 2026-08-02
-**Active Feature:** 003-guia-repositorio-contexto — Guia — preparar e usar um repositório de contexto
+**Active Feature:** 004-intro-framework — Introdução — o que é o framework híbrido
 **Active SDD Phase:** Verify (complete)
 **Pending Gate:** none — feature closed
 
@@ -31,9 +31,8 @@
 
 ### What's Next
 
-1. Escrever o conteúdo técnico completo do blueprint (contenção de domínio, harness Speckit SDD, decisões finais — slides 8 a 11 do rascunho) em `/docs/intro`, como Markdown/MDX nativo do Docusaurus (não como mais um HTML embutido). `/docs/intro` continua um placeholder.
-2. Se o projeto voltar a precisar de blog no futuro, reativar via `blog: {...}` no preset (hoje `blog: false`) com conteúdo real, não os posts de exemplo.
-3. **`/codefy` em `docs/guia-agentes-ia-app.md` — discrepância avaliada e decisão registrada (2026-08-02).** `ai-lup-skills/skills/codefy/SKILL.md` descreve `/codefy` como "camada fina" que repassa/relay para o Modo 1 (bootstrap) do `/blueprintfy` — o usuário confirmou que é assim mesmo que deve ser usado a partir de um repositório de aplicação (o usuário do framework não precisa saber que por baixo existe um `/blueprintfy`; a skill cobre explicitamente o cenário brownfield "código em produção"). Decisão: **manter a descrição atual no guia de aplicação como está** — não mover nem reescrever. Única nuance ainda não reconciliada: o `SKILL.md` descreve o trabalho como bootstrap **único** ("Fim do trabalho do Codefy": sem papel depois que `CONTEXT-MAP.md` existe, não precisa ser invocado de novo), enquanto o guia descreve como "processo contínuo, brownfield" — não bloqueante, não alterado por decisão explícita do usuário.
+1. Se o projeto voltar a precisar de blog no futuro, reativar via `blog: {...}` no preset (hoje `blog: false`) com conteúdo real, não os posts de exemplo.
+2. **`/codefy` em `docs/guia-agentes-ia-app.md` — discrepância avaliada e decisão registrada (2026-08-02).** `ai-lup-skills/skills/codefy/SKILL.md` descreve `/codefy` como "camada fina" que repassa/relay para o Modo 1 (bootstrap) do `/blueprintfy` — o usuário confirmou que é assim mesmo que deve ser usado a partir de um repositório de aplicação (o usuário do framework não precisa saber que por baixo existe um `/blueprintfy`; a skill cobre explicitamente o cenário brownfield "código em produção"). Decisão: **manter a descrição atual no guia de aplicação como está** — não mover nem reescrever. Única nuance ainda não reconciliada: o `SKILL.md` descreve o trabalho como bootstrap **único** ("Fim do trabalho do Codefy": sem papel depois que `CONTEXT-MAP.md` existe, não precisa ser invocado de novo), enquanto o guia descreve como "processo contínuo, brownfield" — não bloqueante, não alterado por decisão explícita do usuário.
 
 ### 002-guia-agentes-ia — concluída
 
@@ -53,6 +52,14 @@
 - [x] `/codefy` deliberadamente **não** incluída nesta feature (usuário não a listou), embora na prática prepare o terreno para o bootstrap do `/blueprintfy` — ver nota em "What's Next" sobre a descrição desatualizada de `/codefy` no guia de aplicação
 - [x] Links cruzados: `docs/guia-agentes-ia-app.md` ↔ `docs/guia-repositorio-contexto.md`, e `docs/intro.mdx` linkando para as duas
 - [x] `npm run typecheck` e `npm run build` verdes; verificação visual em claro e escuro (capturas `contexto-light.png`/`contexto-dark.png`)
+
+### 004-intro-framework — concluída
+
+- [x] `docs/intro.mdx` reescrito por completo, substituindo o placeholder: abertura (o que é o framework), "Por que o framework existe" (situação + complicação), "Duas análises, uma história" (PB→PRD, ADR→ACs, cadeia de IDs), "Onde o contexto vive" (contenção de domínio), "Como o código é gerado" (harness Speckit SDD, pipeline spec→plan→tasks→verify), "O que falta decidir" (4 decisões de gestão), "Para onde ir a seguir" (links rotulados para os 2 guias + home)
+- [x] Conteúdo consolida `static/framework-hibrido.html` (roteiro completo, slides 1–10); `as_is_metarepo_sdd_harness.svg` foi lido como referência, mas não gerou uma seção própria nesta página — ver nota abaixo
+- [x] **Seção "O problema que ainda não resolvemos" (estado atual/as-is) escrita, verificada visualmente e depois removida a pedido explícito do usuário**, após a primeira rodada de verificação. `spec.md`/`plan.md`/`tasks.md` atualizados: FR-6/AC-6 originais removidos, requisitos seguintes renumerados; task correspondente (`T-6`) marcada `superseded` (não deletada, mantida para histórico). O conteúdo sobre o elo implícito/sem retorno pós-deploy continua coberto por `docs/guia-repositorio-contexto.md` (`003`)
+- [x] `npm run typecheck` e `npm run build` verdes (rodado 2x: antes e depois da remoção); `grep` confirma que o texto de placeholder original não existe mais
+- [x] Verificação visual em modo claro e escuro, 2 rodadas (antes/depois da remoção): sem `chrome-remote-interface`/CDP disponível desta vez, alternativa via flag `--blink-settings=preferredColorScheme=0|1` do Chrome headless (0=dark, 1=light — testado e confirmado via `matchMedia` antes de usar) + `--user-data-dir` isolado por captura (evita tema salvo de uma run vazar para a próxima); capturas finais `intro-final-light.png`/`intro-final-dark.png` — paleta/tipografia corretas, sem footer, TOC/sidebar corretos (sem entrada órfã da seção removida), pagination "Próxima" funcionando
 
 ## Open Clarifications
 
