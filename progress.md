@@ -3,7 +3,7 @@
 ## Current State
 
 **Last Updated:** 2026-08-01
-**Active Feature:** 001-tela-inicial — Tela inicial da documentação
+**Active Feature:** 002-guia-agentes-ia — Guia: preparar e usar o repositório com agentes de IA de desenvolvimento
 **Active SDD Phase:** Verify (complete)
 **Pending Gate:** none — feature closed
 
@@ -31,8 +31,16 @@
 
 ### What's Next
 
-1. Abrir `002-*` para escrever o conteúdo real de `/docs/intro` (hoje só um placeholder) e o conteúdo técnico completo do blueprint (contenção de domínio, harness Speckit SDD, decisões finais — slides 8 a 11 do rascunho), como Markdown/MDX nativo do Docusaurus (não como mais um HTML embutido).
+1. Escrever o conteúdo técnico completo do blueprint (contenção de domínio, harness Speckit SDD, decisões finais — slides 8 a 11 do rascunho) em `/docs/intro`, como Markdown/MDX nativo do Docusaurus (não como mais um HTML embutido). `/docs/intro` continua um placeholder.
 2. Se o projeto voltar a precisar de blog no futuro, reativar via `blog: {...}` no preset (hoje `blog: false`) com conteúdo real, não os posts de exemplo.
+
+### 002-guia-agentes-ia — concluída
+
+- [x] Nova página única `docs/guia-agentes-ia.md` ("Guia — preparar e usar o repositório com agentes de IA de desenvolvimento"): resumo executivo + tabela de skills (`/sdd-harness-creator`, `/codefy`, `/blueprintfy`), preparação do repositório (brownfield/greenfield, recomendação de modelo forte no brownfield, exemplos de invocação), encadeamento de specs com `/codefy`, 6 exemplos de uso do dia a dia, e dicas para `AGENTS.md`/`CLAUDE.md` (modos de trabalho rápido/faseado, review automático de PR via hook)
+- [x] `docs/intro.mdx` linkado para a nova página
+- [x] `npm run typecheck` e `npm run build` verdes
+- [x] Verificação visual em modo claro e escuro via captura de tela (Chrome headless + CDP `Emulation.setEmulatedMedia`, já que `respectPrefersColorScheme: true` não é afetado por flags de linha de comando comuns) — paleta/tipografia do design system aplicadas corretamente, sem footer, sidebar/TOC corretos em ambos os modos
+- [x] Revisão de texto: nenhuma URL/nome de repositório de origem das skills `/codefy`/`/blueprintfy` citado (pedido explícito do usuário)
 
 ## Open Clarifications
 
@@ -78,9 +86,23 @@ Nenhuma pendente.
 - [x] AC-11 verified: captura de tela `nav-btn-fix.png` mostra o botão "›" em branco na capa, contraste claro contra o fundo `--navy`
 - [x] Coverage check clean: todas as ACs atuais (`specs/001-tela-inicial/tasks.md`, tabela "Tasks (atuais)") têm ≥1 task e toda task referencia uma AC; tasks da v1/v2 marcadas `superseded`, mantidas só para histórico
 
+### 002-guia-agentes-ia
+
+- [x] AC-1 verified: `docs/guia-agentes-ia.md` seção "1. Resumo executivo" — capturas `guia-full-light.png`/`guia-full-dark.png`
+- [x] AC-2 verified: subseção "Brownfield vs. greenfield" com recomendação explícita de Opus no caminho brownfield
+- [x] AC-3 verified: 3 blocos de exemplo `/sdd-harness-creator` (2 brownfield + 1 greenfield)
+- [x] AC-4 verified: subseção "Encadeando specs com `/codefy`" com 2 blocos de exemplo
+- [x] AC-5 verified: seção "3. Uso no dia a dia" com 6 exemplos numerados
+- [x] AC-6 verified: seção "4. Dicas para AGENTS.md/CLAUDE.md" com os dois subtópicos pedidos
+- [x] AC-7 verified: `npm run typecheck` e `npm run build` verdes; rota `/docs/guia-agentes-ia` alcançável pela sidebar autogerada e linkada de `docs/intro.mdx`
+- [x] AC-8 verified: revisão manual do texto final — nenhuma URL/nome de repositório de origem das skills
+- [x] Coverage check clean: `specs/002-guia-agentes-ia/tasks.md` — toda AC tem ≥1 task, toda task referencia uma AC
+
 ## Notes for Next Session
 
-`./init.sh` roda `npm run typecheck` + `npm run build` — nenhum test runner configurado de propósito (site de conteúdo, ver `constitution.md`). Para a próxima feature, comece por `specs/002-<slug>/spec.md` seguindo o mesmo formato.
+`./init.sh` roda `npm run typecheck` + `npm run build` — nenhum test runner configurado de propósito (site de conteúdo, ver `constitution.md`). Para a próxima feature, comece por `specs/003-<slug>/spec.md` seguindo o mesmo formato.
+
+Para verificar dark mode em captura de tela headless: `docusaurus.config.ts` tem `colorMode.respectPrefersColorScheme: true`, mas flags de CLI do Chrome (`--blink-settings=preferredColorScheme=N`) não afetam esse `matchMedia` de forma confiável nesta versão do Chrome. O que funcionou: abrir `--remote-debugging-port`, conectar via WebSocket nativo do Node (`node >=22`, sem dependência externa) e chamar `Emulation.setEmulatedMedia` com `{name: 'prefers-color-scheme', value: 'dark'}` antes de `Page.navigate` + `Page.captureScreenshot`. Script de referência descartável ficou em `/tmp` (scratchpad da sessão), não versionado.
 
 Lembretes importantes desta sessão:
 - `npm start` (dev server) é client-side-only (sem SSR) — para ver a página renderizada de verdade em screenshot headless, é preciso esperar o JS hidratar (`--virtual-time-budget=8000 --run-all-compositor-stages-before-draw`) ou usar o output de `npm run build` + `serve`, que já vem com o HTML totalmente renderizado.
