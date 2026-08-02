@@ -24,6 +24,7 @@
 | T-10 | Renomear `docs/guia-agentes-ia.md` → `docs/guia-agentes-ia-app.md` (via `git mv`); ajustar `title`/H1 e acrescentar frase de escopo no primeiro parágrafo deixando explícito que o guia é para repositório de aplicação/código; atualizar link em `docs/intro.mdx` | AC-9 | done | `git mv` preservando histórico; `title`/H1 final = "Guia — preparar e usar um repositório de aplicação"; frase de escopo no parágrafo de abertura; `docs/intro.mdx` linka para `./guia-agentes-ia-app.md`; `npm run build` verde |
 
 | T-11 | Reescrever `docs/guia-agentes-ia-app.md` no modelo How-To (Diátaxis) + minimalismo instrucional: "1. Resumo" vira parágrafo curto + lista de definição, "2. Preparação do repositório" → "2. Como preparar o repositório", bullets de brownfield/greenfield encurtados, intro de `/codefy` encurtada, e "Review automático de PR" reescrita com bloco de comando copiável | AC-10 | done | diff aplicado (`docs/guia-agentes-ia-app.md`, ~1030 → ~750 palavras); `npm run typecheck` + `npm run build` verdes |
+| T-12 | Nomear explicitamente a skill `/review-pr` em "Review automático de PR" (antes só descrevia o hook, sem nomear a skill) | AC-6 | done | seção reescrita citando `/review-pr` e seu escopo (bugs, arquitetura, performance, segurança, publicação via `gh` CLI), confirmado contra `ai-lup-skills/skills/review-pr/SKILL.md` |
 
 Status values: `todo` → `doing` → `done` → `superseded`.
 
@@ -31,5 +32,5 @@ Status values: `todo` → `doing` → `done` → `superseded`.
 
 Confirm manually before implementing:
 
-- Every AC referenced by at least one task? yes — AC-1: T-1, AC-2: T-2, AC-3: T-3, AC-4: T-4, AC-5: T-5, AC-6: T-6, AC-7: T-7/T-9, AC-8: T-8, AC-9: T-10, AC-10: T-11
+- Every AC referenced by at least one task? yes — AC-1: T-1, AC-2: T-2, AC-3: T-3, AC-4: T-4, AC-5: T-5, AC-6: T-6/T-12, AC-7: T-7/T-9, AC-8: T-8, AC-9: T-10, AC-10: T-11
 - Every task linked to an AC? yes

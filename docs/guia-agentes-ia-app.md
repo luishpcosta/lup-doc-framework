@@ -115,10 +115,10 @@ contrário sem avisar antes.
 
 ### Review automático de PR
 
-Configure um hook que aciona review de código a cada PR aberto, usando um modelo com orçamento de raciocínio mais alto que o da implementação do dia a dia. Se não souber como montar o hook, peça:
+Use a skill `/review-pr` — cobre bugs, arquitetura, performance e segurança, e publica a revisão no GitHub via `gh` CLI. Configure um hook que a aciona a cada PR aberto, com um modelo de orçamento de raciocínio mais alto que o da implementação do dia a dia. Se não souber como montar o hook, peça:
 
 ```
-Configure um hook que acione review automático de PR, usando o modelo X para o review.
+Configure um hook que acione a skill /review-pr a cada PR aberto, usando o modelo X para o review.
 ```
 
-O agente deve investigar as opções do seu ambiente (hooks, modelo, gatilho de evento) em vez de assumir uma solução pronta — e não inventar nomes de skills que não existem no seu ambiente.
+O agente deve investigar as opções do seu ambiente (hooks, modelo, gatilho de evento) em vez de assumir uma solução pronta.
