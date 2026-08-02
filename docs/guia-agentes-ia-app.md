@@ -1,13 +1,13 @@
 ---
 sidebar_position: 2
-title: Guia — preparar e usar o repositório com agentes de IA de desenvolvimento
+title: Guia — preparar e usar um repositório de aplicação com agentes de IA de desenvolvimento
 ---
 
-# Preparar e usar o repositório com agentes de IA de desenvolvimento
+# Preparar e usar um repositório de aplicação com agentes de IA de desenvolvimento
 
-Este guia mostra como preparar um repositório e como operá-lo no dia a dia usando ferramentas de Inteligência Artificial voltadas para assistência e automação de programação — agentes que operam como engenheiros de software, lendo o código, produzindo especificações, implementando e abrindo PRs.
+Este guia mostra como preparar um repositório e como operá-lo no dia a dia usando ferramentas de Inteligência Artificial voltadas para assistência e automação de programação — agentes que operam como engenheiros de software, lendo o código, produzindo especificações, implementando e abrindo PRs. É escrito com foco em **repositórios de aplicação/código** (os exemplos citam módulos, PRs e arquivos de código) — para um repositório de conteúdo/documentação, adapte os exemplos ao seu tipo de artefato.
 
-## 1. Resumo executivo
+## 1. Resumo
 
 O fluxo tem três momentos: **preparar** o repositório para que um agente consiga entendê-lo e trabalhar nele de forma rastreável, **encadear** o conhecimento existente (documentação, decisões, código) em specs vivas, e **operar** no dia a dia pedindo trabalho em linguagem natural de alto nível. Três skills cobrem esses momentos:
 
@@ -31,8 +31,7 @@ O restante deste guia detalha como usar cada uma.
 
 ```
 /sdd-harness-creator faça a engenharia reversa deste repositório e monte
-o harness SDD, com a primeira feature descrevendo o estado atual como
-baseline.
+o harness SDD
 ```
 
 **Exemplo 2 — brownfield, escopo restrito a um módulo:**
@@ -45,9 +44,7 @@ baseline.
 **Exemplo 3 — greenfield:**
 
 ```
-/sdd-harness-creator este repositório é novo. Monte o harness SDD do
-zero: constitution.md com os princípios do kickoff e a primeira spec
-como MVP.
+/sdd-harness-creator este repositório é novo. Monte o harness SDD incial
 ```
 
 ### Encadeando specs com `/codefy` (processo contínuo, brownfield)

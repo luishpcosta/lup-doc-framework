@@ -3,7 +3,7 @@
 ## Current State
 
 **Last Updated:** 2026-08-01
-**Active Feature:** 002-guia-agentes-ia — Guia: preparar e usar o repositório com agentes de IA de desenvolvimento
+**Active Feature:** 002-guia-agentes-ia — Guia: preparar e usar um repositório de aplicação com agentes de IA de desenvolvimento
 **Active SDD Phase:** Verify (complete)
 **Pending Gate:** none — feature closed
 
@@ -36,7 +36,7 @@
 
 ### 002-guia-agentes-ia — concluída
 
-- [x] Nova página única `docs/guia-agentes-ia.md` ("Guia — preparar e usar o repositório com agentes de IA de desenvolvimento"): resumo executivo + tabela de skills (`/sdd-harness-creator`, `/codefy`, `/blueprintfy`), preparação do repositório (brownfield/greenfield, recomendação de modelo forte no brownfield, exemplos de invocação), encadeamento de specs com `/codefy`, 6 exemplos de uso do dia a dia, e dicas para `AGENTS.md`/`CLAUDE.md` (modos de trabalho rápido/faseado, review automático de PR via hook)
+- [x] Nova página única `docs/guia-agentes-ia-app.md` ("Guia — preparar e usar um repositório de aplicação com agentes de IA de desenvolvimento", renomeada a partir de `guia-agentes-ia.md` para deixar o escopo explícito): resumo executivo + tabela de skills (`/sdd-harness-creator`, `/codefy`), preparação do repositório (brownfield/greenfield, recomendação de modelo forte no brownfield, exemplos de invocação), encadeamento de specs com `/codefy`, exemplos de uso do dia a dia, e dicas para `AGENTS.md`/`CLAUDE.md` (modos de trabalho rápido/faseado, review automático de PR via hook)
 - [x] `docs/intro.mdx` linkado para a nova página
 - [x] `npm run typecheck` e `npm run build` verdes
 - [x] Verificação visual em modo claro e escuro via captura de tela (Chrome headless + CDP `Emulation.setEmulatedMedia`, já que `respectPrefersColorScheme: true` não é afetado por flags de linha de comando comuns) — paleta/tipografia do design system aplicadas corretamente, sem footer, sidebar/TOC corretos em ambos os modos
@@ -88,14 +88,15 @@ Nenhuma pendente.
 
 ### 002-guia-agentes-ia
 
-- [x] AC-1 verified: `docs/guia-agentes-ia.md` seção "1. Resumo executivo" — capturas `guia-full-light.png`/`guia-full-dark.png`
+- [x] AC-1 verified: `docs/guia-agentes-ia-app.md` seção "1. Resumo" — capturas `guia-full-light.png`/`guia-full-dark.png`/`guia-app-top.png`
 - [x] AC-2 verified: subseção "Brownfield vs. greenfield" com recomendação explícita de Opus no caminho brownfield
 - [x] AC-3 verified: 3 blocos de exemplo `/sdd-harness-creator` (2 brownfield + 1 greenfield)
 - [x] AC-4 verified: subseção "Encadeando specs com `/codefy`" com 2 blocos de exemplo
 - [x] AC-5 verified: seção "3. Uso no dia a dia" com 6 exemplos numerados
 - [x] AC-6 verified: seção "4. Dicas para AGENTS.md/CLAUDE.md" com os dois subtópicos pedidos
-- [x] AC-7 verified: `npm run typecheck` e `npm run build` verdes; rota `/docs/guia-agentes-ia` alcançável pela sidebar autogerada e linkada de `docs/intro.mdx`
+- [x] AC-7 verified: `npm run typecheck` e `npm run build` verdes; rota `/docs/guia-agentes-ia-app` alcançável pela sidebar autogerada e linkada de `docs/intro.mdx`
 - [x] AC-8 verified: revisão manual do texto final — nenhuma URL/nome de repositório de origem das skills
+- [x] AC-9 verified: usuário observou que o guia é específico para repositório de aplicação; arquivo renomeado (`git mv`) para `guia-agentes-ia-app.md`, título/H1 e frase de abertura deixam o escopo explícito; captura `guia-app-top.png` confirma título/breadcrumb/sidebar
 - [x] Coverage check clean: `specs/002-guia-agentes-ia/tasks.md` — toda AC tem ≥1 task, toda task referencia uma AC
 
 ## Notes for Next Session
