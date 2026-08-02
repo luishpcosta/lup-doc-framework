@@ -4,58 +4,53 @@ sidebar_position: 1
 
 # Introdução
 
-O **framework híbrido** é um modelo de trabalho com IA integrada que leva um problema de negócio até código gerado por agente, em um único fluxo — negócio → técnica → backlog → implementação — com rastreabilidade em cada etapa. Cada movimento devolve aprendizado para o anterior: é um ciclo, não uma esteira de mão única.
+## Resumo executivo
 
-## Por que o framework existe
+O framework híbrido especializa o uso de ferramentas agênticas de IA por função dentro do ciclo de desenvolvimento: profissionais de produto usam agentes para conduzir a análise de negócio, líderes técnicos para a análise técnica, e desenvolvedores para especializar a implementação. Cada papel entrega ao próximo um resultado pronto para uso — não um ponto de partida solto. A aposta não é mais uma ferramenta de IA: é um caminho prático de como orquestrar as que já existem, por função, dentro de um único ciclo.
 
-O uso de IA em times de produto e engenharia cresce rápido — agentes já ajudam a escrever documentos, montar backlog e gerar código. O framework híbrido dá a esse crescimento uma estrutura comum, entregando a cada squad:
+## O Problema
 
-- **Decisões que não se perdem** — o histórico de por que cada escolha foi feita fica registrado e acessível, então uma decisão já tomada não precisa ser debatida de novo do zero.
-- **Contexto que sobrevive à equipe** — a razão por trás de uma escolha importante continua documentada mesmo quando alguém muda de time.
-- **IA com intenção de negócio** — agentes que herdam o contexto certo entregam resultados mais alinhados ao que o negócio realmente precisa.
+Existem dezenas de ferramentas agênticas disponíveis hoje — mas falta um caminho prático de como especializá-las por função dentro de um ciclo de desenvolvimento coerente. Cada pessoa adota a que prefere, para a tarefa que tem na frente, sem que o resultado de uma etapa se conecte à próxima.
 
-O framework estrutura negócio, técnica e execução de IA num fluxo só, com rastreabilidade ponta a ponta.
+## A Solução
 
-## Duas análises, uma história
+O framework híbrido especializa o uso de IA por papel, dentro do mesmo ciclo:
 
-Negócio e técnica alimentam a mesma unidade de trabalho, mas a ordem entre elas varia com a demanda:
+- **Profissionais de produto** usam agentes para conduzir a análise de negócio.
+- **Líderes técnicos** usam agentes para conduzir a análise técnica.
+- **Desenvolvedores** usam agentes especializados na implementação.
 
-- **Análise de negócio** produz o **PB** (Product Brief — por que isso importa agora) e o **PRD** (Product Requirements Document — o que precisa existir).
-- **Análise técnica** produz o **ADR** (Architecture Decision Record — como decidimos resolver, e por quê) e os **ACs** (Acceptance Criteria — o que prova que está pronto).
+Cada papel entrega ao próximo um resultado pronto para uso — a IA não é a mesma ferramenta genérica passando de mão em mão, ela é especializada para a etapa em que está.
 
-As duas podem rodar em paralelo, em sequência (uma reforçando uma decisão já tomada na outra), ou — em demandas puramente técnicas, como refatoração ou infraestrutura — a análise técnica pode iniciar o fluxo sozinha, impactando ou não uma funcionalidade de produto.
+## O que torna isto diferente
 
-Agentes e skills conduzem a entrevista em cada análise; o time valida e decide. As duas análises se encontram numa **história** única, rastreável e registrada no board do time — o que o harness de implementação vai executar. Ela herda o contexto de negócio (PB/PRD), a decisão técnica (ADR) e o critério de aceite (ACs), e carrega um link de volta para o board.
+O caminho óbvio seria dar a mesma ferramenta genérica de IA para todo mundo e deixar cada pessoa descobrir sozinha como aplicá-la. O framework aposta no oposto: uma especialização agêntica por função — o profissional de produto usa IA para análise de negócio, o líder técnico para análise técnica, o desenvolvedor para implementação — e o resultado de uma etapa vira insumo direto da próxima, em vez de ser reconstruído do zero.
 
-O que mantém tudo isso auditável é uma cadeia de IDs: `PB-001 → PRD-004 → ADR-012 → AC-017 → HIST-231`. Essa cadeia garante cobertura auditável e detecção de desvio em qualquer etapa.
+## Quem isto serve
 
-## Onde o contexto vive
+- **Profissionais de produto** — conduzem a análise de negócio com apoio de agentes especializados.
+- **Líderes técnicos** — conduzem a análise técnica com apoio de agentes especializados.
+- **Desenvolvedores** — especializam a IA na implementação: do pipeline de execução a tarefas do dia a dia, como revisão de código assistida, testes gerados por agente e apoio a debugging.
 
-O contexto de negócio e técnico mora num **repositório de contexto** — um metarepo documental, mantido por agentes e skills — organizado por **contenção**, não por sequência: cada nível vive dentro do anterior.
+## Critérios de sucesso
 
-Um `CONTEXT-MAP.md` na raiz indexa todos os domínios (ex. pagamentos). Dentro de cada domínio, um subdomínio (ex. cobrança recorrente) contém um ou mais **bounded contexts** — a fronteira que normalmente vira um repositório de serviço — e cada bounded context tem seu próprio glossário (`CONTEXT.md`) e seus próprios ADRs.
+- Cada papel usa agentes especializados na própria etapa — não só IA genérica de produtividade pessoal.
+- O que sai da análise de negócio chega à análise técnica sem reconstrução manual, e daí até o código.
+- Um squad novo consegue adotar o modelo sem depender de treinamento informal.
 
-## Como o código é gerado
+## Escopo
 
-O harness de SDD (specify → plan → tasks → verify) vive **dentro de cada repositório de serviço**, não no metarepo de contexto — evolui no ritmo de cada time, sem tocar na governança central:
+**No escopo:** a especialização agêntica por papel (produto, técnica, desenvolvimento) e como ela se orquestra dentro do mesmo ciclo de desenvolvimento.
 
-1. **spec** — reescreve a história em termos executáveis.
-2. **plan** — quebra em passos de implementação.
-3. **tasks** — unidades que o agente de IA executa.
-4. **verify** — prova que o AC de origem foi atendido.
+**Fora do escopo:** o detalhamento dos artefatos e do pipeline técnico que sustentam essa especialização — isso vive na página inicial e nos guias práticos, referenciados abaixo.
 
-## Como cada squad personaliza o framework
+## Visão
 
-O framework híbrido se adapta ao contexto de cada squad, em vez de impor um único jeito de trabalhar. Cada squad define:
-
-- **Harness de SDD** — qual ferramenta de especificação/implementação usar no dia a dia.
-- **Responsáveis pela contextualização** — quem aprova mudanças em PB, PRD e ADR dentro do squad.
-- **Convenção de formatos** — como PB/PRD/ADR/AC/História são escritos e nomeados.
-- **Critério de entrega** — quem decide os gates e revisa o código antes de ir para produção.
+O ponto de partida são três papéis — produto, técnica, desenvolvimento. A mesma lógica de especialização agêntica pode se estender a outros papéis do ciclo — QA, design, suporte — conforme o modelo se prova em produção.
 
 ## Para onde ir a seguir
 
 - Para preparar e operar um **repositório de serviço/código** com agentes de IA no dia a dia, veja o [guia de repositório de aplicação](./guia-agentes-ia-app.md).
 - Para preparar e manter o **repositório de contexto** (PB, PRD, ADR, critérios de aceite e o mapa de domínio), e reconciliá-lo com o que os serviços realmente fazem, veja o [guia de repositório de contexto](./guia-repositorio-contexto.md).
 
-Volte para a [página inicial](/) para o resumo visual do modelo.
+Volte para a [página inicial](/) para o detalhe técnico e visual do modelo.

@@ -3,7 +3,7 @@
 ## Current State
 
 **Last Updated:** 2026-08-02
-**Active Feature:** multi-feature amendment — modos de execução do Pilar 1 (001, 003, 004)
+**Active Feature:** 004-intro-framework — reformulação completa como visão de produto (skill `pm-create-pb`)
 **Active SDD Phase:** Verify (complete)
 **Pending Gate:** none — feature closed
 
@@ -84,6 +84,18 @@
 - [x] `docs/guia-repositorio-contexto.md` subseção "Análise de negócio com o time de produto (opcional)": frase de abertura reescrita para explicitar que demandas puramente técnicas pulam essa etapa e começam direto em `/prd-to-adr`/`/issue-to-adr`
 - [x] Specs sincronizadas nas 3 features donas dos arquivos tocados: `specs/001-tela-inicial` (FR-14/AC-14/T-21/T-22), `specs/003-guia-repositorio-contexto` (FR-4/AC-4 ampliados, T-12/T-13), `specs/004-intro-framework` (FR-3/AC-3 reescritos, T-13/T-14) — Clarifications Log de cada uma documenta o pedido e a Opção A escolhida
 - [x] `npm run typecheck`/`build` verdes; verificação visual: `docs/intro.mdx` em claro e escuro (`intro-parallel-light.png`/`intro-parallel-dark.png`), `docs/guia-repositorio-contexto.md` em claro (`guia-parallel-light.png`), e slide 6 de `framework-hibrido.html` forçado ativo via `goTo(5)` (`fh-s6-final.png`) — todas as 3 superfícies renderizam o texto novo sem quebrar layout
+
+### 004-intro-framework — reformulação completa como visão de produto (2026-08-02)
+
+- [x] **Usuário pediu para reformular `/docs/intro` como visão de produto do framework, baseada nos tópicos da skill `pm-create-pb`**, usando um brief inicial (fomentar uso de ferramentas agênticas já disponíveis, com orquestração e especialização por função: produto → análise de negócio, líder técnico → análise técnica, dev → especialização da implementação), e pedindo explicitamente para eu perguntar e dar opções antes de implementar.
+- [x] **Skill `pm-create-pb` invocada** (disponibilizada dinamicamente nesta sessão). Fase 0 (reconhecimento de território): o repositório não tem `CONTEXT-MAP.md` nem `blueprintfy` instalado — não é um repositório de contexto no sentido do próprio framework. Segui sem grafo, como a skill instrui para esse caso, e sinalizei a limitação na spec.
+- [x] **Entrevista conduzida via `AskUserQuestion`, uma pergunta por vez, sempre com opção recomendada** (disciplina de `entrevista-de-impacto.md`, adaptada de perguntas de domínio/ADR para perguntas de escopo/problema/diferencial/público/sucesso de conteúdo): (1) escopo — substituição completa do conteúdo técnico anterior (já coberto pela home); (2) problema — falta de caminho prático de especialização por função; (3) diferencial — contraste com "mesma ferramenta genérica para todo mundo"; (4) papel do dev — soma de harness de execução + especializações do dia a dia; (5) critérios de sucesso — rastreabilidade + adoção por papel; (6) escopo dentro/fora — termos técnicos confinados à seção de links; (7) visão futura — extensão a outros papéis (QA, design, suporte)
+- [x] `docs/intro.mdx` reescrito por completo em torno das 8 seções do template de PB (`pb-template.md`): Resumo executivo, O Problema, A Solução, O que torna isto diferente, Quem isto serve, Critérios de sucesso, Escopo, Visão — substituindo as seções técnicas/arquiteturais da rodada anterior (duas análises, contenção de domínio, harness SDD, customização por squad), que já vivem, com fidelidade total, na home
+- [x] Seção final "Para onde ir a seguir" mantida — única parte da página que cita termos técnicos (PB/PRD/ADR/AC), porque aponta para onde esse detalhe vive, não o explica
+- [x] **Nenhum `PRODUCT_BRIEF.md` formal foi gerado** (front matter/ID/gate do `CONTEXT-MAP.md` da Fase 4/5 da skill) — não haveria lugar coerente para ele neste repositório (sem `CONTEXT-MAP.md`, sem convenção de `docs/refinamento/`). Os tópicos do template foram usados só como estrutura de seções da página; decisão registrada em `specs/004-intro-framework/spec.md` (Out of Scope) e `plan.md` (Key Decisions)
+- [x] `specs/004-intro-framework/{spec,plan,tasks}.md` reescritas: FR/AC antigos (1-8, versão técnica) substituídos por um novo conjunto (1-11, visão de produto); tasks antigas (T-1 a T-14) marcadas `superseded` em bloco "histórico", novas tasks (T-15 a T-26) na seção "atuais"; Clarifications Log preserva todo o histórico anterior, com nova entrada documentando a entrevista completa
+- [x] `grep` confirma ausência de termos técnicos (PB/PRD/ADR/AC/CONTEXT-MAP/spec-plan-tasks-verify/nomes de skill) fora da seção final de links
+- [x] `npm run typecheck`/`build` verdes; verificação visual em claro e escuro (`intro-pb-light.png`/`intro-pb-dark.png`) — 8 seções + navegação final aparecem corretamente na TOC, paleta/tipografia corretas em ambos os modos, sem quebra de layout
 
 ## Open Clarifications
 
