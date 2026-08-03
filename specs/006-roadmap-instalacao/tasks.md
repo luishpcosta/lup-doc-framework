@@ -26,6 +26,8 @@
 | T-12 | Adicionar `NNN-slug-{story-name}-HIST.md` ao scaffold (Fase 2) e à menção de artefatos no exemplo de `/blueprintfy` | AC-3 | done | scaffold e exemplo de `/blueprintfy` citam História |
 | T-13 | Tornar os exemplos de `/domain-reconcile` (Fase 3) mais realistas com um link de GitHub genérico | AC-11 | done | `github.com/minha-org/pagamentos-service` nos 2 blocos de comando da Fase 3 |
 | T-14 | Rodar `npm run typecheck` + `npm run build`; nova captura de tela confirmando o rótulo curto na sidebar e os exemplos atualizados | AC-1..AC-11 | done | `npm run typecheck`/`build` verdes; capturas `roadmap2-light.png`/`roadmap2-mid.png` |
+| T-15 | Corrigir o scaffold e o texto: história não é 1:1 com funcionalidade — pode haver mais de uma por funcionalidade | AC-3 | done | scaffold mostra 2 instâncias de `HIST.md` com nota "1 ou mais por funcionalidade"; bullet da camada to-be e exemplo de `/blueprintfy` atualizados |
+| T-16 | Rodar `npm run typecheck` + `npm run build`; captura de tela confirmando o scaffold corrigido | AC-3 | done | `npm run typecheck`/`build` verdes; captura `roadmap-hist-fix.png` |
 
 Status values: `todo` → `doing` → `done` → `superseded`.
 

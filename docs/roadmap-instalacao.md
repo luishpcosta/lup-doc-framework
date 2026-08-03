@@ -18,7 +18,7 @@ Um runbook para uma squad que opera **múltiplos repositórios de aplicação** 
 
 - [ ] Crie ou reutilize um repositório de documentação da squad. Sugestão: padrão Docusaurus, para visualizar e democratizar o conteúdo — este próprio site é um exemplo.
 - [ ] Defina duas camadas de separação dentro do repositório:
-  - **to-be** (`docs/discovery/`) — os artefatos do framework (Product Brief, PRD, ADR, critérios de aceite, história) por funcionalidade.
+  - **to-be** (`docs/discovery/`) — os artefatos do framework (Product Brief, PRD, ADR, critérios de aceite) por funcionalidade, e uma ou mais histórias por funcionalidade — uma por unidade de trabalho executável, não necessariamente 1:1.
   - **as-is** (`docs/dominio/`) — o comportamento funcional do domínio já produtivo: capacidades (serviços de domínio), contratos e outros elementos técnicos. **Incremento opcional** — comece só com a camada to-be se preferir, e adicione o as-is depois.
 - [ ] Adapte o scaffold abaixo à sua realidade (nomes de domínio, funcionalidades e serviços variam por squad — a separação conceitual to-be/as-is é o que importa manter):
 
@@ -32,7 +32,8 @@ Um runbook para uma squad que opera **múltiplos repositórios de aplicação** 
 │   │       ├── NNN-slug-{funcionalidade}-PRD.md
 │   │       ├── NNN-slug-{funcionalidade}-ADR.md
 │   │       ├── NNN-slug-{funcionalidade}-ACs.md
-│   │       └── NNN-slug-{story-name}-HIST.md
+│   │       ├── NNN-slug-{story-1}-HIST.md   ← 1 ou mais por
+│   │       └── NNN-slug-{story-2}-HIST.md      funcionalidade
 │   └── {other-discovery-name}/
 │       └── ...mesma estrutura...
 └── docs/dominio/                      ← as-is: negócio já produtivo (opcional)
@@ -48,8 +49,9 @@ Um runbook para uma squad que opera **múltiplos repositórios de aplicação** 
 ```
 /blueprintfy este repositório ainda não tem CONTEXT-MAP.md. Comece a
 modelagem de domínio do zero seguindo esta estrutura: docs/discovery/
-para os artefatos do framework (PB/PRD/ADR/ACs/História por
-funcionalidade) e, opcionalmente, docs/dominio/ para o as-is do
+para os artefatos do framework (PB/PRD/ADR/ACs por funcionalidade, e
+uma ou mais Histórias por funcionalidade — uma por unidade de
+trabalho executável) e, opcionalmente, docs/dominio/ para o as-is do
 negócio já produtivo.
 ```
 
