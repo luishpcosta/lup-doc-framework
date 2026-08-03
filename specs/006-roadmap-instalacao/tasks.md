@@ -28,6 +28,8 @@
 | T-14 | Rodar `npm run typecheck` + `npm run build`; nova captura de tela confirmando o rótulo curto na sidebar e os exemplos atualizados | AC-1..AC-11 | done | `npm run typecheck`/`build` verdes; capturas `roadmap2-light.png`/`roadmap2-mid.png` |
 | T-15 | Corrigir o scaffold e o texto: história não é 1:1 com funcionalidade — pode haver mais de uma por funcionalidade | AC-3 | done | scaffold mostra 2 instâncias de `HIST.md` com nota "1 ou mais por funcionalidade"; bullet da camada to-be e exemplo de `/blueprintfy` atualizados |
 | T-16 | Rodar `npm run typecheck` + `npm run build`; captura de tela confirmando o scaffold corrigido | AC-3 | done | `npm run typecheck`/`build` verdes; captura `roadmap-hist-fix.png` |
+| T-17 | Reescrever os 3 blocos de comando (`/blueprintfy`, 2x `/domain-reconcile`) em tom mais alto nível/casual, simulando um dev jr/pleno | AC-2, AC-3, AC-4 | done | prompts mais curtos, mantendo repositório/branch/pasta no primeiro `/domain-reconcile` |
+| T-18 | Rodar `npm run typecheck` + `npm run build`; captura de tela confirmando os prompts atualizados | AC-2, AC-3, AC-4 | done | `npm run typecheck`/`build` verdes; captura `roadmap-casual.png` |
 
 Status values: `todo` → `doing` → `done` → `superseded`.
 

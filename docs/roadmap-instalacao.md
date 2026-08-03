@@ -47,12 +47,9 @@ Um runbook para uma squad que opera **múltiplos repositórios de aplicação** 
 - [ ] Com o scaffold definido, siga o [guia de repositório de contexto](./guia-repositorio-contexto.md) para o bootstrap, referenciando a estrutura escolhida:
 
 ```
-/blueprintfy este repositório ainda não tem CONTEXT-MAP.md. Comece a
-modelagem de domínio do zero seguindo esta estrutura: docs/discovery/
-para os artefatos do framework (PB/PRD/ADR/ACs por funcionalidade, e
-uma ou mais Histórias por funcionalidade — uma por unidade de
-trabalho executável) e, opcionalmente, docs/dominio/ para o as-is do
-negócio já produtivo.
+/blueprintfy esse repo ainda não tem CONTEXT-MAP.md. Começa a modelagem
+do zero usando docs/discovery/ pros artefatos do framework e
+docs/dominio/ pro as-is (esse aqui é opcional).
 ```
 
 ## Fase 3 — Povoar a documentação a partir das aplicações
@@ -60,19 +57,15 @@ negócio já produtivo.
 - [ ] Use `/domain-reconcile` para trazer o que já foi especificado no harness SDD de cada aplicação para o repositório de contexto. Peça primeiro um plano, revise, e só então autorize a escrita — a skill já funciona assim por padrão (edita documento só com autorização explícita, passagem por passagem):
 
 ```
-/domain-reconcile mapeie github.com/minha-org/pagamentos-service
-(branch main, pasta specs/003-parcelamento/, harness Speckit SDD)
-contra o que já temos aqui, e mostre um plano do que entraria em
-docs/discovery/pagamentos/parcelamento/ antes de escrever qualquer
-arquivo.
+/domain-reconcile compara github.com/minha-org/pagamentos-service
+(branch main, specs/003-parcelamento/) com o que já temos aqui, mas só
+mostra o plano antes de escrever qualquer coisa
 ```
 
 - [ ] Depois de revisar o plano, autorize a escrita:
 
 ```
-/domain-reconcile plano aprovado para
-github.com/minha-org/pagamentos-service — preencha
-docs/discovery/pagamentos/parcelamento/ com o que foi mapeado.
+/domain-reconcile aprovado, pode escrever
 ```
 
 - [ ] Repita para cada aplicação/funcionalidade que precisa entrar no repositório de contexto.
