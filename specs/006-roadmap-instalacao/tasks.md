@@ -22,6 +22,10 @@
 | T-8 | Adicionar link para o roadmap em `docs/intro.mdx` ("Para onde ir a seguir") | AC-8 | done | novo item de lista em `docs/intro.mdx` |
 | T-9 | Revisar o tom da página completa (sem linguagem alarmista/pendência) | AC-9 | done | revisão manual — nenhuma frase problemática identificada |
 | T-10 | Rodar `npm run typecheck` + `npm run build`; verificação visual em claro e escuro, com atenção às task lists | AC-1..AC-9 | done | `npm run typecheck`/`build` verdes; capturas de `docs/roadmap-instalacao` em claro e escuro, sidebar confirmando a nova ordem |
+| T-11 | Adicionar `sidebar_label: Roadmap de Instalação` ao front matter, a pedido de acompanhamento do usuário | AC-10 | done | sidebar exibe "Roadmap de Instalação"; título completo mantido no H1/aba do navegador |
+| T-12 | Adicionar `NNN-slug-{story-name}-HIST.md` ao scaffold (Fase 2) e à menção de artefatos no exemplo de `/blueprintfy` | AC-3 | done | scaffold e exemplo de `/blueprintfy` citam História |
+| T-13 | Tornar os exemplos de `/domain-reconcile` (Fase 3) mais realistas com um link de GitHub genérico | AC-11 | done | `github.com/minha-org/pagamentos-service` nos 2 blocos de comando da Fase 3 |
+| T-14 | Rodar `npm run typecheck` + `npm run build`; nova captura de tela confirmando o rótulo curto na sidebar e os exemplos atualizados | AC-1..AC-11 | done | `npm run typecheck`/`build` verdes; capturas `roadmap2-light.png`/`roadmap2-mid.png` |
 
 Status values: `todo` → `doing` → `done` → `superseded`.
 
@@ -29,5 +33,5 @@ Status values: `todo` → `doing` → `done` → `superseded`.
 
 Confirm manually before implementing:
 
-- Every AC referenced by at least one task? yes — AC-1: T-1, AC-2: T-2, AC-3: T-3, AC-4: T-4, AC-5: T-5, AC-6: T-6, AC-7: T-7/T-10, AC-8: T-8, AC-9: T-9
+- Every AC referenced by at least one task? yes — AC-1: T-1, AC-2: T-2, AC-3: T-3/T-12, AC-4: T-4, AC-5: T-5, AC-6: T-6, AC-7: T-7/T-10, AC-8: T-8, AC-9: T-9, AC-10: T-11, AC-11: T-13
 - Every task linked to an AC? yes

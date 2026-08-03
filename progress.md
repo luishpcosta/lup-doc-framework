@@ -120,6 +120,7 @@
 - [x] `docs/guia-repositorio-contexto.md` **não foi alterado** para incorporar o scaffold — decisão explícita do usuário, guia continua agnóstico de estrutura de pastas
 - [x] Link cruzado adicionado em `docs/intro.mdx` ("Para onde ir a seguir")
 - [x] `npm run typecheck`/`build` verdes; verificação visual em claro e escuro (`roadmap-light.png`/`roadmap-dark.png`) — checkboxes nativas, scaffold ASCII legível, sidebar na ordem nova, TOC com as 4 fases
+- [x] **Pedido de acompanhamento (3 ajustes)**: (1) rótulo da sidebar encurtado para "Roadmap de Instalação" via `sidebar_label` no front matter (título completo mantido no H1/aba do navegador); (2) artefato de História (`NNN-slug-{story-name}-HIST.md`) adicionado ao scaffold e ao exemplo de `/blueprintfy`; (3) exemplos de `/domain-reconcile` (Fase 3) tornados mais realistas com link de GitHub genérico e representativo (`github.com/minha-org/pagamentos-service`). FR-10/FR-11 (e ACs/tasks correspondentes) adicionados a `specs/006-roadmap-instalacao`. `npm run typecheck`/`build` verdes; verificação visual confirmando o rótulo curto na sidebar
 
 ## Open Clarifications
 

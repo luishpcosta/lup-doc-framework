@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 title: Roadmap — implantar o framework num squad com sistemas distribuídos
+sidebar_label: Roadmap de Instalação
 ---
 
 # Roadmap — implantar o framework num squad com sistemas distribuídos
@@ -17,7 +18,7 @@ Um runbook para uma squad que opera **múltiplos repositórios de aplicação** 
 
 - [ ] Crie ou reutilize um repositório de documentação da squad. Sugestão: padrão Docusaurus, para visualizar e democratizar o conteúdo — este próprio site é um exemplo.
 - [ ] Defina duas camadas de separação dentro do repositório:
-  - **to-be** (`docs/discovery/`) — os artefatos do framework (Product Brief, PRD, ADR, critérios de aceite) por funcionalidade.
+  - **to-be** (`docs/discovery/`) — os artefatos do framework (Product Brief, PRD, ADR, critérios de aceite, história) por funcionalidade.
   - **as-is** (`docs/dominio/`) — o comportamento funcional do domínio já produtivo: capacidades (serviços de domínio), contratos e outros elementos técnicos. **Incremento opcional** — comece só com a camada to-be se preferir, e adicione o as-is depois.
 - [ ] Adapte o scaffold abaixo à sua realidade (nomes de domínio, funcionalidades e serviços variam por squad — a separação conceitual to-be/as-is é o que importa manter):
 
@@ -30,7 +31,8 @@ Um runbook para uma squad que opera **múltiplos repositórios de aplicação** 
 │   │       ├── PRODUCT_BRIEF.md
 │   │       ├── NNN-slug-{funcionalidade}-PRD.md
 │   │       ├── NNN-slug-{funcionalidade}-ADR.md
-│   │       └── NNN-slug-{funcionalidade}-ACs.md
+│   │       ├── NNN-slug-{funcionalidade}-ACs.md
+│   │       └── NNN-slug-{story-name}-HIST.md
 │   └── {other-discovery-name}/
 │       └── ...mesma estrutura...
 └── docs/dominio/                      ← as-is: negócio já produtivo (opcional)
@@ -46,8 +48,9 @@ Um runbook para uma squad que opera **múltiplos repositórios de aplicação** 
 ```
 /blueprintfy este repositório ainda não tem CONTEXT-MAP.md. Comece a
 modelagem de domínio do zero seguindo esta estrutura: docs/discovery/
-para os artefatos do framework (PB/PRD/ADR/ACs por funcionalidade) e,
-opcionalmente, docs/dominio/ para o as-is do negócio já produtivo.
+para os artefatos do framework (PB/PRD/ADR/ACs/História por
+funcionalidade) e, opcionalmente, docs/dominio/ para o as-is do
+negócio já produtivo.
 ```
 
 ## Fase 3 — Povoar a documentação a partir das aplicações
@@ -55,9 +58,9 @@ opcionalmente, docs/dominio/ para o as-is do negócio já produtivo.
 - [ ] Use `/domain-reconcile` para trazer o que já foi especificado no harness SDD de cada aplicação para o repositório de contexto. Peça primeiro um plano, revise, e só então autorize a escrita — a skill já funciona assim por padrão (edita documento só com autorização explícita, passagem por passagem):
 
 ```
-/domain-reconcile mapeie o repositório de pagamentos (branch main,
-pasta specs/003-parcelamento/, harness Speckit SDD) contra o que já
-temos aqui, e mostre um plano do que entraria em
+/domain-reconcile mapeie github.com/minha-org/pagamentos-service
+(branch main, pasta specs/003-parcelamento/, harness Speckit SDD)
+contra o que já temos aqui, e mostre um plano do que entraria em
 docs/discovery/pagamentos/parcelamento/ antes de escrever qualquer
 arquivo.
 ```
@@ -65,7 +68,8 @@ arquivo.
 - [ ] Depois de revisar o plano, autorize a escrita:
 
 ```
-/domain-reconcile plano aprovado — preencha
+/domain-reconcile plano aprovado para
+github.com/minha-org/pagamentos-service — preencha
 docs/discovery/pagamentos/parcelamento/ com o que foi mapeado.
 ```
 
