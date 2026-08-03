@@ -262,6 +262,9 @@ body.blueprint .nav-btn:focus-visible{ outline-color:#fff; }
 /* #s1 (a capa) tem fundo --navy fora do toggle claro/escuro normal; sem
    isto o botão herda a cor escura do body e fica quase invisível ali */
 body.cover .nav-btn{ color:#fff; }
+/* mesmo problema do .nav-btn acima: .dot.active usa --navy de fundo, que
+   é exatamente a cor do fundo de #s1 — o dot ativo some na capa */
+body.cover .dot.active{ background:#fff; }
 .nav-right{ display:flex; gap:10px; }
 
 @media(max-width:600px){
@@ -292,7 +295,7 @@ body.cover .nav-btn{ color:#fff; }
     <p class="eyebrow">Situação</p>
     <h1 class="slide-title">Hoje, cada time usa IA à sua maneira</h1>
     <div class="row">
-      <div class="card"><div class="num">1</div><h3>IA entra em cada etapa</h3><p>Agentes já ajudam a escrever documentos, montar backlog e gerar código.</p></div>
+      <div class="card"><div class="num">1</div><h3>IA usada para performance pessoal</h3><p>Cada profissional já usa agentes no dia a dia para escrever documentos, gerar código e ganhar produtividade individual.</p></div>
       <div class="card"><div class="num">2</div><h3>Cada time escolhe como usar</h3><p>Não existe um padrão comum de como a IA participa do trabalho entre as equipes.</p></div>
       <div class="card"><div class="num">3</div><h3>O ritmo de adoção varia</h3><p>Alguns times usam IA em quase tudo; outros, só em partes pontuais do processo.</p></div>
     </div>
@@ -301,11 +304,11 @@ body.cover .nav-btn{ color:#fff; }
   <!-- 3: COMPLICAÇÃO -->
   <section class="slide" id="s3" data-register="paper">
     <p class="eyebrow">Complicação</p>
-    <h1 class="slide-title">Quando não estruturamos o uso de IA, a operação perde o controle</h1>
+    <h1 class="slide-title">Sem uma estrutura comum, o potencial da IA fica limitado</h1>
     <div class="row">
       <div class="card"><div class="num">1</div><h3>Decisões se repetem</h3><p>O mesmo debate estratégico acontece de novo em cada time, porque ninguém sabe que já foi resolvido em outro lugar.</p></div>
       <div class="card"><div class="num">2</div><h3>Contexto vive na cabeça das pessoas</h3><p>Quando alguém sai do time, a razão por trás de uma escolha importante sai junto.</p></div>
-      <div class="card"><div class="num">3</div><h3>IA sem contexto erra mais</h3><p>Agentes que executam tarefas sem acesso à intenção de negócio tomam atalhos que parecem certos e não são.</p></div>
+      <div class="card"><div class="num">3</div><h3>IA sem contexto perde precisão</h3><p>Agentes que executam tarefas sem acesso à intenção de negócio entregam resultados que precisam de mais retrabalho.</p></div>
     </div>
   </section>
 
@@ -337,7 +340,7 @@ body.cover .nav-btn{ color:#fff; }
   <section class="slide" id="s6" data-register="blueprint">
     <p class="eyebrow">Resposta — pilar 1</p>
     <h1 class="slide-title">Duas análises, quatro artefatos</h1>
-    <p class="slide-sub">Negócio e técnica rodam em paralelo — as duas alimentam a mesma história.</p>
+    <p class="slide-sub">Negócio e técnica podem rodar em paralelo, em sequência, ou partir direto da técnica.</p>
     <div class="nest-label" style="margin-top:22px; color:var(--purple)">Análise de negócio <span class="badge" style="margin-left:8px; margin-bottom:0;">agentes + skills</span></div>
     <div class="pipeline" style="margin-top:10px;">
       <div class="pipe-node"><h4>PB</h4><p class="pipe-full">Product Brief</p><p>Por que isso importa agora</p></div>
@@ -350,7 +353,7 @@ body.cover .nav-btn{ color:#fff; }
       <div class="pipe-arrow" style="color:var(--coral)">→</div>
       <div class="pipe-node" style="border-color:var(--coral)"><h4>ACs</h4><p class="pipe-full">Acceptance Criteria</p><p>O que prova que está pronto</p></div>
     </div>
-    <p class="rule-note">Agentes e skills conduzem a entrevista em cada análise — o time valida e decide.</p>
+    <p class="rule-note">Agentes e skills conduzem a entrevista em cada análise — o time valida e decide. Demandas puramente técnicas podem começar direto na análise técnica, impactando ou não uma funcionalidade de produto.</p>
   </section>
 
   <!-- 7: RESPOSTA — pilar 1 (cont.) -->
@@ -362,7 +365,7 @@ body.cover .nav-btn{ color:#fff; }
       <div class="mech-card"><h4>Contexto de negócio</h4><p>Herdado do PB e do PRD</p></div>
       <div class="mech-card"><h4>Decisão técnica</h4><p>Herdada do ADR</p></div>
       <div class="mech-card"><h4>Critério de aceite</h4><p>Herdado dos ACs</p></div>
-      <div class="mech-card"><h4>Link de board</h4><p>Visível para o time em Jira, Linear ou equivalente</p></div>
+      <div class="mech-card"><h4>Link de board</h4><p>Visível para o time em board de gestão ágil</p></div>
     </div>
     <div class="chain">
       <span class="token">PB-001</span><span class="arrow">→</span>
@@ -371,7 +374,7 @@ body.cover .nav-btn{ color:#fff; }
       <span class="token">AC-017</span><span class="arrow">→</span>
       <span class="token">HIST-231</span>
     </div>
-    <p class="chain-caption">Sem essa cadeia de IDs não dá para provar cobertura nem detectar desvio.</p>
+    <p class="chain-caption">Essa cadeia de IDs garante cobertura auditável e detecção de desvio em qualquer etapa.</p>
   </section>
 
   <!-- 8: RESPOSTA — pilar 2 -->
@@ -425,12 +428,12 @@ body.cover .nav-btn{ color:#fff; }
   <!-- 10: RESPOSTA — para produção -->
   <section class="slide" id="s10" data-register="blueprint">
     <p class="eyebrow">Resposta — para produção</p>
-    <h1 class="slide-title">O que precisa ser decidido</h1>
+    <h1 class="slide-title">Como cada squad personaliza o framework</h1>
     <div class="decision-grid">
-      <div class="decision-card"><div class="n">01</div><h4>Harness padrão</h4><p>Qual ferramenta de Speckit SDD a organização adota primeiro</p></div>
-      <div class="decision-card"><div class="n">02</div><h4>Responsáveis da contextualização</h4><p>Quem aprova mudanças em PB, PRD e ADR</p></div>
-      <div class="decision-card"><div class="n">03</div><h4>Convenção de formatos</h4><p>Formato único de PB/PRD/ADR/AC/História em toda a organização</p></div>
-      <div class="decision-card"><div class="n">04</div><h4>Quem julga a entrega</h4><p>Responsáveis por decidir gates e revisão de código</p></div>
+      <div class="decision-card"><div class="n">01</div><h4>Harness de SDD</h4><p>Qual ferramenta de especificação/implementação o squad usa no dia a dia</p></div>
+      <div class="decision-card"><div class="n">02</div><h4>Responsáveis pela contextualização</h4><p>Quem aprova mudanças em PB, PRD e ADR dentro do squad</p></div>
+      <div class="decision-card"><div class="n">03</div><h4>Convenção de formatos</h4><p>Como PB/PRD/ADR/AC/História são escritos e nomeados</p></div>
+      <div class="decision-card"><div class="n">04</div><h4>Critério de entrega</h4><p>Quem decide os gates e revisa o código antes de ir para produção</p></div>
     </div>
   </section>
 
