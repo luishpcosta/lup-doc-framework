@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 title: Roadmap — implantar o framework num squad com sistemas distribuídos
 sidebar_label: Roadmap de Instalação
 ---
